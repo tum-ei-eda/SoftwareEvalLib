@@ -1,0 +1,20 @@
+SET (SRC_FILES
+    src/Monitor.cpp   
+    src/Printer.cpp
+    src/Model.cpp
+    src/Streamer.cpp
+)
+
+ADD_LIBRARY(COMPONENTS_LIB STATIC ${SRC_FILES})
+
+TARGET_LINK_LIBRARIES(COMPONENTS_LIB PUBLIC
+  ETISS
+)
+
+TARGET_INCLUDE_DIRECTORIES(COMPONENTS_LIB PUBLIC
+    include
+)
+
+TARGET_INCLUDE_DIRECTORIES(COMPONENTS_LIB PRIVATE
+    include/Components
+)

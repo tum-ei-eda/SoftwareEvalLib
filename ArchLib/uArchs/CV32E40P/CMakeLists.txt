@@ -1,0 +1,8 @@
+TARGET_SOURCES(ARCH_LIB PRIVATE
+  src/CV32E40P_Model.cpp
+  src/CV32E40P_InstructionModels.cpp
+)
+
+TARGET_INCLUDE_DIRECTORIES(ARCH_LIB PRIVATE
+  include
+)

@@ -1,0 +1,33 @@
+PROJECT(SoftwareEval)
+
+SET(SRC_FILES
+  src/libSoftwareEval.cpp
+  src/TracerPlugin.cpp
+  src/TracePrinterPlugin.cpp
+  src/PerformanceEstimatorPlugin.cpp
+  src/Estimator.cpp
+)
+
+ADD_LIBRARY(${PROJECT_NAME} SHARED
+  ${SRC_FILES}
+)
+
+ADD_SUBDIRECTORY(libs)
+ADD_SUBDIRECTORY(TraceLib)
+ADD_SUBDIRECTORY(ArchLib)
+
+ETISSPlugin(${PROJECT_NAME})
+
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} PRIVATE
+  COMPONENTS_LIB
+  TRACES_LIB
+  ARCH_LIB
+)
+
+TARGET_INCLUDE_DIRECTORIES(${PROJECT_NAME} PUBLIC
+  include 
+)
+
+TARGET_INCLUDE_DIRECTORIES(${PROJECT_NAME} PRIVATE
+  include/SoftwareEval
+)
