@@ -16,19 +16,19 @@
 
 /********************* AUTO GENERATE FILE (create by Trace-Generator) *********************/
 
-#include "InstructionTrace_Printer.h"
+#include "InstructionTrace_RV32IMACFD_Printer.h"
 
 #include "Components/Printer.h"
 
 #include <iostream>
 #include <iomanip>
 
-extern InstructionPrinterSet* InstructionTrace_InstrPrinterSet;
+extern InstructionPrinterSet* InstructionTrace_RV32IMACFD_InstrPrinterSet;
 
-InstructionTrace_Printer::InstructionTrace_Printer(): Printer("InstructionTrace_Printer", InstructionTrace_InstrPrinterSet)
+InstructionTrace_RV32IMACFD_Printer::InstructionTrace_RV32IMACFD_Printer(): Printer("InstructionTrace_RV32IMACFD_Printer", InstructionTrace_RV32IMACFD_InstrPrinterSet)
 {}
 
-void InstructionTrace_Printer::initialize(void)
+void InstructionTrace_RV32IMACFD_Printer::initialize(void)
 {
   std::stringstream caption_strs;	
   caption_strs << std::setfill(' ') << std::setw(10) << std::left << "pc" << " ; ";

@@ -16,18 +16,18 @@
 
 /********************* AUTO GENERATE FILE (create by Trace-Generator) *********************/
 
-#ifndef INSTRUCTIONTRACE_PRINTER_H
-#define INSTRUCTIONTRACE_PRINTER_H
+#ifndef INSTRUCTIONTRACE_RV64IMACFD_PRINTER_H
+#define INSTRUCTIONTRACE_RV64IMACFD_PRINTER_H
 
 #include "Components/Printer.h"
 
-class InstructionTrace_Printer : public Printer
+class InstructionTrace_RV64IMACFD_Printer : public Printer
 {
 public:
 
-  InstructionTrace_Printer();
+  InstructionTrace_RV64IMACFD_Printer();
 
   virtual void initialize(void);
 };
 
-#endif // INSTRUCTIONTRACE_PRINTER_H
+#endif // INSTRUCTIONTRACE_RV64IMACFD_PRINTER_H

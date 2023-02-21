@@ -16,22 +16,29 @@
 
 /********************* AUTO GENERATE FILE (create by Trace-Generator) *********************/
 
-#ifndef INSTRUCTIONTRACE_MONITOR_H
-#define INSTRUCTIONTRACE_MONITOR_H
+#ifndef INSTRUCTIONTRACE_RV64IMACFD_CHANNEL_H
+#define INSTRUCTIONTRACE_RV64IMACFD_CHANNEL_H
 
-#include "Components/Monitor.h"
 #include "Components/Channel.h"
 
-#include <string>
-
-class InstructionTrace_Monitor : public Monitor
+class InstructionTrace_RV64IMACFD_Channel: public Channel
 {
 public:
 
-  InstructionTrace_Monitor();
+  InstructionTrace_RV64IMACFD_Channel() {};
+  ~InstructionTrace_RV64IMACFD_Channel() {};
 
-  virtual void connectChannel(Channel*);
-  virtual std::string getBlockDeclarations(void) const;
+  int pc [100];
+  int code [100];
+  char assembly [100] [50];
+  int rs1_data [100];
+  int rs2_data [100];
+  int rd_data [100];
+  int jump_pc [100];
+  int csr_data [100];
+  int mem_addr [100];
+  int mem_wdata [100];
+  int mem_rdata [100];
 };
 
-#endif // INSTRUCTIONTRACE_MONITOR_H
+#endif // INSTRUCTIONTRACE_RV64IMACFD_CHANNEL_H

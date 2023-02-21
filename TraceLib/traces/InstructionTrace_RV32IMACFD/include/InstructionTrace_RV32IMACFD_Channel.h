@@ -16,17 +16,17 @@
 
 /********************* AUTO GENERATE FILE (create by Trace-Generator) *********************/
 
-#ifndef INSTRUCTIONTRACE_CHANNEL_H
-#define INSTRUCTIONTRACE_CHANNEL_H
+#ifndef INSTRUCTIONTRACE_RV32IMACFD_CHANNEL_H
+#define INSTRUCTIONTRACE_RV32IMACFD_CHANNEL_H
 
 #include "Components/Channel.h"
 
-class InstructionTrace_Channel: public Channel
+class InstructionTrace_RV32IMACFD_Channel: public Channel
 {
 public:
 
-  InstructionTrace_Channel() {};
-  ~InstructionTrace_Channel() {};
+  InstructionTrace_RV32IMACFD_Channel() {};
+  ~InstructionTrace_RV32IMACFD_Channel() {};
 
   int pc [100];
   int code [100];
@@ -41,4 +41,4 @@ public:
   int mem_rdata [100];
 };
 
-#endif // INSTRUCTIONTRACE_CHANNEL_H
+#endif // INSTRUCTIONTRACE_RV32IMACFD_CHANNEL_H

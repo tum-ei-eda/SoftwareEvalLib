@@ -20,9 +20,13 @@
 #include "Components/Channel.h"
 #include "Components/Printer.h"
 
-#include "InstructionTrace_Monitor.h"
-#include "InstructionTrace_Channel.h"
-#include "InstructionTrace_Printer.h"
+#include "InstructionTrace_RV32IMACFD_Monitor.h"
+#include "InstructionTrace_RV32IMACFD_Channel.h"
+#include "InstructionTrace_RV32IMACFD_Printer.h"
+
+#include "InstructionTrace_RV64IMACFD_Monitor.h"
+#include "InstructionTrace_RV64IMACFD_Channel.h"
+#include "InstructionTrace_RV64IMACFD_Printer.h"
 
 #include "AssemblyTrace_Monitor.h"
 #include "AssemblyTrace_Channel.h"
@@ -38,9 +42,13 @@
 
 int TraceFactory::getTraceHandle(std::string traceName_)
 {
-    if(traceName_ == "InstructionTrace")
+    if(traceName_ == "InstructionTrace_RV32IMACFD")
     {
-        return InstructionTrace;
+        return InstructionTrace_RV32IMACFD;
+    }
+    if(traceName_ == "InstructionTrace_RV64IMACFD")
+    {
+        return InstructionTrace_RV64IMACFD;
     }
     if(traceName_ == "AssemblyTrace")
     {
@@ -61,7 +69,8 @@ Monitor* TraceFactory::getMonitor(int trace_)
 {
   switch((traceId_t)trace_)
   {
-    case InstructionTrace: return new InstructionTrace_Monitor();
+    case InstructionTrace_RV32IMACFD: return new InstructionTrace_RV32IMACFD_Monitor();
+    case InstructionTrace_RV64IMACFD: return new InstructionTrace_RV64IMACFD_Monitor();
     case AssemblyTrace: return new AssemblyTrace_Monitor();
     case SimpleRISCV_H_fw_DynBrPred: return new SimpleRISCV_H_fw_DynBrPred_Monitor();
     case CV32E40P: return new CV32E40P_Monitor();
@@ -73,7 +82,8 @@ Channel* TraceFactory::getChannel(int trace_)
 {
   switch((traceId_t)trace_)
   {
-    case InstructionTrace: return new InstructionTrace_Channel();
+    case InstructionTrace_RV32IMACFD: return new InstructionTrace_RV32IMACFD_Channel();
+    case InstructionTrace_RV64IMACFD: return new InstructionTrace_RV64IMACFD_Channel();
     case AssemblyTrace: return new AssemblyTrace_Channel();
     case SimpleRISCV_H_fw_DynBrPred: return new SimpleRISCV_H_fw_DynBrPred_Channel();
     case CV32E40P: return new CV32E40P_Channel();
@@ -85,7 +95,8 @@ Printer* TraceFactory::getPrinter(int trace_)
 {
   switch((traceId_t)trace_)
   {
-    case InstructionTrace: return new InstructionTrace_Printer();
+    case InstructionTrace_RV32IMACFD: return new InstructionTrace_RV32IMACFD_Printer();
+    case InstructionTrace_RV64IMACFD: return new InstructionTrace_RV64IMACFD_Printer();
     case AssemblyTrace: return new AssemblyTrace_Printer();
     case SimpleRISCV_H_fw_DynBrPred: return new SimpleRISCV_H_fw_DynBrPred_Printer();
     case CV32E40P: return new CV32E40P_Printer();

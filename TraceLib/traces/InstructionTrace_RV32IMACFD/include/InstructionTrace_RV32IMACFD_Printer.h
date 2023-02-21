@@ -14,25 +14,20 @@
  * limitations under the License.
  */
 
-#ifndef TRACE_FACTORY_H
-#define TRACE_FACTORY_H
+/********************* AUTO GENERATE FILE (create by Trace-Generator) *********************/
 
+#ifndef INSTRUCTIONTRACE_RV32IMACFD_PRINTER_H
+#define INSTRUCTIONTRACE_RV32IMACFD_PRINTER_H
 
-#include "Components/Monitor.h"
-#include "Components/Channel.h"
 #include "Components/Printer.h"
 
-#include <string>
-
-class TraceFactory
+class InstructionTrace_RV32IMACFD_Printer : public Printer
 {
-private:
-  enum traceId_t {InstructionTrace_RV32IMACFD, InstructionTrace_RV64IMACFD, AssemblyTrace, SimpleRISCV_H_fw_DynBrPred, CV32E40P};
 public:
-    int getTraceHandle(std::string);
-    Monitor* getMonitor(int);
-    Channel* getChannel(int);
-    Printer* getPrinter(int);
+
+  InstructionTrace_RV32IMACFD_Printer();
+
+  virtual void initialize(void);
 };
-  
-#endif //TRACE_FACTORY_H
+
+#endif // INSTRUCTIONTRACE_RV32IMACFD_PRINTER_H
