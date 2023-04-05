@@ -1,0 +1,8 @@
+TARGET_SOURCES(ARCH_LIB PRIVATE
+  src/CVA6_Model.cpp
+  src/CVA6_InstructionModels.cpp
+)
+
+TARGET_INCLUDE_DIRECTORIES(ARCH_LIB PRIVATE
+  include
+)

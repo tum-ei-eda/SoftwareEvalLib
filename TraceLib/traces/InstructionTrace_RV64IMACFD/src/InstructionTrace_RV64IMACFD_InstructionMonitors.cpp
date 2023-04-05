@@ -1765,6 +1765,96 @@ static InstructionMonitor *instrMonitor__def = new InstructionMonitor(
   }
 );
 
+static InstructionMonitor *instrMonitor_csd = new InstructionMonitor(
+  InstructionTrace_RV64IMACFD_InstrMonitorSet,
+  "csd",
+  [](etiss::instr::BitArray &ba, etiss::instr::Instruction &instr, etiss::instr::InstructionContext &ic){
+    std::stringstream ret_strs;
+    
+    int rs1_data = 0;
+    static etiss::instr::BitArrayRange R_rs1_data_0(9,7);
+    rs1_data += R_rs1_data_0.read(ba) << 0;
+    int rs2_data = 0;
+    static etiss::instr::BitArrayRange R_rs2_data_0(4,2);
+    rs2_data += R_rs2_data_0.read(ba) << 0;
+    ret_strs << "InstructionTrace_RV64IMACFD_Monitor_typeId_buffer[*InstructionTrace_RV64IMACFD_Monitor_instrCnt] = " << 10 << ";\n";
+    
+    ret_strs << "InstructionTrace_RV64IMACFD_Monitor_code_buffer[*InstructionTrace_RV64IMACFD_Monitor_instrCnt] = " << ba << ";\n";
+    
+    ret_strs << "InstructionTrace_RV64IMACFD_Monitor_pc_buffer[*InstructionTrace_RV64IMACFD_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
+    
+    ret_strs << "strcpy(InstructionTrace_RV64IMACFD_Monitor_assembly_buffer[*InstructionTrace_RV64IMACFD_Monitor_instrCnt],\"" << instr.printASM(ba) << "\");\n";
+    
+    ret_strs << "InstructionTrace_RV64IMACFD_Monitor_rs1_data_buffer[*InstructionTrace_RV64IMACFD_Monitor_instrCnt] = " << "*((RV64IMACFD*)cpu)->X[" <<  rs1_data + 8 << "]" << ";\n";
+    
+    ret_strs << "InstructionTrace_RV64IMACFD_Monitor_rs2_data_buffer[*InstructionTrace_RV64IMACFD_Monitor_instrCnt] = " << "*((RV64IMACFD*)cpu)->X[" <<  rs2_data + 8 << "]" << ";\n";
+    ret_strs << "*InstructionTrace_RV64IMACFD_Monitor_instrCnt += 1;\n"; // TODO: InstrCnt should be set in the post-print-function (see below). Currently set here, to makes sure that it is set, even if instruction triggers a return
+    return ret_strs.str();
+  },
+  [](etiss::instr::BitArray &ba, etiss::instr::Instruction &instr, etiss::instr::InstructionContext &ic){
+    std::stringstream ret_strs;
+    
+    int rs1_data = 0;
+    static etiss::instr::BitArrayRange R_rs1_data_0(9,7);
+    rs1_data += R_rs1_data_0.read(ba) << 0;
+    int rs2_data = 0;
+    static etiss::instr::BitArrayRange R_rs2_data_0(4,2);
+    rs2_data += R_rs2_data_0.read(ba) << 0;
+    ret_strs << "*InstructionTrace_RV64IMACFD_Monitor_instrCnt -= 1;\n"; // TODO: Hack! Needed as long as instrCnt is set by pre-print-function (see above)
+    
+    ret_strs << "InstructionTrace_RV64IMACFD_Monitor_mem_addr_buffer[*InstructionTrace_RV64IMACFD_Monitor_instrCnt] = " << "offs" << ";\n";
+    
+    ret_strs << "InstructionTrace_RV64IMACFD_Monitor_mem_wdata_buffer[*InstructionTrace_RV64IMACFD_Monitor_instrCnt] = " << "mem_val_0" << ";\n";
+    ret_strs << "*InstructionTrace_RV64IMACFD_Monitor_instrCnt += 1;\n";
+    return ret_strs.str();
+  }
+);
+
+static InstructionMonitor *instrMonitor_cld = new InstructionMonitor(
+  InstructionTrace_RV64IMACFD_InstrMonitorSet,
+  "cld",
+  [](etiss::instr::BitArray &ba, etiss::instr::Instruction &instr, etiss::instr::InstructionContext &ic){
+    std::stringstream ret_strs;
+    
+    int rs1_data = 0;
+    static etiss::instr::BitArrayRange R_rs1_data_0(9,7);
+    rs1_data += R_rs1_data_0.read(ba) << 0;
+    int rd_data = 0;
+    static etiss::instr::BitArrayRange R_rd_data_0(4,2);
+    rd_data += R_rd_data_0.read(ba) << 0;
+    ret_strs << "InstructionTrace_RV64IMACFD_Monitor_typeId_buffer[*InstructionTrace_RV64IMACFD_Monitor_instrCnt] = " << 11 << ";\n";
+    
+    ret_strs << "InstructionTrace_RV64IMACFD_Monitor_code_buffer[*InstructionTrace_RV64IMACFD_Monitor_instrCnt] = " << ba << ";\n";
+    
+    ret_strs << "InstructionTrace_RV64IMACFD_Monitor_pc_buffer[*InstructionTrace_RV64IMACFD_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
+    
+    ret_strs << "strcpy(InstructionTrace_RV64IMACFD_Monitor_assembly_buffer[*InstructionTrace_RV64IMACFD_Monitor_instrCnt],\"" << instr.printASM(ba) << "\");\n";
+    
+    ret_strs << "InstructionTrace_RV64IMACFD_Monitor_rs1_data_buffer[*InstructionTrace_RV64IMACFD_Monitor_instrCnt] = " << "*((RV64IMACFD*)cpu)->X[" <<  rs1_data + 8 << "]" << ";\n";
+    ret_strs << "*InstructionTrace_RV64IMACFD_Monitor_instrCnt += 1;\n"; // TODO: InstrCnt should be set in the post-print-function (see below). Currently set here, to makes sure that it is set, even if instruction triggers a return
+    return ret_strs.str();
+  },
+  [](etiss::instr::BitArray &ba, etiss::instr::Instruction &instr, etiss::instr::InstructionContext &ic){
+    std::stringstream ret_strs;
+    
+    int rs1_data = 0;
+    static etiss::instr::BitArrayRange R_rs1_data_0(9,7);
+    rs1_data += R_rs1_data_0.read(ba) << 0;
+    int rd_data = 0;
+    static etiss::instr::BitArrayRange R_rd_data_0(4,2);
+    rd_data += R_rd_data_0.read(ba) << 0;
+    ret_strs << "*InstructionTrace_RV64IMACFD_Monitor_instrCnt -= 1;\n"; // TODO: Hack! Needed as long as instrCnt is set by pre-print-function (see above)
+    
+    ret_strs << "InstructionTrace_RV64IMACFD_Monitor_rd_data_buffer[*InstructionTrace_RV64IMACFD_Monitor_instrCnt] = " << "*((RV64IMACFD*)cpu)->X[" <<  rd_data + 8 << "]" << ";\n";
+    
+    ret_strs << "InstructionTrace_RV64IMACFD_Monitor_mem_addr_buffer[*InstructionTrace_RV64IMACFD_Monitor_instrCnt] = " << "offs" << ";\n";
+    
+    ret_strs << "InstructionTrace_RV64IMACFD_Monitor_mem_rdata_buffer[*InstructionTrace_RV64IMACFD_Monitor_instrCnt] = " << "mem_val_0" << ";\n";
+    ret_strs << "*InstructionTrace_RV64IMACFD_Monitor_instrCnt += 1;\n";
+    return ret_strs.str();
+  }
+);
+
 static InstructionMonitor *instrMonitor_jal = new InstructionMonitor(
   InstructionTrace_RV64IMACFD_InstrMonitorSet,
   "jal",
@@ -1774,7 +1864,7 @@ static InstructionMonitor *instrMonitor_jal = new InstructionMonitor(
     int rd_data = 0;
     static etiss::instr::BitArrayRange R_rd_data_0(11,7);
     rd_data += R_rd_data_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IMACFD_Monitor_typeId_buffer[*InstructionTrace_RV64IMACFD_Monitor_instrCnt] = " << 10 << ";\n";
+    ret_strs << "InstructionTrace_RV64IMACFD_Monitor_typeId_buffer[*InstructionTrace_RV64IMACFD_Monitor_instrCnt] = " << 12 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IMACFD_Monitor_code_buffer[*InstructionTrace_RV64IMACFD_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -1812,7 +1902,7 @@ static InstructionMonitor *instrMonitor_jalr = new InstructionMonitor(
     int rd_data = 0;
     static etiss::instr::BitArrayRange R_rd_data_0(11,7);
     rd_data += R_rd_data_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IMACFD_Monitor_typeId_buffer[*InstructionTrace_RV64IMACFD_Monitor_instrCnt] = " << 11 << ";\n";
+    ret_strs << "InstructionTrace_RV64IMACFD_Monitor_typeId_buffer[*InstructionTrace_RV64IMACFD_Monitor_instrCnt] = " << 13 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IMACFD_Monitor_code_buffer[*InstructionTrace_RV64IMACFD_Monitor_instrCnt] = " << ba << ";\n";
     

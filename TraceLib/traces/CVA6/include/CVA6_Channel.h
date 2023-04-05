@@ -14,25 +14,25 @@
  * limitations under the License.
  */
 
-#ifndef TRACE_FACTORY_H
-#define TRACE_FACTORY_H
+/********************* AUTO GENERATE FILE (create by Trace-Generator) *********************/
 
+#ifndef CVA6_CHANNEL_H
+#define CVA6_CHANNEL_H
 
-#include "Components/Monitor.h"
 #include "Components/Channel.h"
-#include "Components/Printer.h"
 
-#include <string>
-
-class TraceFactory
+class CVA6_Channel: public Channel
 {
-private:
-  enum traceId_t {InstructionTrace_RV32IMACFD, InstructionTrace_RV64IMACFD, AssemblyTrace, SimpleRISCV_H_fw_DynBrPred, CV32E40P, CVA6};
 public:
-    int getTraceHandle(std::string);
-    Monitor* getMonitor(int);
-    Channel* getChannel(int);
-    Printer* getPrinter(int);
+
+  CVA6_Channel() {};
+  ~CVA6_Channel() {};
+
+  int rs1 [100];
+  int rs2 [100];
+  int rd [100];
+  int pc [100];
+  int brTarget [100];
 };
-  
-#endif //TRACE_FACTORY_H
+
+#endif // CVA6_CHANNEL_H

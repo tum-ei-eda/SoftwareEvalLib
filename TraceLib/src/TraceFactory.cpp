@@ -40,6 +40,10 @@
 #include "CV32E40P_Channel.h"
 #include "CV32E40P_Printer.h"
 
+#include "CVA6_Monitor.h"
+#include "CVA6_Channel.h"
+#include "CVA6_Printer.h"
+
 int TraceFactory::getTraceHandle(std::string traceName_)
 {
     if(traceName_ == "InstructionTrace_RV32IMACFD")
@@ -62,6 +66,10 @@ int TraceFactory::getTraceHandle(std::string traceName_)
     {
         return CV32E40P;
     }
+    if(traceName_ == "CVA6")
+    {
+        return CVA6;
+    }
     return -1;
 }
 
@@ -74,6 +82,7 @@ Monitor* TraceFactory::getMonitor(int trace_)
     case AssemblyTrace: return new AssemblyTrace_Monitor();
     case SimpleRISCV_H_fw_DynBrPred: return new SimpleRISCV_H_fw_DynBrPred_Monitor();
     case CV32E40P: return new CV32E40P_Monitor();
+    case CVA6: return new CVA6_Monitor();
     default: return nullptr;
   }
 }
@@ -87,6 +96,7 @@ Channel* TraceFactory::getChannel(int trace_)
     case AssemblyTrace: return new AssemblyTrace_Channel();
     case SimpleRISCV_H_fw_DynBrPred: return new SimpleRISCV_H_fw_DynBrPred_Channel();
     case CV32E40P: return new CV32E40P_Channel();
+    case CVA6: return new CVA6_Channel();
     default: return nullptr;
   }
 }
@@ -100,6 +110,7 @@ Printer* TraceFactory::getPrinter(int trace_)
     case AssemblyTrace: return new AssemblyTrace_Printer();
     case SimpleRISCV_H_fw_DynBrPred: return new SimpleRISCV_H_fw_DynBrPred_Printer();
     case CV32E40P: return new CV32E40P_Printer();
+    case CVA6: return new CVA6_Printer();
     default: return nullptr;
   }
 }

@@ -237,10 +237,52 @@ static InstructionPrinter *instrPrinter__def = new InstructionPrinter(
     return ret_strs.str();
   }
 );
+static InstructionPrinter *instrPrinter_csd = new InstructionPrinter(
+  InstructionTrace_RV64IMACFD_InstrPrinterSet,
+  "csd",
+  10,
+  [](Channel* channel_, int instr_){
+    std::stringstream ret_strs;
+    InstructionTrace_RV64IMACFD_Channel* channel = static_cast<InstructionTrace_RV64IMACFD_Channel*>(channel_);
+    ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " ; ";
+    ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->code[instr_] << " ; ";
+    ret_strs << std::setfill(' ') << std::setw(50) << std::left << channel->assembly[instr_] << " ; ";
+    ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rs1_data[instr_] << " ; ";
+    ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rs2_data[instr_] << " ; ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " ; ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " ; ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " ; ";
+    ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->mem_addr[instr_] << " ; ";
+    ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->mem_wdata[instr_] << " ; ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " ; ";
+    return ret_strs.str();
+  }
+);
+static InstructionPrinter *instrPrinter_cld = new InstructionPrinter(
+  InstructionTrace_RV64IMACFD_InstrPrinterSet,
+  "cld",
+  11,
+  [](Channel* channel_, int instr_){
+    std::stringstream ret_strs;
+    InstructionTrace_RV64IMACFD_Channel* channel = static_cast<InstructionTrace_RV64IMACFD_Channel*>(channel_);
+    ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " ; ";
+    ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->code[instr_] << " ; ";
+    ret_strs << std::setfill(' ') << std::setw(50) << std::left << channel->assembly[instr_] << " ; ";
+    ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rs1_data[instr_] << " ; ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " ; ";
+    ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd_data[instr_] << " ; ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " ; ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " ; ";
+    ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->mem_addr[instr_] << " ; ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " ; ";
+    ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->mem_rdata[instr_] << " ; ";
+    return ret_strs.str();
+  }
+);
 static InstructionPrinter *instrPrinter_jal = new InstructionPrinter(
   InstructionTrace_RV64IMACFD_InstrPrinterSet,
   "jal",
-  10,
+  12,
   [](Channel* channel_, int instr_){
     std::stringstream ret_strs;
     InstructionTrace_RV64IMACFD_Channel* channel = static_cast<InstructionTrace_RV64IMACFD_Channel*>(channel_);
@@ -261,7 +303,7 @@ static InstructionPrinter *instrPrinter_jal = new InstructionPrinter(
 static InstructionPrinter *instrPrinter_jalr = new InstructionPrinter(
   InstructionTrace_RV64IMACFD_InstrPrinterSet,
   "jalr",
-  11,
+  13,
   [](Channel* channel_, int instr_){
     std::stringstream ret_strs;
     InstructionTrace_RV64IMACFD_Channel* channel = static_cast<InstructionTrace_RV64IMACFD_Channel*>(channel_);

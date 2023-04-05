@@ -24,7 +24,7 @@
 class MicroArchFactory
 {
 private:
-  enum uArchId_t {SimpleRISCV_H_fw_DynBrPred, CV32E40P};
+  enum uArchId_t {SimpleRISCV_H_fw_DynBrPred, CV32E40P, CVA6};
 public:
   int getMicroArchHandle(std::string);
   PerformanceModel* getPerformanceModel(int);

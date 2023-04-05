@@ -19,8 +19,8 @@
 #include "Components/Model.h"
 
 #include "SimpleRISCV_H_fw_DynBrPred_Model.h"
-
 #include "CV32E40P_Model.h"
+#include "CVA6_Model.h"
 
 int MicroArchFactory::getMicroArchHandle(std::string uArch_)
 {
@@ -32,6 +32,10 @@ int MicroArchFactory::getMicroArchHandle(std::string uArch_)
     {
         return CV32E40P;
     }
+    if(uArch_ == "CVA6")
+    {
+        return CVA6;
+    }
     return -1;
 }
 
@@ -41,6 +45,7 @@ PerformanceModel* MicroArchFactory::getPerformanceModel(int uArch_)
   {
     case SimpleRISCV_H_fw_DynBrPred: return new SimpleRISCV_H_fw_DynBrPred_Model();
     case CV32E40P: return new CV32E40P_Model();
+    case CVA6: return new CVA6_Model();
     default: return nullptr;
   }
 }
