@@ -25,8 +25,8 @@
 #include "Components/Model.h"
 #include "Components/Channel.h"
 
-#include "StandardRegisterModel.h"
-#include "StaticBranchPredictModel.h"
+#include "Models/general/StandardRegisterModel.h"
+#include "Models/general/StaticBranchPredictModel.h"
 
 class CV32E40P_pipeline_Model
 {

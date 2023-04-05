@@ -25,8 +25,8 @@
 #include "Components/Model.h"
 #include "Components/Channel.h"
 
-#include "StandardRegisterModel.h"
-#include "StaticBranchPredictModel.h"
+#include "Models/general/StandardRegisterModel.h"
+#include "Models/general/StaticBranchPredictModel.h"
 
 class CVA6_pipeline_Model
 {

@@ -26,8 +26,8 @@
 
 #include "CVA6_Channel.h"
 
-#include "StandardRegisterModel.h"
-#include "StaticBranchPredictModel.h"
+#include "Models/general/StandardRegisterModel.h"
+#include "Models/general/StaticBranchPredictModel.h"
 
 void CVA6_Model::connectChannel(Channel* channel_)
 {

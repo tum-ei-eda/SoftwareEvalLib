@@ -26,8 +26,8 @@
 
 #include "CV32E40P_Channel.h"
 
-#include "StandardRegisterModel.h"
-#include "StaticBranchPredictModel.h"
+#include "Models/general/StandardRegisterModel.h"
+#include "Models/general/StaticBranchPredictModel.h"
 
 void CV32E40P_Model::connectChannel(Channel* channel_)
 {

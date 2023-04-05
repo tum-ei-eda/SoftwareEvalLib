@@ -26,10 +26,10 @@
 
 #include "SimpleRISCV_H_fw_DynBrPred_Channel.h"
 
-#include "DummyMemoryModel.h"
-#include "DummyMemoryModel.h"
-#include "DynamicBranchPredictModel.h"
-#include "StandardRegisterModel.h"
+#include "Models/general/DummyMemoryModel.h"
+#include "Models/general/DummyMemoryModel.h"
+#include "Models/general/DynamicBranchPredictModel.h"
+#include "Models/general/StandardRegisterModel.h"
 
 void SimpleRISCV_H_fw_DynBrPred_Model::connectChannel(Channel* channel_)
 {

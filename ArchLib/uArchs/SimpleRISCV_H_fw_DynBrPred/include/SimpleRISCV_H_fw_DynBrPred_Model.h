@@ -25,10 +25,10 @@
 #include "Components/Model.h"
 #include "Components/Channel.h"
 
-#include "DummyMemoryModel.h"
-#include "DummyMemoryModel.h"
-#include "DynamicBranchPredictModel.h"
-#include "StandardRegisterModel.h"
+#include "Models/general/DummyMemoryModel.h"
+#include "Models/general/DummyMemoryModel.h"
+#include "Models/general/DynamicBranchPredictModel.h"
+#include "Models/general/StandardRegisterModel.h"
 
 class SimplePipeline_Model
 {
