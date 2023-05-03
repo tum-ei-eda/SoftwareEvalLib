@@ -25,7 +25,13 @@
 #include "Components/Model.h"
 #include "Components/Channel.h"
 
-#include "Models/general/StandardRegisterModel.h"
+#include "Models/CVA6/ICacheModel.h"
+#include "Models/CVA6/ICacheCtrlModel.h"
+
+#include "Models/CVA6/DCacheModel.h"
+#include "Models/CVA6/DCacheCtrlModel.h"
+
+#include "Models/CVA6/RegisterModel.h"
 #include "Models/general/StaticBranchPredictModel.h"
 
 class CVA6_pipeline_Model
@@ -113,14 +119,23 @@ public:
 
   CVA6_Model() : PerformanceModel("CVA6", CVA6_InstrModelSet)
     ,CVA6_pipeline()
+    ,iCModel(this)
+    ,iCCtrlModel(this)
+    ,dCModel(this)
+    ,dCCtrlModel(this)
     ,regModel(this)
     ,staBranchPredModel(this)
   {};
 
   CVA6_pipeline_Model CVA6_pipeline;
 
+  ICacheModel iCModel;
+  ICacheCtrlModel iCCtrlModel;
 
-  StandardRegisterModel regModel;
+  DCacheModel dCModel;
+  DCacheCtrlModel dCCtrlModel;
+  
+  RegisterModel regModel;
   StaticBranchPredictModel staBranchPredModel;
 
   virtual void connectChannel(Channel*);

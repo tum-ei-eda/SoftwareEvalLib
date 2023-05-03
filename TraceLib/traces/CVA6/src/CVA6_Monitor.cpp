@@ -34,6 +34,7 @@ extern "C"
   int *CVA6_Monitor_rd_buffer;
   int *CVA6_Monitor_pc_buffer;
   int *CVA6_Monitor_brTarget_buffer;
+  int *CVA6_Monitor_memAddr_buffer;
 }
 
 extern InstructionMonitorSet* CVA6_InstrMonitorSet;
@@ -55,6 +56,7 @@ void CVA6_Monitor::connectChannel(Channel* channel_)
   CVA6_Monitor_rd_buffer = ch->rd;
   CVA6_Monitor_pc_buffer = ch->pc;
   CVA6_Monitor_brTarget_buffer = ch->brTarget;
+  CVA6_Monitor_memAddr_buffer = ch->memAddr;
 }
 
 
@@ -70,6 +72,7 @@ std::string CVA6_Monitor::getBlockDeclarations(void) const
   ret_strs << "extern int *CVA6_Monitor_rd_buffer;\n";
   ret_strs << "extern int *CVA6_Monitor_pc_buffer;\n";
   ret_strs << "extern int *CVA6_Monitor_brTarget_buffer;\n";
+  ret_strs << "extern int *CVA6_Monitor_memAddr_buffer;\n";
 
   return ret_strs.str();
 }

@@ -36,7 +36,8 @@ void CVA6_Printer::initialize(void)
   caption_strs << std::setfill(' ') << std::setw(10) << std::left << "rd" << " | ";
   caption_strs << std::setfill(' ') << std::setw(10) << std::left << "pc" << " | ";
   caption_strs << std::setfill(' ') << std::setw(10) << std::left << "brTarget" << " | ";
+  caption_strs << std::setfill(' ') << std::setw(10) << std::left << "memAddr" << " | ";
 
+  streamer.setHeader(caption_strs.str() + "\n");
   streamer.openStream();
-  streamer.stream(caption_strs.str() + "\n");
 }

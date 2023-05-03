@@ -39,6 +39,7 @@ static InstructionPrinter *instrPrinter_add = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -53,6 +54,7 @@ static InstructionPrinter *instrPrinter_sub = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rs2[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
@@ -69,6 +71,7 @@ static InstructionPrinter *instrPrinter_xor = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -83,6 +86,7 @@ static InstructionPrinter *instrPrinter_or = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rs2[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
@@ -99,6 +103,7 @@ static InstructionPrinter *instrPrinter_and = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -113,6 +118,7 @@ static InstructionPrinter *instrPrinter_slt = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rs2[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
@@ -129,6 +135,7 @@ static InstructionPrinter *instrPrinter_sltu = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -143,6 +150,7 @@ static InstructionPrinter *instrPrinter_sll = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rs2[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
@@ -159,6 +167,7 @@ static InstructionPrinter *instrPrinter_srl = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -173,6 +182,7 @@ static InstructionPrinter *instrPrinter_sra = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rs2[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
@@ -189,6 +199,7 @@ static InstructionPrinter *instrPrinter_addi = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -203,6 +214,7 @@ static InstructionPrinter *instrPrinter_xori = new InstructionPrinter(
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
@@ -219,6 +231,7 @@ static InstructionPrinter *instrPrinter_ori = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -233,6 +246,7 @@ static InstructionPrinter *instrPrinter_andi = new InstructionPrinter(
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
@@ -249,6 +263,7 @@ static InstructionPrinter *instrPrinter_slti = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -263,6 +278,7 @@ static InstructionPrinter *instrPrinter_sltiu = new InstructionPrinter(
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
@@ -279,6 +295,7 @@ static InstructionPrinter *instrPrinter_slli = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -293,6 +310,7 @@ static InstructionPrinter *instrPrinter_srli = new InstructionPrinter(
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
@@ -309,6 +327,7 @@ static InstructionPrinter *instrPrinter_srai = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -323,6 +342,7 @@ static InstructionPrinter *instrPrinter_auipc = new InstructionPrinter(
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
@@ -339,6 +359,7 @@ static InstructionPrinter *instrPrinter_lui = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -353,6 +374,7 @@ static InstructionPrinter *instrPrinter_mul = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rs2[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
@@ -369,6 +391,7 @@ static InstructionPrinter *instrPrinter_mulh = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -383,6 +406,7 @@ static InstructionPrinter *instrPrinter_mulhu = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rs2[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
@@ -399,6 +423,7 @@ static InstructionPrinter *instrPrinter_mulhsu = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -413,6 +438,7 @@ static InstructionPrinter *instrPrinter_div = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rs2[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
@@ -429,6 +455,7 @@ static InstructionPrinter *instrPrinter_divu = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -443,6 +470,7 @@ static InstructionPrinter *instrPrinter_rem = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rs2[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
@@ -459,6 +487,7 @@ static InstructionPrinter *instrPrinter_remu = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -473,6 +502,7 @@ static InstructionPrinter *instrPrinter_csrrw = new InstructionPrinter(
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
@@ -489,6 +519,7 @@ static InstructionPrinter *instrPrinter_csrrs = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -503,6 +534,7 @@ static InstructionPrinter *instrPrinter_csrrc = new InstructionPrinter(
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
@@ -519,6 +551,7 @@ static InstructionPrinter *instrPrinter_csrrwi = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -533,6 +566,7 @@ static InstructionPrinter *instrPrinter_csrrsi = new InstructionPrinter(
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
@@ -549,6 +583,7 @@ static InstructionPrinter *instrPrinter_csrrci = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -564,6 +599,7 @@ static InstructionPrinter *instrPrinter_sb = new InstructionPrinter(
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->memAddr[instr_] << " | ";
     return ret_strs.str();
   }
 );
@@ -579,6 +615,7 @@ static InstructionPrinter *instrPrinter_sh = new InstructionPrinter(
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->memAddr[instr_] << " | ";
     return ret_strs.str();
   }
 );
@@ -594,6 +631,7 @@ static InstructionPrinter *instrPrinter_sw = new InstructionPrinter(
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->memAddr[instr_] << " | ";
     return ret_strs.str();
   }
 );
@@ -609,6 +647,7 @@ static InstructionPrinter *instrPrinter_lw = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->memAddr[instr_] << " | ";
     return ret_strs.str();
   }
 );
@@ -624,6 +663,7 @@ static InstructionPrinter *instrPrinter_lh = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->memAddr[instr_] << " | ";
     return ret_strs.str();
   }
 );
@@ -639,6 +679,7 @@ static InstructionPrinter *instrPrinter_lhu = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->memAddr[instr_] << " | ";
     return ret_strs.str();
   }
 );
@@ -654,6 +695,7 @@ static InstructionPrinter *instrPrinter_lb = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->memAddr[instr_] << " | ";
     return ret_strs.str();
   }
 );
@@ -669,6 +711,7 @@ static InstructionPrinter *instrPrinter_lbu = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->memAddr[instr_] << " | ";
     return ret_strs.str();
   }
 );
@@ -684,6 +727,7 @@ static InstructionPrinter *instrPrinter_beq = new InstructionPrinter(
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->brTarget[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -699,6 +743,7 @@ static InstructionPrinter *instrPrinter_bne = new InstructionPrinter(
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->brTarget[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -714,6 +759,7 @@ static InstructionPrinter *instrPrinter_blt = new InstructionPrinter(
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->brTarget[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -729,6 +775,7 @@ static InstructionPrinter *instrPrinter_bge = new InstructionPrinter(
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->brTarget[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -744,6 +791,7 @@ static InstructionPrinter *instrPrinter_bltu = new InstructionPrinter(
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->brTarget[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -759,6 +807,7 @@ static InstructionPrinter *instrPrinter_bgeu = new InstructionPrinter(
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->brTarget[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -773,6 +822,7 @@ static InstructionPrinter *instrPrinter__def = new InstructionPrinter(
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
@@ -789,6 +839,7 @@ static InstructionPrinter *instrPrinter_jal = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->brTarget[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );
@@ -804,6 +855,7 @@ static InstructionPrinter *instrPrinter_jalr = new InstructionPrinter(
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->brTarget[instr_] << " | ";
+    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
   }
 );

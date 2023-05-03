@@ -14,26 +14,26 @@
  * limitations under the License.
  */
 
-/********************* AUTO GENERATE FILE (create by Trace-Generator) *********************/
+#ifndef CVA6_REGISTER_MODEL_H
+#define CVA6_REGISTER_MODEL_H
 
-#ifndef CVA6_CHANNEL_H
-#define CVA6_CHANNEL_H
+#include "Components/Model.h"
 
-#include "Components/Channel.h"
-
-class CVA6_Channel: public Channel
+class RegisterModel : public ConnectorModel
 {
 public:
+  RegisterModel(PerformanceModel* parent_) : ConnectorModel("RegisterModel", parent_) {};
 
-  CVA6_Channel() {};
-  ~CVA6_Channel() {};
+  int* rs1_ptr;
+  int* rs2_ptr;
+  int* rd_ptr;
 
-  int rs1 [100];
-  int rs2 [100];
-  int rd [100];
-  int pc [100];
-  int brTarget [100];
-  int memAddr [100];
+  int getXa(void) { return registerArray[rs1_ptr[getInstrIndex()]]; };
+  int getXb(void) { return registerArray[rs2_ptr[getInstrIndex()]]; };
+  void setXd(int xd_) { registerArray[rd_ptr[getInstrIndex()]] = xd_; };
+
+private:
+  int registerArray [32] = {0};
 };
 
-#endif // CVA6_CHANNEL_H
+#endif //CVA6_REGISTER_MODEL_H

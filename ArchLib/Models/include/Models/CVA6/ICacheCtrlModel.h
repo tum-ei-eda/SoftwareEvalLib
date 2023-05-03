@@ -14,26 +14,25 @@
  * limitations under the License.
  */
 
-/********************* AUTO GENERATE FILE (create by Trace-Generator) *********************/
+#ifndef CVA6_ICACHE_CTRL_MODEL_H
+#define CVA6_ICACHE_CTRL_MODEL_H
 
-#ifndef CVA6_CHANNEL_H
-#define CVA6_CHANNEL_H
+#include "Components/Model.h"
 
-#include "Components/Channel.h"
-
-class CVA6_Channel: public Channel
+class ICacheCtrlModel : public ConnectorModel
 {
 public:
+  ICacheCtrlModel(PerformanceModel* parent_) : ConnectorModel("ICacheCtrlModel", parent_), parent(parent_) {};
 
-  CVA6_Channel() {};
-  ~CVA6_Channel() {};
+  //int getIC(void) { return IC; };
+  //void setIC(int);
 
-  int rs1 [100];
-  int rs2 [100];
-  int rd [100];
-  int pc [100];
-  int brTarget [100];
-  int memAddr [100];
+  int getIC_c(void) { return IC; };
+  void setIC_b(int);
+  
+private:
+  PerformanceModel* const parent;
+  int IC = 0;
 };
 
-#endif // CVA6_CHANNEL_H
+#endif // CVA6_ICACHE_CTRL_MODEL_H

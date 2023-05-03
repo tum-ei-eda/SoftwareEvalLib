@@ -26,13 +26,16 @@
 
 #include "CVA6_Channel.h"
 
-#include "Models/general/StandardRegisterModel.h"
+//#include "Models/general/StandardRegisterModel.h"
 #include "Models/general/StaticBranchPredictModel.h"
 
 void CVA6_Model::connectChannel(Channel* channel_)
 {
   CVA6_Channel* channel = static_cast<CVA6_Channel*>(channel_);	
 
+  iCModel.addr_ptr = channel->pc;
+  dCModel.addr_ptr = channel->memAddr;
+  
   regModel.rs1_ptr = channel->rs1;
   regModel.rs2_ptr = channel->rs2;
   regModel.rd_ptr = channel->rd;

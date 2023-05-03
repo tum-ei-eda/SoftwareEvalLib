@@ -14,26 +14,14 @@
  * limitations under the License.
  */
 
-/********************* AUTO GENERATE FILE (create by Trace-Generator) *********************/
+#include "Models/CVA6/ICacheCtrlModel.h"
 
-#ifndef CVA6_CHANNEL_H
-#define CVA6_CHANNEL_H
+#include "CVA6_Model.h"
+#include "Models/CVA6/ICacheModel.h"
 
-#include "Components/Channel.h"
-
-class CVA6_Channel: public Channel
+// TODO: Avoid accessing another model, or find more generic variant
+void ICacheCtrlModel::setIC_b(int IC_)
 {
-public:
-
-  CVA6_Channel() {};
-  ~CVA6_Channel() {};
-
-  int rs1 [100];
-  int rs2 [100];
-  int rd [100];
-  int pc [100];
-  int brTarget [100];
-  int memAddr [100];
-};
-
-#endif // CVA6_CHANNEL_H
+  CVA6_Model* perfModel = static_cast<CVA6_Model*>(parent);
+  IC = IC_ - 1 + perfModel->iCModel.wasMiss(); 
+}
