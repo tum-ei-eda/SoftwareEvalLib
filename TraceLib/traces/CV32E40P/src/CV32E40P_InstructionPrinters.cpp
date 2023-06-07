@@ -516,7 +516,7 @@ static InstructionPrinter *instrPrinter_csrrwi = new InstructionPrinter(
     CV32E40P_Channel* channel = static_cast<CV32E40P_Channel*>(channel_);
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
-    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
@@ -531,7 +531,7 @@ static InstructionPrinter *instrPrinter_csrrsi = new InstructionPrinter(
     CV32E40P_Channel* channel = static_cast<CV32E40P_Channel*>(channel_);
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
-    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();
@@ -546,7 +546,7 @@ static InstructionPrinter *instrPrinter_csrrci = new InstructionPrinter(
     CV32E40P_Channel* channel = static_cast<CV32E40P_Channel*>(channel_);
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
-    ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
+    ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->rd[instr_] << " | ";
     ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::right << std::hex << channel->pc[instr_] << " | ";
     ret_strs << std::setfill('-') << std::setw(10) << "" << " | ";
     return ret_strs.str();

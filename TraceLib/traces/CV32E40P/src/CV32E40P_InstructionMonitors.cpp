@@ -1040,6 +1040,11 @@ static InstructionMonitor *instrMonitor_csrrwi = new InstructionMonitor(
     std::stringstream ret_strs;
     ret_strs << "CV32E40P_Monitor_typeId_buffer[*CV32E40P_Monitor_instrCnt] = " << 32 << ";\n";
     
+    int rd = 0;
+    static etiss::instr::BitArrayRange R_rd_0(11,7);
+    rd += R_rd_0.read(ba) << 0;
+    ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+    
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n"; // TODO: InstrCnt should be set in the post-print-function (see below). Currently set here, to makes sure that it is set, even if instruction triggers a return
     return ret_strs.str();
@@ -1059,6 +1064,11 @@ static InstructionMonitor *instrMonitor_csrrsi = new InstructionMonitor(
     std::stringstream ret_strs;
     ret_strs << "CV32E40P_Monitor_typeId_buffer[*CV32E40P_Monitor_instrCnt] = " << 33 << ";\n";
     
+    int rd = 0;
+    static etiss::instr::BitArrayRange R_rd_0(11,7);
+    rd += R_rd_0.read(ba) << 0;
+    ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+    
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n"; // TODO: InstrCnt should be set in the post-print-function (see below). Currently set here, to makes sure that it is set, even if instruction triggers a return
     return ret_strs.str();
@@ -1077,6 +1087,11 @@ static InstructionMonitor *instrMonitor_csrrci = new InstructionMonitor(
   [](etiss::instr::BitArray &ba, etiss::instr::Instruction &instr, etiss::instr::InstructionContext &ic){
     std::stringstream ret_strs;
     ret_strs << "CV32E40P_Monitor_typeId_buffer[*CV32E40P_Monitor_instrCnt] = " << 34 << ";\n";
+    
+    int rd = 0;
+    static etiss::instr::BitArrayRange R_rd_0(11,7);
+    rd += R_rd_0.read(ba) << 0;
+    ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n"; // TODO: InstrCnt should be set in the post-print-function (see below). Currently set here, to makes sure that it is set, even if instruction triggers a return
