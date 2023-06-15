@@ -17,7 +17,7 @@
 #ifndef TRACER_PLUGIN_H
 #define TRACER_PLUGIN_H
 
-#include "Components/Monitor.h"
+#include "monitors/Monitor.h"
 
 #include "etiss/Plugin.h"
 #include "etiss/CodePart.h" // CodeBlock

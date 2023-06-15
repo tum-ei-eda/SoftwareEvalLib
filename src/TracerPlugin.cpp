@@ -16,7 +16,7 @@
 
 #include "TracerPlugin.h"
 
-#include "Components/Monitor.h"
+#include "monitors/Monitor.h"
 
 #include "etiss/CodePart.h"
 #include "etiss/Instruction.h"

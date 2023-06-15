@@ -16,9 +16,9 @@
 
 #include "PerformanceEstimatorPlugin.h"
 
-#include "Components/Monitor.h"
-#include "Components/Channel.h"
-#include "Components/Model.h"
+#include "monitors/Monitor.h"
+
+#include "softwareEval-backends/Channel.h"
 
 #include <string>
 #include <iostream> // TODO: For debug purposes: Remove afterwards?? [Error and info prints?]
@@ -30,38 +30,59 @@ PerformanceEstimatorPlugin::PerformanceEstimatorPlugin(etiss::Configuration* con
   std::string uArchName = config->get<std::string>("plugin.perfEst.uArch", "");
 
   std::cout << "uArch is: " << uArchName << std::endl;
+
+  // Get monitor
+  Monitor* monitor_ptr = nullptr;
+  int monitorHandle = monitorFactory.getVariantHandle(uArchName);
+  if (monitorHandle < 0)
+  {
+    std::cout << "ERROR: <" << uArchName << "> does not name a valid variant provided by SwEvalMonitors::Factory" << std::endl;
+  }
+  else
+  {
+    monitor_ptr = monitorFactory.getMonitor(monitorHandle);
+    if (monitor_ptr == nullptr)
+    {
+      std::cout << "ERROR: SwEvalMonitors::Factory failed to provide monitor for <" << uArchName << ">" << std::endl;
+    }
+  }
+
+  // Get Channel & PerformanceEstimator
+  int backendHandle = backendFactory.getVariantHandle(uArchName);
+  if (backendHandle < 0)
+  {
+    std::cout << "ERROR: <" << uArchName << "> does not name a valid variant provided by SwEvalBackends::Factory" << std::endl;
+  }
+  else
+  {
+    channel_ptr = backendFactory.getChannel(backendHandle);
+    if (channel_ptr == nullptr)
+    {
+      std::cout << "ERROR: SwEvalBackends::Factory failed to provide channel for <" << uArchName << ">" << std::endl;
+    }
+    estimator_ptr = backendFactory.getPerformanceEstimator(backendHandle);
+    if (estimator_ptr == nullptr)
+    {
+      std::cout << "ERROR: SwEvalBackends::Factory failed to provide performance-estimator for <" << uArchName << ">" << std::endl;
+    }
+  }
+
+  // TODO: Add error handling in case any of the above gets fails
   
-  // Set up monitor
-  int traceHandle = traceFactory.getTraceHandle(uArchName);
-  if (traceHandle < 0)
-  {
-    std::cout << "ERROR: Trace-Handle is invalid" << std::endl;
-  }
-
-  Monitor* monitor_ptr = traceFactory.getMonitor(traceHandle);
-  Channel* channel_ptr = traceFactory.getChannel(traceHandle);
-
+  // Connect components
+  estimator_ptr->connectChannel(channel_ptr);
   monitor_ptr->connectChannel(channel_ptr);
+
+  // Add monitor to TracerPlugin
   addMonitor(monitor_ptr);
-
-  // Set up estimator model
-  int uArchHandle = uArchFactory.getMicroArchHandle(uArchName);
-  if(uArchHandle < 0)
-  {
-    std::cout << "ERROR: MicroArchitecture-Handle is invalid" << std::endl;
-  }
-
-  PerformanceModel* model_ptr = uArchFactory.getPerformanceModel(uArchHandle);
- 
-  model_ptr->connectChannel(channel_ptr);
-  estimator.setChannel(channel_ptr);
-  estimator.setPerformanceModel(model_ptr);
-  //estimator.activateStreaming("/data/work/testDUMP.txt");
   
 }
 
 PerformanceEstimatorPlugin::~PerformanceEstimatorPlugin()
-{}
+{
+  delete channel_ptr;
+  delete estimator_ptr;
+}
 
 std::string PerformanceEstimatorPlugin::_getPluginName() const
 {
@@ -75,11 +96,11 @@ void *PerformanceEstimatorPlugin::getPluginHandle()
 
 void PerformanceEstimatorPlugin::processTrace(void)
 {
-  estimator.execute();
+  estimator_ptr->execute();
 }
 
 void PerformanceEstimatorPlugin::finalizeTrace(void)
 {
-  estimator.execute();
-  estimator.finalize();
+  estimator_ptr->execute();
+  estimator_ptr->finalize();
 }

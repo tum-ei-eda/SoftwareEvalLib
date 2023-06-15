@@ -16,7 +16,7 @@
 
 #define ETISS_LIBNAME SoftwareEval
 
-#include "TracePrinterPlugin.h"
+//#include "TracePrinterPlugin.h"
 #include "PerformanceEstimatorPlugin.h"
 
 #include "etiss/Plugin.h"
@@ -32,7 +32,8 @@ extern "C"
 
   unsigned SoftwareEval_countPlugin()
   {
-    return 2;
+    //return 2;
+    return 1;
   }
 
   const char * SoftwareEval_namePlugin(unsigned index)
@@ -40,8 +41,8 @@ extern "C"
     switch(index)
     {
     case 0:
-      return "TracePrinterPlugin";
-    case 1:
+//      return "TracePrinterPlugin";
+//    case 1:
       return "PerformanceEstimatorPlugin";
     default:
       return "0";
@@ -55,8 +56,8 @@ extern "C"
     switch(index)
     {
     case 0:
-      return new TracePrinterPlugin(&cfg);
-    case 1:
+//      return new TracePrinterPlugin(&cfg);
+//    case 1:
       return new PerformanceEstimatorPlugin(&cfg);
     default:
       return 0;
