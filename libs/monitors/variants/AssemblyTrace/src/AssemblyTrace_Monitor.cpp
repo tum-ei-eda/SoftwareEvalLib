@@ -39,8 +39,8 @@ AssemblyTrace_Monitor::AssemblyTrace_Monitor(): Monitor("AssemblyTrace_Monitor",
 
 void AssemblyTrace_Monitor::connectChannel(Channel* channel_)
 {
-  Monitor::channel = channel_;
-
+  Monitor::connectChannel(channel_);
+   
   AssemblyTrace_Monitor_instrCnt = &(channel_->instrCnt);
   AssemblyTrace_Monitor_typeId_buffer = channel_->typeId;
 

@@ -17,7 +17,6 @@
 /********************* AUTO GENERATE FILE (create by Trace-Generator) *********************/
 
 #include "CV32E40P_Monitor.h"
-//#include "CV32E40P_Channel.h"
 
 #include "softwareEval-backends/Channel.h"
 
@@ -43,7 +42,7 @@ CV32E40P_Monitor::CV32E40P_Monitor(): Monitor("CV32E40P_Monitor", CV32E40P_Instr
 
 void CV32E40P_Monitor::connectChannel(Channel* channel_)
 {
-  Monitor::channel = channel_;
+  Monitor::connectChannel(channel_);
 
   CV32E40P_Monitor_instrCnt = &(channel_->instrCnt);
   CV32E40P_Monitor_typeId_buffer = channel_->typeId;

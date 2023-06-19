@@ -26,7 +26,6 @@
 #include <map>
 #include <set>
 #include <stdbool.h>
-#include <iostream> // TODO: For debugging / info prints
 
 class InstructionMonitorSet;
 
@@ -38,8 +37,8 @@ public:
   
     const std::string name;
     
-    virtual void connectChannel(Channel*) = 0;
-    inline void resetCounter(void) { channel->instrCnt = 0; };
+  virtual void connectChannel(Channel* channel_) { ch_instrCnt_ptr = &(channel_->instrCnt); };
+    inline void resetCounter(void) { *ch_instrCnt_ptr = 0; };
     virtual std::string getBlockDeclarations(void) const = 0;
     std::string getPreInstrCallback(etiss::instr::Instruction &, etiss::instr::BitArray &, etiss::instr::InstructionContext &) const;
     std::string getPostInstrCallback(etiss::instr::Instruction &, etiss::instr::BitArray &, etiss::instr::InstructionContext &) const;
@@ -53,8 +52,8 @@ private:
     std::map<std::string, std::map<position_t, std::function<std::string(etiss::instr::BitArray &, etiss::instr::Instruction &, etiss::instr::InstructionContext &)>>> instrMonitorFunc_map;
     std::map<std::string, std::function<std::string(etiss::instr::BitArray &, etiss::instr::Instruction &, etiss::instr::InstructionContext &)>> instrPreMonitorFunc_map;
     std::map<std::string, std::function<std::string(etiss::instr::BitArray &, etiss::instr::Instruction &, etiss::instr::InstructionContext &)>> instrPostMonitorFunc_map;
-protected:
-    Channel* channel; // TODO: Should this be here?
+
+    int* ch_instrCnt_ptr;
 };
 
 class InstructionMonitor;
