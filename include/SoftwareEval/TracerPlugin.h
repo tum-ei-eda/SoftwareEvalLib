@@ -39,7 +39,7 @@ class TracerPlugin : public TranslationPlugin, public CoroutinePlugin
 {
 public:
   TracerPlugin();
-  ~TracerPlugin();
+  ~TracerPlugin(); // Make sure that monitors are deleted
 
   virtual void finalizeInstrSet(instr::ModedInstructionSet &) const;
   virtual void initCodeBlock(CodeBlock &) const;

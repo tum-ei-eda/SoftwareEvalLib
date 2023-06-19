@@ -25,8 +25,6 @@
 #include <string>
 #include <stdbool.h>
 
-#include <iostream> // TODO: For debug. Remove
-
 extern "C"
 {
   int *CV32E40P_Monitor_instrCnt;
@@ -47,22 +45,14 @@ void CV32E40P_Monitor::connectChannel(Channel* channel_)
 {
   Monitor::channel = channel_;
 
-  //CV32E40P_Channel* ch = static_cast<CV32E40P_Channel*>(channel_);
-
   CV32E40P_Monitor_instrCnt = &(channel_->instrCnt);
   CV32E40P_Monitor_typeId_buffer = channel_->typeId;
 
-  channel_->hookTraceValue("rs1", CV32E40P_Monitor_rs1_buffer);
-  channel_->hookTraceValue("rs2", CV32E40P_Monitor_rs2_buffer);
-  channel_->hookTraceValue("rd", CV32E40P_Monitor_rd_buffer);
-  channel_->hookTraceValue("pc", CV32E40P_Monitor_pc_buffer);
-  channel_->hookTraceValue("brTarget", CV32E40P_Monitor_brTarget_buffer);
-
-  //CV32E40P_Monitor_rs1_buffer = ch->rs1;
-  //CV32E40P_Monitor_rs2_buffer = ch->rs2;
-  //CV32E40P_Monitor_rd_buffer = ch->rd;
-  //CV32E40P_Monitor_pc_buffer = ch->pc;
-  //CV32E40P_Monitor_brTarget_buffer = ch->brTarget;
+  CV32E40P_Monitor_rs1_buffer = static_cast<int*>(channel_->getTraceValueHook("rs1"));
+  CV32E40P_Monitor_rs2_buffer = static_cast<int*>(channel_->getTraceValueHook("rs2"));
+  CV32E40P_Monitor_rd_buffer = static_cast<int*>(channel_->getTraceValueHook("rd"));
+  CV32E40P_Monitor_pc_buffer = static_cast<int*>(channel_->getTraceValueHook("pc"));
+  CV32E40P_Monitor_brTarget_buffer = static_cast<int*>(channel_->getTraceValueHook("brTarget"));
 }
 
 

@@ -14,26 +14,24 @@
  * limitations under the License.
  */
 
-#ifndef SWEVAL_MONITORS_FACTORY_H
-#define SWEVAL_MONITORS_FACTORY_H
+/********************* AUTO GENERATE FILE (create by Trace-Generator) *********************/
 
+#ifndef ASSEMBLYTRACE_MONITOR_H
+#define ASSEMBLYTRACE_MONITOR_H
 
 #include "Monitor.h"
+#include "softwareEval-backends/Channel.h"
 
 #include <string>
 
-namespace SwEvalMonitors
+class AssemblyTrace_Monitor : public Monitor
 {
-
-class Factory
-{
-private:
-  enum var_t {CV32E40P, AssemblyTrace};
 public:
-    int getVariantHandle(std::string);
-    Monitor* getMonitor(int);
-};
-  
-} //namespace: SwEvalMonitors
 
-#endif //SWEVAL_MONITORS_FACTORY_H
+  AssemblyTrace_Monitor();
+
+  virtual void connectChannel(Channel*);
+  virtual std::string getBlockDeclarations(void) const;
+};
+
+#endif // ASSEMBLYTRACE_MONITOR_H

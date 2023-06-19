@@ -18,9 +18,9 @@
 
 #include "monitors/Monitor.h"
 
-#include "softwareEval-backends/Channel.h"
-
 #include <string>
+#include <sstream>
+#include <stdbool.h>
 #include <iostream> // TODO: For debug purposes: Remove afterwards?? [Error and info prints?]
 
 PerformanceEstimatorPlugin::PerformanceEstimatorPlugin(etiss::Configuration* config)
@@ -28,9 +28,9 @@ PerformanceEstimatorPlugin::PerformanceEstimatorPlugin(etiss::Configuration* con
   
   // Get config data
   std::string uArchName = config->get<std::string>("plugin.perfEst.uArch", "");
-
-  std::cout << "uArch is: " << uArchName << std::endl;
-
+  printActive = (bool)config->get<int>("plugin.perfEst.print", false);
+  std::string outDir = config->get<std::string>("plugin.perfEst.printDir", "");
+  
   // Get monitor
   Monitor* monitor_ptr = nullptr;
   int monitorHandle = monitorFactory.getVariantHandle(uArchName);
@@ -65,16 +65,42 @@ PerformanceEstimatorPlugin::PerformanceEstimatorPlugin(etiss::Configuration* con
     {
       std::cout << "ERROR: SwEvalBackends::Factory failed to provide performance-estimator for <" << uArchName << ">" << std::endl;
     }
+    if(printActive)
+    {
+      tracePrinter_ptr = backendFactory.getTracePrinter(backendHandle);
+      if (tracePrinter_ptr == nullptr)
+      {
+	std::cout << "ERROR: SwEvalBackends::Factory failed to provide trace-printer for <" << uArchName << ">" << std::endl;
+      }
+    }
   }
-
-  // TODO: Add error handling in case any of the above gets fails
+  
+  // TODO: Add error handling in case any of the above "gets" fails
   
   // Connect components
   estimator_ptr->connectChannel(channel_ptr);
   monitor_ptr->connectChannel(channel_ptr);
-
+  if(printActive)
+  {
+    tracePrinter_ptr->connectChannel(channel_ptr);
+  }
+  
   // Add monitor to TracerPlugin
   addMonitor(monitor_ptr);
+
+  // Configure and initialize backends
+  if(printActive)
+  {
+    std::stringstream estimateFileName;
+    estimateFileName << uArchName << "_timing";
+    std::stringstream traceFileName;
+    traceFileName << uArchName << "_trace";
+    int maxFileSize = 0x1000000;
+    estimator_ptr->activateStreamToFile(estimateFileName.str(), outDir, ".csv", maxFileSize);
+    tracePrinter_ptr->activateStreamToFile(traceFileName.str(), outDir, ".csv", maxFileSize);
+    tracePrinter_ptr->initialize();
+  }
+  estimator_ptr->initialize();
   
 }
 
@@ -82,6 +108,7 @@ PerformanceEstimatorPlugin::~PerformanceEstimatorPlugin()
 {
   delete channel_ptr;
   delete estimator_ptr;
+  delete tracePrinter_ptr;
 }
 
 std::string PerformanceEstimatorPlugin::_getPluginName() const
@@ -97,10 +124,19 @@ void *PerformanceEstimatorPlugin::getPluginHandle()
 void PerformanceEstimatorPlugin::processTrace(void)
 {
   estimator_ptr->execute();
+  if(printActive)
+  {
+    tracePrinter_ptr->execute();
+  }
 }
 
 void PerformanceEstimatorPlugin::finalizeTrace(void)
 {
   estimator_ptr->execute();
   estimator_ptr->finalize();
+  if(printActive)
+  {
+    tracePrinter_ptr->execute();
+    tracePrinter_ptr->finalize();
+  }
 }

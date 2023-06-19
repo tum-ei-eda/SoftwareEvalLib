@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-#ifndef PERFORMANCE_ESTIMATOR_PLUGIN_H
-#define PERFORMANCE_ESTIMATOR_PLUGIN_H
+#ifndef TRACE_PRINTER_PLUGIN_H
+#define TRACE_PRINTER_PLUGIN_H
 
 #include "TracerPlugin.h"
 
@@ -29,12 +29,13 @@
 
 #include <string>
 #include <stdbool.h>
+#include <set>
 
-class PerformanceEstimatorPlugin : public etiss::plugin::TracerPlugin::TracerPlugin
+class TracePrinterPlugin: public etiss::plugin::TracerPlugin::TracerPlugin
 {
 public:
-  PerformanceEstimatorPlugin(etiss::Configuration*);
-  ~PerformanceEstimatorPlugin();
+  TracePrinterPlugin(etiss::Configuration*);
+  ~TracePrinterPlugin();
 
   virtual std::string _getPluginName() const;
   virtual void *getPluginHandle();
@@ -43,15 +44,19 @@ private:
 
   SwEvalBackends::Factory backendFactory;
   SwEvalMonitors::Factory monitorFactory;
-  Channel* channel_ptr;
-  Backend* estimator_ptr;
-  Backend* tracePrinter_ptr;
 
-  bool printActive;
+  Channel* channel_ptr;
+  Backend* tracePrinter_ptr;
   
+  //std::set<Printer*> printer_set;
+
+  //void addPrinter(Printer*);
+
   virtual void processTrace(void);
+  //bool firstTraceProcess = true;
+
   virtual void finalizeTrace(void);
-  
+
 };
 
-#endif // PERFORMANCE_ESTIMATOR_PLUGIN_H
+#endif // TRACE_PRINTER_PLUGIN_H

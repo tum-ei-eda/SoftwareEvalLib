@@ -19,6 +19,7 @@
 #include "Monitor.h"
 
 #include "CV32E40P_Monitor.h"
+#include "AssemblyTrace_Monitor.h"
 
 namespace SwEvalMonitors
 {
@@ -29,6 +30,10 @@ int Factory::getVariantHandle(std::string varName_)
     {
         return CV32E40P;
     }
+    if(varName_ == "AssemblyTrace")
+    {
+        return AssemblyTrace;
+    }
     return -1;
 }
 
@@ -37,6 +42,7 @@ Monitor* Factory::getMonitor(int var_)
   switch((var_t)var_)
   {
     case CV32E40P: return new CV32E40P_Monitor();
+    case AssemblyTrace: return new AssemblyTrace_Monitor();
     default: return nullptr;
   }
 }
