@@ -14,26 +14,24 @@
  * limitations under the License.
  */
 
-#ifndef SWEVAL_MONITORS_FACTORY_H
-#define SWEVAL_MONITORS_FACTORY_H
+// TODO: Hand-written as a proof-of-concept
 
+#ifndef CVA6_MONITOR_H
+#define CVA6_MONITOR_H
 
 #include "Monitor.h"
+#include "softwareEval-backends/Channel.h"
 
 #include <string>
 
-namespace SwEvalMonitors
+class CVA6_Monitor : public Monitor
 {
-
-class Factory
-{
-private:
-  enum var_t {CV32E40P, CVA6, AssemblyTrace};
 public:
-    int getVariantHandle(std::string);
-    Monitor* getMonitor(int);
-};
-  
-} //namespace: SwEvalMonitors
 
-#endif //SWEVAL_MONITORS_FACTORY_H
+  CVA6_Monitor();
+
+  virtual void connectChannel(Channel*);
+  virtual std::string getBlockDeclarations(void) const;
+};
+
+#endif // CVA6_MONITOR_H
