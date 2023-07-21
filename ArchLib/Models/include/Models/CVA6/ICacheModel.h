@@ -37,7 +37,7 @@ private:
   bool notCachable(void);
   virtual int lfsr(void);
   int associativity = 4;
-  int tag_cache[4][256] = {0}; // cache size of 16 kBytes, split 4 ways
+  int tag_cache[4][256] = {0}; // cache size of 16 kBytes, split over 4 ways
   bool valid_cache[4][256] = {false};
   int cache_delay = 1;
   int mem_delay = 5;
