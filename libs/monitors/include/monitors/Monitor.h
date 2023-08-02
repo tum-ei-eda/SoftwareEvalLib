@@ -26,6 +26,7 @@
 #include <map>
 #include <set>
 #include <stdbool.h>
+#include <cstdint>
 
 class InstructionMonitorSet;
 
@@ -53,7 +54,7 @@ private:
     std::map<std::string, std::function<std::string(etiss::instr::BitArray &, etiss::instr::Instruction &, etiss::instr::InstructionContext &)>> instrPreMonitorFunc_map;
     std::map<std::string, std::function<std::string(etiss::instr::BitArray &, etiss::instr::Instruction &, etiss::instr::InstructionContext &)>> instrPostMonitorFunc_map;
 
-    int* ch_instrCnt_ptr;
+    uint64_t* ch_instrCnt_ptr;
 };
 
 class InstructionMonitor;

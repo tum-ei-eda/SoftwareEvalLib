@@ -1372,6 +1372,8 @@ static InstructionMonitor *instrMonitor_beq = new InstructionMonitor(
     static etiss::instr::BitArrayRange R_imm_1(11,8);
     imm += R_imm_1.read(ba) << 1;
     ret_strs << "CVA6_Monitor_brTarget_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(ic.current_address_ + (((etiss_int16)(imm << 3)) >> 3)) << ";\n";
+
+    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm) << ";\n";
     
     ret_strs << "CVA6_Monitor_pc_buffer[*CVA6_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CVA6_Monitor_instrCnt += 1;\n"; // TODO: InstrCnt should be set in the post-print-function (see below). Currently set here, to makes sure that it is set, even if instruction triggers a return
@@ -1412,6 +1414,8 @@ static InstructionMonitor *instrMonitor_bne = new InstructionMonitor(
     static etiss::instr::BitArrayRange R_imm_1(11,8);
     imm += R_imm_1.read(ba) << 1;
     ret_strs << "CVA6_Monitor_brTarget_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(ic.current_address_ + (((etiss_int16)(imm << 3)) >> 3)) << ";\n";
+
+    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm) << ";\n";
     
     ret_strs << "CVA6_Monitor_pc_buffer[*CVA6_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CVA6_Monitor_instrCnt += 1;\n"; // TODO: InstrCnt should be set in the post-print-function (see below). Currently set here, to makes sure that it is set, even if instruction triggers a return
@@ -1452,6 +1456,8 @@ static InstructionMonitor *instrMonitor_blt = new InstructionMonitor(
     static etiss::instr::BitArrayRange R_imm_1(11,8);
     imm += R_imm_1.read(ba) << 1;
     ret_strs << "CVA6_Monitor_brTarget_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(ic.current_address_ + (((etiss_int16)(imm << 3)) >> 3)) << ";\n";
+
+    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm) << ";\n";
     
     ret_strs << "CVA6_Monitor_pc_buffer[*CVA6_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CVA6_Monitor_instrCnt += 1;\n"; // TODO: InstrCnt should be set in the post-print-function (see below). Currently set here, to makes sure that it is set, even if instruction triggers a return
@@ -1492,6 +1498,8 @@ static InstructionMonitor *instrMonitor_bge = new InstructionMonitor(
     static etiss::instr::BitArrayRange R_imm_1(11,8);
     imm += R_imm_1.read(ba) << 1;
     ret_strs << "CVA6_Monitor_brTarget_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(ic.current_address_ + (((etiss_int16)(imm << 3)) >> 3)) << ";\n";
+
+    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm) << ";\n";
     
     ret_strs << "CVA6_Monitor_pc_buffer[*CVA6_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CVA6_Monitor_instrCnt += 1;\n"; // TODO: InstrCnt should be set in the post-print-function (see below). Currently set here, to makes sure that it is set, even if instruction triggers a return
@@ -1532,6 +1540,8 @@ static InstructionMonitor *instrMonitor_bltu = new InstructionMonitor(
     static etiss::instr::BitArrayRange R_imm_1(11,8);
     imm += R_imm_1.read(ba) << 1;
     ret_strs << "CVA6_Monitor_brTarget_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(ic.current_address_ + (((etiss_int16)(imm << 3)) >> 3)) << ";\n";
+
+    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm) << ";\n";
     
     ret_strs << "CVA6_Monitor_pc_buffer[*CVA6_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CVA6_Monitor_instrCnt += 1;\n"; // TODO: InstrCnt should be set in the post-print-function (see below). Currently set here, to makes sure that it is set, even if instruction triggers a return
@@ -1572,6 +1582,8 @@ static InstructionMonitor *instrMonitor_bgeu = new InstructionMonitor(
     static etiss::instr::BitArrayRange R_imm_1(11,8);
     imm += R_imm_1.read(ba) << 1;
     ret_strs << "CVA6_Monitor_brTarget_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(ic.current_address_ + (((etiss_int16)(imm << 3)) >> 3)) << ";\n";
+
+    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm) << ";\n";
     
     ret_strs << "CVA6_Monitor_pc_buffer[*CVA6_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CVA6_Monitor_instrCnt += 1;\n"; // TODO: InstrCnt should be set in the post-print-function (see below). Currently set here, to makes sure that it is set, even if instruction triggers a return
@@ -1626,6 +1638,8 @@ static InstructionMonitor *instrMonitor_jal = new InstructionMonitor(
     static etiss::instr::BitArrayRange R_imm_1(30,21);
     imm += R_imm_1.read(ba) << 1;
     ret_strs << "CVA6_Monitor_brTarget_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(ic.current_address_ + (((etiss_int32)(imm << 11)) >> 11)) << ";\n";
+
+    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm) << ";\n";
     
     ret_strs << "CVA6_Monitor_pc_buffer[*CVA6_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CVA6_Monitor_instrCnt += 1;\n"; // TODO: InstrCnt should be set in the post-print-function (see below). Currently set here, to makes sure that it is set, even if instruction triggers a return
@@ -1663,6 +1677,8 @@ static InstructionMonitor *instrMonitor_jalr = new InstructionMonitor(
     static etiss::instr::BitArrayRange R_imm_0(11,0);
     imm += R_imm_0.read(ba) << 0;
     ret_strs << "CVA6_Monitor_brTarget_buffer[*CVA6_Monitor_instrCnt] = " << "(*((RV64IMACFD*)cpu)->X[" << rs1_data << "] + " << std::to_string((((etiss_int16)(imm << 4)) >> 4)) << ") & -2U" << ";\n";
+
+    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm) << ";\n";
     
     ret_strs << "CVA6_Monitor_pc_buffer[*CVA6_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CVA6_Monitor_instrCnt += 1;\n"; // TODO: InstrCnt should be set in the post-print-function (see below). Currently set here, to makes sure that it is set, even if instruction triggers a return

@@ -23,16 +23,17 @@
 #include <sstream>
 #include <string>
 #include <stdbool.h>
+#include <cstdint>
 
 extern "C"
 {
-  int *CV32E40P_Monitor_instrCnt;
-  int *CV32E40P_Monitor_typeId_buffer;
-  int *CV32E40P_Monitor_rs1_buffer;
-  int *CV32E40P_Monitor_rs2_buffer;
-  int *CV32E40P_Monitor_rd_buffer;
-  int *CV32E40P_Monitor_pc_buffer;
-  int *CV32E40P_Monitor_brTarget_buffer;
+  uint64_t *CV32E40P_Monitor_instrCnt;
+  uint64_t *CV32E40P_Monitor_typeId_buffer;
+  uint64_t *CV32E40P_Monitor_rs1_buffer;
+  uint64_t *CV32E40P_Monitor_rs2_buffer;
+  uint64_t *CV32E40P_Monitor_rd_buffer;
+  uint64_t *CV32E40P_Monitor_pc_buffer;
+  uint64_t *CV32E40P_Monitor_brTarget_buffer;
 }
 
 extern InstructionMonitorSet* CV32E40P_InstrMonitorSet;
@@ -47,11 +48,11 @@ void CV32E40P_Monitor::connectChannel(Channel* channel_)
   CV32E40P_Monitor_instrCnt = &(channel_->instrCnt);
   CV32E40P_Monitor_typeId_buffer = channel_->typeId;
 
-  CV32E40P_Monitor_rs1_buffer = static_cast<int*>(channel_->getTraceValueHook("rs1"));
-  CV32E40P_Monitor_rs2_buffer = static_cast<int*>(channel_->getTraceValueHook("rs2"));
-  CV32E40P_Monitor_rd_buffer = static_cast<int*>(channel_->getTraceValueHook("rd"));
-  CV32E40P_Monitor_pc_buffer = static_cast<int*>(channel_->getTraceValueHook("pc"));
-  CV32E40P_Monitor_brTarget_buffer = static_cast<int*>(channel_->getTraceValueHook("brTarget"));
+  CV32E40P_Monitor_rs1_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("rs1"));
+  CV32E40P_Monitor_rs2_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("rs2"));
+  CV32E40P_Monitor_rd_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("rd"));
+  CV32E40P_Monitor_pc_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("pc"));
+  CV32E40P_Monitor_brTarget_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("brTarget"));
 }
 
 
@@ -59,14 +60,14 @@ std::string CV32E40P_Monitor::getBlockDeclarations(void) const
 {
   std::stringstream ret_strs;
  
-  ret_strs << "extern int *CV32E40P_Monitor_instrCnt;\n";
-  ret_strs << "extern int *CV32E40P_Monitor_typeId_buffer;\n";
-
-  ret_strs << "extern int *CV32E40P_Monitor_rs1_buffer;\n";
-  ret_strs << "extern int *CV32E40P_Monitor_rs2_buffer;\n";
-  ret_strs << "extern int *CV32E40P_Monitor_rd_buffer;\n";
-  ret_strs << "extern int *CV32E40P_Monitor_pc_buffer;\n";
-  ret_strs << "extern int *CV32E40P_Monitor_brTarget_buffer;\n";
+  ret_strs << "extern uint64_t *CV32E40P_Monitor_instrCnt;\n";
+  ret_strs << "extern uint64_t *CV32E40P_Monitor_typeId_buffer;\n";
+		      	  
+  ret_strs << "extern uint64_t *CV32E40P_Monitor_rs1_buffer;\n";
+  ret_strs << "extern uint64_t *CV32E40P_Monitor_rs2_buffer;\n";
+  ret_strs << "extern uint64_t *CV32E40P_Monitor_rd_buffer;\n";
+  ret_strs << "extern uint64_t *CV32E40P_Monitor_pc_buffer;\n";
+  ret_strs << "extern uint64_t *CV32E40P_Monitor_brTarget_buffer;\n";
 
   return ret_strs.str();
 }

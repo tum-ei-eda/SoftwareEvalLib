@@ -23,17 +23,19 @@
 #include <sstream>
 #include <string>
 #include <stdbool.h>
+#include <cstdint>
 
 extern "C"
 {
-  int *CVA6_Monitor_instrCnt;
-  int *CVA6_Monitor_typeId_buffer;
-  int *CVA6_Monitor_rs1_buffer;
-  int *CVA6_Monitor_rs2_buffer;
-  int *CVA6_Monitor_rd_buffer;
-  int *CVA6_Monitor_pc_buffer;
-  int *CVA6_Monitor_brTarget_buffer;
-  int *CVA6_Monitor_memAddr_buffer;
+  uint64_t *CVA6_Monitor_instrCnt;
+  uint64_t *CVA6_Monitor_typeId_buffer;
+  uint64_t *CVA6_Monitor_rs1_buffer;
+  uint64_t *CVA6_Monitor_rs2_buffer;
+  uint64_t *CVA6_Monitor_rd_buffer;
+  uint64_t *CVA6_Monitor_pc_buffer;
+  uint64_t *CVA6_Monitor_brTarget_buffer;
+  uint64_t *CVA6_Monitor_memAddr_buffer;
+  uint64_t *CVA6_Monitor_imm_buffer;
 }
 
 extern InstructionMonitorSet* CVA6_InstrMonitorSet;
@@ -48,12 +50,13 @@ void CVA6_Monitor::connectChannel(Channel* channel_)
   CVA6_Monitor_instrCnt = &(channel_->instrCnt);
   CVA6_Monitor_typeId_buffer = channel_->typeId;
 
-  CVA6_Monitor_rs1_buffer = static_cast<int*>(channel_->getTraceValueHook("rs1"));
-  CVA6_Monitor_rs2_buffer = static_cast<int*>(channel_->getTraceValueHook("rs2"));
-  CVA6_Monitor_rd_buffer = static_cast<int*>(channel_->getTraceValueHook("rd"));
-  CVA6_Monitor_pc_buffer = static_cast<int*>(channel_->getTraceValueHook("pc"));
-  CVA6_Monitor_brTarget_buffer = static_cast<int*>(channel_->getTraceValueHook("brTarget"));
-  CVA6_Monitor_memAddr_buffer = static_cast<int*>(channel_->getTraceValueHook("memAddr"));
+  CVA6_Monitor_rs1_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("rs1"));
+  CVA6_Monitor_rs2_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("rs2"));
+  CVA6_Monitor_rd_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("rd"));
+  CVA6_Monitor_pc_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("pc"));
+  CVA6_Monitor_brTarget_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("brTarget"));
+  CVA6_Monitor_memAddr_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("memAddr"));
+  CVA6_Monitor_imm_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("imm"));
 }
 
 
@@ -61,15 +64,16 @@ std::string CVA6_Monitor::getBlockDeclarations(void) const
 {
   std::stringstream ret_strs;
  
-  ret_strs << "extern int *CVA6_Monitor_instrCnt;\n";
-  ret_strs << "extern int *CVA6_Monitor_typeId_buffer;\n";
+  ret_strs << "extern uint64_t *CVA6_Monitor_instrCnt;\n";
+  ret_strs << "extern uint64_t *CVA6_Monitor_typeId_buffer;\n";
 
-  ret_strs << "extern int *CVA6_Monitor_rs1_buffer;\n";
-  ret_strs << "extern int *CVA6_Monitor_rs2_buffer;\n";
-  ret_strs << "extern int *CVA6_Monitor_rd_buffer;\n";
-  ret_strs << "extern int *CVA6_Monitor_pc_buffer;\n";
-  ret_strs << "extern int *CVA6_Monitor_brTarget_buffer;\n";
-  ret_strs << "extern int *CVA6_Monitor_memAddr_buffer;\n";
-
+  ret_strs << "extern uint64_t *CVA6_Monitor_rs1_buffer;\n";
+  ret_strs << "extern uint64_t *CVA6_Monitor_rs2_buffer;\n";
+  ret_strs << "extern uint64_t *CVA6_Monitor_rd_buffer;\n";
+  ret_strs << "extern uint64_t *CVA6_Monitor_pc_buffer;\n";
+  ret_strs << "extern uint64_t *CVA6_Monitor_brTarget_buffer;\n";
+  ret_strs << "extern uint64_t *CVA6_Monitor_memAddr_buffer;\n";
+  ret_strs << "extern uint64_t *CVA6_Monitor_imm_buffer;\n";
+  
   return ret_strs.str();
 }
