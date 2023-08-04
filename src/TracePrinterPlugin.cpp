@@ -16,11 +16,7 @@
 
 #include "TracePrinterPlugin.h"
 
-#include "Components/Monitor.h"
-#include "Components/Channel.h"
-#include "Components/Printer.h"
-
-#include "TraceLib/TraceFactory.h"
+#include "monitors/Monitor.h"
 
 #include <string>
 #include <iostream> // TODO: For debug purposes: Remove afterwards?? [Error and info prints?]
@@ -28,38 +24,77 @@
 
 TracePrinterPlugin::TracePrinterPlugin(etiss::Configuration* config)
 {
+  // Get config data
   std::string traceName = config->get<std::string>("plugin.tracePrinter.trace", "");
   bool streamToFile = (bool)config->get<int>("plugin.tracePrinter.stream.toFile", false);
   std::string outDirName = config->get<std::string>("plugin.tracePrinter.stream.outDir", "");
   std::string outFileName = config->get<std::string>("plugin.tracePrinter.stream.fileName", traceName);
+  std::string outFilePostfix = config->get<std::string>("plugin.tracePrinter.stream.postfix", ".txt");
   int maxFileSize = config->get<int>("plugin.tracePrinter.stream.rotateSize", 0x1000000);
 
-  int traceHandle = factory.getTraceHandle(traceName);
-  if(traceHandle < 0)
+  // Get monitor
+  Monitor* monitor_ptr = nullptr;
+  int monitorHandle = monitorFactory.getVariantHandle(traceName);
+  if (monitorHandle < 0)
   {
-    std::cout << "ERROR: Trace-Handle(" << traceHandle << ") is invalid" << std::endl;
+    std::cout << "ERROR: <" << traceName << "> does not name a valid variant provided by SwEvalMonitors::Factory" << std::endl;
   }
   else
   {
-    Monitor* monitor_ptr = factory.getMonitor(traceHandle);
-    Channel* channel_ptr = factory.getChannel(traceHandle);
-    Printer* printer_ptr = factory.getPrinter(traceHandle);
-
-    if(streamToFile)
+    monitor_ptr = monitorFactory.getMonitor(monitorHandle);
+    if (monitor_ptr == nullptr)
     {
-      printer_ptr->setOutFile(outDirName, outFileName, maxFileSize);
+      std::cout << "ERROR: SwEvalMonitors::Factory failed to provide monitor for <" << traceName << ">" << std::endl;
     }
-        
-    monitor_ptr->connectChannel(channel_ptr);
-    printer_ptr->connectChannel(channel_ptr);
+  }
 
-    addMonitor(monitor_ptr);
-    addPrinter(printer_ptr);    
-  }  
+  // Get Channel & PerformanceEstimator
+  int backendHandle = backendFactory.getVariantHandle(traceName);
+  if (backendHandle < 0)
+  {
+    std::cout << "ERROR: <" << traceName << "> does not name a valid variant provided by SwEvalBackends::Factory" << std::endl;
+  }
+  else
+  {
+    channel_ptr = backendFactory.getChannel(backendHandle);
+    if (channel_ptr == nullptr)
+    {
+      std::cout << "ERROR: SwEvalBackends::Factory failed to provide channel for <" << traceName << ">" << std::endl;
+    }
+    tracePrinter_ptr = backendFactory.getTracePrinter(backendHandle);
+    if (tracePrinter_ptr == nullptr)
+    {
+      std::cout << "ERROR: SwEvalBackends::Factory failed to provide trace-printer for <" << traceName << ">" << std::endl;
+    }
+  }
+
+  // TODO: Add error handling in case any of the above "gets" fails
+
+  // Connect components
+  tracePrinter_ptr->connectChannel(channel_ptr);
+  monitor_ptr->connectChannel(channel_ptr);
+  
+  // Add monitor to TracePlugin
+  addMonitor(monitor_ptr);
+
+  // Configure printer and initialize it
+  if(streamToFile)
+  {
+    tracePrinter_ptr->activateStreamToFile(outFileName, outDirName, outFilePostfix, maxFileSize);
+  }
+  else
+  {
+    tracePrinter_ptr->activateStreamToCout();
+  }
+  tracePrinter_ptr->initialize();
+  
 }
 
 TracePrinterPlugin::~TracePrinterPlugin()
-{}
+{
+  delete channel_ptr;
+  delete tracePrinter_ptr;
+}
 
 std::string TracePrinterPlugin::_getPluginName() const
 {
@@ -71,31 +106,42 @@ void *TracePrinterPlugin::getPluginHandle()
   return this;
 }
 
-void TracePrinterPlugin::addPrinter(Printer* printer_)
-{
-  printer_set.insert(printer_);
-}
+//void TracePrinterPlugin::addPrinter(Printer* printer_)
+//{
+//  printer_set.insert(printer_);
+//}
+
+//void TracePrinterPlugin::processTrace(void)
+//{ 
+//  // TODO: Remove multi printer handling?
+//  for(auto printer_i = printer_set.begin(); printer_i != printer_set.end(); printer_i++)
+//  {
+//    if(firstTraceProcess)
+//    {
+//      firstTraceProcess = false;
+//      (*printer_i)->initialize();
+//    }
+//    (*printer_i)->execute();
+//  }
+//}
 
 void TracePrinterPlugin::processTrace(void)
-{ 
-  // TODO: Remove multi printer handling?
-  for(auto printer_i = printer_set.begin(); printer_i != printer_set.end(); printer_i++)
-  {
-    if(firstTraceProcess)
-    {
-      firstTraceProcess = false;
-      (*printer_i)->initialize();
-    }
-    (*printer_i)->execute();
-  }
+{
+  tracePrinter_ptr->execute();
 }
 
+//void TracePrinterPlugin::finalizeTrace(void)
+//{ 
+//  // TODO: Remove multi printer handling?
+//  for(auto printer_i = printer_set.begin(); printer_i != printer_set.end(); printer_i++)
+//  {
+//    (*printer_i)->execute();
+//    (*printer_i)->finalize();
+//  }
+//}
+
 void TracePrinterPlugin::finalizeTrace(void)
-{ 
-  // TODO: Remove multi printer handling?
-  for(auto printer_i = printer_set.begin(); printer_i != printer_set.end(); printer_i++)
-  {
-    (*printer_i)->execute();
-    (*printer_i)->finalize();
-  }
+{
+  tracePrinter_ptr->execute();
+  tracePrinter_ptr->finalize();
 }

@@ -21,10 +21,11 @@
 
 #include "etiss/Misc.h" // Use Configuration
 
-#include "Components/Channel.h" // TODO: Test purpose, remove
-#include "Components/Printer.h"
+#include "softwareEval-backends/Factory.h"
+#include "softwareEval-backends/Channel.h"
+#include "softwareEval-backends/Backend.h"
 
-#include "TraceLib/TraceFactory.h"
+#include "monitors/Factory.h"
 
 #include <string>
 #include <stdbool.h>
@@ -41,17 +42,21 @@ public:
 
 private:  
 
-  TraceFactory factory;
+  SwEvalBackends::Factory backendFactory;
+  SwEvalMonitors::Factory monitorFactory;
 
-  std::set<Printer*> printer_set;
+  Channel* channel_ptr;
+  Backend* tracePrinter_ptr;
+  
+  //std::set<Printer*> printer_set;
 
-  void addPrinter(Printer*);
+  //void addPrinter(Printer*);
 
   virtual void processTrace(void);
-  bool firstTraceProcess = true;
+  //bool firstTraceProcess = true;
 
   virtual void finalizeTrace(void);
-  
+
 };
 
 #endif // TRACE_PRINTER_PLUGIN_H

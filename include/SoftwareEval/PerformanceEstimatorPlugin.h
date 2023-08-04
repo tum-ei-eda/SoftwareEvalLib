@@ -18,14 +18,17 @@
 #define PERFORMANCE_ESTIMATOR_PLUGIN_H
 
 #include "TracerPlugin.h"
-#include "Estimator.h"
 
 #include "etiss/Misc.h" // Use Configuration
 
-#include "ArchLib/MicroArchFactory.h"
-#include "TraceLib/TraceFactory.h"
+#include "softwareEval-backends/Factory.h"
+#include "softwareEval-backends/Channel.h"
+#include "softwareEval-backends/Backend.h"
+
+#include "monitors/Factory.h"
 
 #include <string>
+#include <stdbool.h>
 
 class PerformanceEstimatorPlugin : public etiss::plugin::TracerPlugin::TracerPlugin
 {
@@ -38,9 +41,13 @@ public:
 
 private:  
 
-  MicroArchFactory uArchFactory;
-  TraceFactory traceFactory;
-  Estimator estimator;
+  SwEvalBackends::Factory backendFactory;
+  SwEvalMonitors::Factory monitorFactory;
+  Channel* channel_ptr;
+  Backend* estimator_ptr;
+  Backend* tracePrinter_ptr;
+
+  bool printActive;
   
   virtual void processTrace(void);
   virtual void finalizeTrace(void);

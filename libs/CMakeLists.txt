@@ -1,1 +1,2 @@
-ADD_SUBDIRECTORY(Components)
+ADD_SUBDIRECTORY(backends)
+ADD_SUBDIRECTORY(monitors)

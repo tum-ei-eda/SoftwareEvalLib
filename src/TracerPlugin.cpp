@@ -16,7 +16,7 @@
 
 #include "TracerPlugin.h"
 
-#include "Components/Monitor.h"
+#include "monitors/Monitor.h"
 
 #include "etiss/CodePart.h"
 #include "etiss/Instruction.h"
@@ -84,6 +84,8 @@ int32 TracerPlugin::execute(void)
 {  
   processTrace();
 
+
+  // TODO: Remove monitor-set, use single monitor instead?
   for(auto monitor_i = monitor_set.begin(); monitor_i != monitor_set.end(); monitor_i++)
   {
     (*monitor_i)->resetCounter();

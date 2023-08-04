@@ -17,7 +17,7 @@
 #ifndef TRACER_PLUGIN_H
 #define TRACER_PLUGIN_H
 
-#include "Components/Monitor.h"
+#include "monitors/Monitor.h"
 
 #include "etiss/Plugin.h"
 #include "etiss/CodePart.h" // CodeBlock
@@ -39,7 +39,7 @@ class TracerPlugin : public TranslationPlugin, public CoroutinePlugin
 {
 public:
   TracerPlugin();
-  ~TracerPlugin();
+  ~TracerPlugin(); // Make sure that monitors are deleted
 
   virtual void finalizeInstrSet(instr::ModedInstructionSet &) const;
   virtual void initCodeBlock(CodeBlock &) const;

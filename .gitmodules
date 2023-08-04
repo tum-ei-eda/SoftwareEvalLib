@@ -1,0 +1,3 @@
+[submodule "libs/backends"]
+	path = libs/backends
+	url = git@github.com:tum-ei-eda/SoftwareEval-Backends.git
