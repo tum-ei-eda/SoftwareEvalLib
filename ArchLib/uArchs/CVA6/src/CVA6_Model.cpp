@@ -21,6 +21,7 @@
 #include <stdbool.h>
 #include <string>
 #include <sstream>
+#include <iomanip>
 
 #include "Components/Channel.h"
 
@@ -33,7 +34,7 @@ void CVA6_Model::connectChannel(Channel* channel_)
 {
   CVA6_Channel* channel = static_cast<CVA6_Channel*>(channel_);	
 
-  iCModel.addr_ptr = channel->pc;
+  iCModel.pc_ptr = /*(uint64_t*)*/(channel->pc);
   dCModel.addr_ptr = channel->memAddr;
   
   regModel.rs1_ptr = channel->rs1;
@@ -49,22 +50,25 @@ std::string CVA6_Model::getPipelineStream(void)
 {
   std::stringstream ret_strs;
 
-  ret_strs << CVA6_pipeline.getPCGEN_stage();
-  ret_strs << "," << CVA6_pipeline.getIF_cache_stage();
-  ret_strs << "," << CVA6_pipeline.getIF_scan_stage();
-  ret_strs << "," << CVA6_pipeline.getID_stage();
-  ret_strs << "," << CVA6_pipeline.getIS_stage();
-  ret_strs << "," << CVA6_pipeline.getEX_ALU_stage();
-  ret_strs << "," << CVA6_pipeline.getEX_BU_stage();
-  ret_strs << "," << CVA6_pipeline.getEX_MUL_I_stage();
-  ret_strs << "," << CVA6_pipeline.getEX_MUL_O_stage();
-  ret_strs << "," << CVA6_pipeline.getEX_DIV_stage();
-  ret_strs << "," << CVA6_pipeline.getEX_LU_ctrl_stage();
-  ret_strs << "," << CVA6_pipeline.getEX_LU_cache_stage();
-  ret_strs << "," << CVA6_pipeline.getEX_LU_unit_stage();
-  ret_strs << "," << CVA6_pipeline.getEX_SU_ctrl_stage();
-  ret_strs << "," << CVA6_pipeline.getEX_SU_unit_stage();
-  ret_strs << "," << CVA6_pipeline.getCOM_stage();
+  // ret_strs << CVA6_pipeline.getPCGEN_stage();
+  // ret_strs << "," << CVA6_pipeline.getIF_cache_stage();
+  // ret_strs << "," << CVA6_pipeline.getIF_scan_stage();
+  // ret_strs << "," << CVA6_pipeline.getID_stage();
+  // ret_strs << "," << CVA6_pipeline.getIS_stage();
+  // ret_strs << "," << CVA6_pipeline.getEX_ALU_stage();
+  // ret_strs << "," << CVA6_pipeline.getEX_BU_stage();
+  // ret_strs << "," << CVA6_pipeline.getEX_MUL_I_stage();
+  // ret_strs << "," << CVA6_pipeline.getEX_MUL_O_stage();
+  // ret_strs << "," << CVA6_pipeline.getEX_DIV_stage();
+  // ret_strs << "," << CVA6_pipeline.getEX_LU_ctrl_stage();
+  // ret_strs << "," << CVA6_pipeline.getEX_LU_cache_stage();
+  // ret_strs << "," << CVA6_pipeline.getEX_LU_unit_stage();
+  // ret_strs << "," << CVA6_pipeline.getEX_SU_ctrl_stage();
+  // ret_strs << "," << CVA6_pipeline.getEX_SU_unit_stage();
+  // ret_strs << "," << CVA6_pipeline.getCOM_stage();
+
+  ret_strs << "0x" << std::setfill('0') << std::setw(8) << std::hex << iCModel.getPC();
+  ret_strs << "," << iCModel.missed();
 
   return ret_strs.str();
 }

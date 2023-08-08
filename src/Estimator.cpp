@@ -28,7 +28,8 @@ void Estimator::activateStreaming(std::string outDir_="", int fileSize_=0x100000
 {
   if(outDir_.compare("") != 0)
   {
-    streamer.setOutFile(outDir_, "perfEst", ".txt", fileSize_);
+    streamer.setOutFile(outDir_, "perfEst", ".csv", fileSize_);
+    streamer.setHeader("pc,miss\n");
   }
   streamer.openStream();
 }
@@ -46,7 +47,7 @@ void Estimator::execute(void)
     if(streamer.isActive())
     {
       std::stringstream out_strs;
-      out_strs << globalInstrCnt + instr_i << model_ptr->getPipelineStream() << std::endl;
+      out_strs << /*globalInstrCnt + instr_i <<*/ model_ptr->getPipelineStream() << std::endl;
       streamer.stream(out_strs.str());
     }
   }

@@ -14,37 +14,42 @@
  * limitations under the License.
  */
 
-#ifndef CVA6_ICACHE_MODEL_H
-#define CVA6_ICACHE_MODEL_H
+// TODO: nail preliminary model
 
+#ifndef I_CACHE_MODEL_H
+#define I_CACHE_MODEL_H
+
+//#include <stdbool.h>
+
+//#include "PerformanceModel.h"
 #include "Components/Model.h"
 
 class ICacheModel : public ResourceModel
 {
-public:
-  ICacheModel(PerformanceModel* parent_) : ResourceModel("ICacheModel", parent_), parentModel(parent_) {};
-  int getDelay(void);
-  //void setCacheCtrl(int);
-  //int getCacheCtrl(void) { return availability; };
-  int* addr_ptr;
-  int wasMiss(void);
+    public:
 
-protected:
-  int getInstrIndex() { return parentModel->instrIndex; };
-  
-private:
-  bool inCache(void);
-  bool notCachable(void);
-  virtual int lfsr(void);
-  int associativity = 4;
-  int tag_cache[4][256] = {0}; // cache size of 16 kBytes, split 4 ways
-  bool valid_cache[4][256] = {false};
-  int cache_delay = 1;
-  int mem_delay = 5;
-  bool was_miss = true;
-  int availability = 0;
+    ICacheModel(PerformanceModel* parent_) : ResourceModel("ICacheModel", parent_) {};
+    virtual int getDelay(void);
 
-  PerformanceModel* const parentModel;
+    // Trace value
+    int* pc_ptr;
+
+    uint64_t getPC() {return pc;}
+    short missed() {return miss ? 1 : 0;};
+
+    private:
+
+    bool cacheable();
+    bool tag_cmp();
+    short lfsr();
+    void main();
+
+    uint64_t pc = 0;
+    uint64_t tag = 0;
+    int index = 0;
+    int tag_ram[256][4] = {0}; // 256 lines, 4-way associative, line size = 16byte, total size = 16 kbyte
+    bool miss = false;
+
 };
 
-#endif //CVA6_ICACHE_MODEL_H
+#endif // I_CACHE_MODEL_H

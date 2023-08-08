@@ -23,5 +23,5 @@
 void ICacheCtrlModel::setIC_b(int IC_)
 {
   CVA6_Model* perfModel = static_cast<CVA6_Model*>(parent);
-  IC = IC_ - 1 + perfModel->iCModel.wasMiss(); 
+  //IC = IC_ - 1 + perfModel->iCModel.wasMiss(); 
 }

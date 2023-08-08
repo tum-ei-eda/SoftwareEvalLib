@@ -56,7 +56,7 @@ PerformanceEstimatorPlugin::PerformanceEstimatorPlugin(etiss::Configuration* con
   model_ptr->connectChannel(channel_ptr);
   estimator.setChannel(channel_ptr);
   estimator.setPerformanceModel(model_ptr);
-  //estimator.activateStreaming("/data/work/testDUMP.txt");
+  estimator.activateStreaming("/usr/local/research/projects/SystemDesign/work/performance-evaluation/akinci/PerformanceEstimator_workspace/trace_results", 0x1000000);
   
 }
 

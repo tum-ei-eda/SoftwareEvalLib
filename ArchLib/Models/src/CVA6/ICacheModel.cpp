@@ -14,106 +14,65 @@
  * limitations under the License.
  */
 
+// TODO: nail preliminary model
+
 #include "Models/CVA6/ICacheModel.h"
+#include "Models/CVA6/bit_macros.hpp"
 
-int ICacheModel::getDelay()
+int ICacheModel::getDelay(void)
 {
-  if(notCachable())
-  {
-    // if a cache miss occurs the next instruction can not be directly generated
-    // the miss signal adds one additional cycle to the genertion stage
-    // the miss attribute is only relevant for the I$
-    // instrucitons should always be cachable => setting miss here should not 
-    // be nessecary
-    was_miss = true;
-    return mem_delay;
-  } 
-  else if(inCache())
-  {
-    was_miss = false;
-    return cache_delay;
-  }
-  else
-  {
-    was_miss = true;
-    return mem_delay;
-  }
-}
+    
+    pc = pc_ptr[getInstrIndex()];
+    pc = (pc << 32) >> 32;                       //workaround: since casting from int to uint64_t
+    //std::cout << std::hex << pc << std::endl;
 
-bool ICacheModel::inCache()
-{
-  bool hit = false;
-  unsigned int addr = addr_ptr[getInstrIndex()];
+    miss = false;
+    tag = extract_bits(pc, 44, 12);
+    index = extract_bits(pc, 8, 4);
+    //int offset = extract_bits(pc, 4, 0);
 
-  // tag calculation tag = addr[55:12]
-  // since we only consider 32 bit addresses (int) we can just remove the 12 lower bit
-  unsigned int tag = addr>>12;
-
-  // index calculation index = addr[11:4], 8 bit wide, 256 bytes addressable
-  // remove the higher 21 bit, remove the lower 4 bit
-  unsigned int index = (addr<<(32-11))>>(32-11+4);
-
-  // search through n-way associativity cache
-  for(int i = 0; i < associativity; i++)
-  {
-    if(tag_cache[i][index] == tag && valid_cache[i][index] == true)
-    {
-      // cache hit
-      hit = true;
-      break;
+    if(!cacheable()) {
+        //report miss
+        miss = true;
+        //std::cout << "A: " << std::hex << pc << std::endl;
+        return 5;
     }
-    else
-    {
-      // cache miss
-      hit = false;
+
+    if (!tag_cmp()) {
+        //update tag_ram
+        short way_to_replace = lfsr();
+        //cout << "lfsr:" << way_to_replace << endl;
+        tag_ram[index][way_to_replace] = tag;
+
+        //report miss
+        miss = true;
+        //std::cout << "B" << std::endl;
+        return 6;
     }
-  }
 
-  // update cache on miss
-  if(hit == false)
-  {
-    int i = lfsr();
-    tag_cache[i][index] = tag;
-    valid_cache[i][index] = true;
-  }
-  
-  // return hit/miss information
-  return hit;
+    //report hit
+    miss = false;
+    //std::cout << "C" << std::endl;
+    return 1;
 }
 
-int ICacheModel::lfsr() // only for 4 bit and 2 output bits
-{
-  static int state = 0xF; // all 1's reset state, for 8 bit it would be 0xFF
-  if(state & 0x1)
-  {
-    state = (state >> 1) ^ 0xC; // only for 4 bit, for 8 bit the feed is 0xFA
-  }
-  else
-  {
-    state = (state >> 1);
-  }
-  return state & 0x3; // only for 2 output bits
+bool ICacheModel::cacheable() {
+    return (0x80000000 <= pc && pc < 0xc0000000) ? true : false;
 }
 
-bool ICacheModel::notCachable()
-{
-  unsigned int addr = addr_ptr[getInstrIndex()];
-  if((0x80000000 <= addr) && (addr < 0xC0000000))
-  {
+bool ICacheModel::tag_cmp() {
+    for(int way=0; way<4; way++) {
+        if(tag_ram[index][way] == tag) {
+            return true;
+        }
+    }
     return false;
-  }
-  else
-  {
-    return true;
-  }
 }
 
-//void ICacheModel::setCacheCtrl(int fetch)
-//{
-//  availability = (was_miss) ? fetch : fetch - 1;
-//}
+short ICacheModel::lfsr() {
+    static uint8_t shift_state = 0; // 8bit
+    short shift_in = ~( (extract_bits(shift_state, 1, 7) ^ extract_bits(shift_state, 1, 3) ^ extract_bits(shift_state, 1, 2) ^ extract_bits(shift_state, 1, 1)) ) & 1; //single bit
+    shift_state = (shift_state << 1) | shift_in; // 8bit
 
-int ICacheModel::wasMiss()
-{
-  return (was_miss) ? 1 : 0;
+    return (shift_state & 0x3); // 2bit
 }
