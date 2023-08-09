@@ -1652,7 +1652,7 @@ static InstructionMonitor *instrMonitor_jalr = new InstructionMonitor(
     static etiss::instr::BitArrayRange R_rs1_data_0(19,15);
     rs1_data += R_rs1_data_0.read(ba) << 0;
     int imm = 0;
-    static etiss::instr::BitArrayRange R_imm_0(11,0);
+    static etiss::instr::BitArrayRange R_imm_0(31,20);
     imm += R_imm_0.read(ba) << 0;
     ret_strs << "CV32E40P_Monitor_brTarget_buffer[*CV32E40P_Monitor_instrCnt] = " << "(*((RV32IMACFD*)cpu)->X[" << rs1_data << "] + " << std::to_string((((etiss_int16)(imm << 4)) >> 4)) << ") & -2U" << ";\n";
     
