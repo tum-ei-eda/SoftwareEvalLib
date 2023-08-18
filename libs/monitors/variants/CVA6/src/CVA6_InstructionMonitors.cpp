@@ -1339,7 +1339,7 @@ static InstructionMonitor *instrMonitor_lbu = new InstructionMonitor(
   [](etiss::instr::BitArray &ba, etiss::instr::Instruction &instr, etiss::instr::InstructionContext &ic){
     std::stringstream ret_strs;
     ret_strs << "*CVA6_Monitor_instrCnt -= 1;\n"; // TODO: Hack! Needed as long as instrCnt is set by pre-print-function (see above)
-    ret_strs << "CVA6_Monitor_memAddr_buffer[*CVA6_Monitor_instrCnt] = " << "2" << ";\n";
+    ret_strs << "CVA6_Monitor_memAddr_buffer[*CVA6_Monitor_instrCnt] = " << "load_address" << ";\n";
     ret_strs << "*CVA6_Monitor_instrCnt += 1;\n";
     return ret_strs.str();
   }
