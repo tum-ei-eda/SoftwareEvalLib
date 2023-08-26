@@ -16,8 +16,8 @@
 
 /********************* AUTO GENERATE FILE (create by Trace-Generator) *********************/
 
-#ifndef CV32E40P_MONITOR_H
-#define CV32E40P_MONITOR_H
+#ifndef SWEVAL_MONITOR_CV32E40P_MONITOR_H
+#define SWEVAL_MONITOR_CV32E40P_MONITOR_H
 
 #include "Monitor.h"
 #include "softwareEval-backends/Channel.h"
@@ -34,4 +34,4 @@ public:
   virtual std::string getBlockDeclarations(void) const;
 };
 
-#endif // CV32E40P_MONITOR_H
+#endif // SWEVAL_MONITOR_CV32E40P_MONITOR_H
