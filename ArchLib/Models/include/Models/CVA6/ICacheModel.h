@@ -47,7 +47,7 @@ class ICacheModel : public ResourceModel
     uint64_t pc = 0;
     uint64_t tag = 0;
     int index = 0;
-    int tag_ram[256][4] = {0}; // 256 lines, 4-way associative, line size = 16byte, total size = 16 kbyte
+    uint64_t tag_ram[256][4] = {0}; // 256 lines, 4-way associative, line size = 16byte, total size = 16 kbyte
     bool miss = false;
 
 };
