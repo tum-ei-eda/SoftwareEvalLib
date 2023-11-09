@@ -1381,7 +1381,8 @@ static InstructionMonitor *instrMonitor_beq = new InstructionMonitor(
     imm += R_imm_1.read(ba) << 1;
     ret_strs << "CVA6_Monitor_brTarget_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(ic.current_address_ + (((etiss_int16)(imm << 3)) >> 3)) << ";\n";
 
-    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm | ((imm & 0x1000) ? 0xFFFFFFFFFFFFE000 : 0)) << ";\n";
+    //ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm | ((imm & 0x1000) ? 0xFFFFFFFFFFFFE000 : 0)) << ";\n";
+    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = 0x" << std::hex  << (imm | ((imm & 0x1000) ? 0xFFFFFFFFFFFFE000 : 0)) << std::dec << ";\n";
     
     ret_strs << "CVA6_Monitor_pc_buffer[*CVA6_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CVA6_Monitor_instrCnt += 1;\n"; // TODO: InstrCnt should be set in the post-print-function (see below). Currently set here, to makes sure that it is set, even if instruction triggers a return
@@ -1423,7 +1424,8 @@ static InstructionMonitor *instrMonitor_bne = new InstructionMonitor(
     imm += R_imm_1.read(ba) << 1;
     ret_strs << "CVA6_Monitor_brTarget_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(ic.current_address_ + (((etiss_int16)(imm << 3)) >> 3)) << ";\n";
 
-    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm | ((imm & 0x1000) ? 0xFFFFFFFFFFFFE000 : 0)) << ";\n";
+    //ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm | ((imm & 0x1000) ? 0xFFFFFFFFFFFFE000 : 0)) << ";\n";
+    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = 0x" << std::hex  << (imm | ((imm & 0x1000) ? 0xFFFFFFFFFFFFE000 : 0)) << std::dec << ";\n";
     
     ret_strs << "CVA6_Monitor_pc_buffer[*CVA6_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CVA6_Monitor_instrCnt += 1;\n"; // TODO: InstrCnt should be set in the post-print-function (see below). Currently set here, to makes sure that it is set, even if instruction triggers a return
@@ -1465,7 +1467,8 @@ static InstructionMonitor *instrMonitor_blt = new InstructionMonitor(
     imm += R_imm_1.read(ba) << 1;
     ret_strs << "CVA6_Monitor_brTarget_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(ic.current_address_ + (((etiss_int16)(imm << 3)) >> 3)) << ";\n";
 
-    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm | ((imm & 0x1000) ? 0xFFFFFFFFFFFFE000 : 0)) << ";\n";
+    //ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm | ((imm & 0x1000) ? 0xFFFFFFFFFFFFE000 : 0)) << ";\n";
+    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = 0x" << std::hex  << (imm | ((imm & 0x1000) ? 0xFFFFFFFFFFFFE000 : 0)) << std::dec << ";\n";
     
     ret_strs << "CVA6_Monitor_pc_buffer[*CVA6_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CVA6_Monitor_instrCnt += 1;\n"; // TODO: InstrCnt should be set in the post-print-function (see below). Currently set here, to makes sure that it is set, even if instruction triggers a return
@@ -1507,7 +1510,8 @@ static InstructionMonitor *instrMonitor_bge = new InstructionMonitor(
     imm += R_imm_1.read(ba) << 1;
     ret_strs << "CVA6_Monitor_brTarget_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(ic.current_address_ + (((etiss_int16)(imm << 3)) >> 3)) << ";\n";
 
-    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm | ((imm & 0x1000) ? 0xFFFFFFFFFFFFE000 : 0)) << ";\n";
+    //ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm | ((imm & 0x1000) ? 0xFFFFFFFFFFFFE000 : 0)) << ";\n";
+    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = 0x" << std::hex  << (imm | ((imm & 0x1000) ? 0xFFFFFFFFFFFFE000 : 0)) << std::dec << ";\n";
     
     ret_strs << "CVA6_Monitor_pc_buffer[*CVA6_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CVA6_Monitor_instrCnt += 1;\n"; // TODO: InstrCnt should be set in the post-print-function (see below). Currently set here, to makes sure that it is set, even if instruction triggers a return
@@ -1549,7 +1553,8 @@ static InstructionMonitor *instrMonitor_bltu = new InstructionMonitor(
     imm += R_imm_1.read(ba) << 1;
     ret_strs << "CVA6_Monitor_brTarget_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(ic.current_address_ + (((etiss_int16)(imm << 3)) >> 3)) << ";\n";
 
-    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm | ((imm & 0x1000) ? 0xFFFFFFFFFFFFE000 : 0)) << ";\n";
+    //ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm | ((imm & 0x1000) ? 0xFFFFFFFFFFFFE000 : 0)) << ";\n";
+    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = 0x" << std::hex  << (imm | ((imm & 0x1000) ? 0xFFFFFFFFFFFFE000 : 0)) << std::dec << ";\n";
     
     ret_strs << "CVA6_Monitor_pc_buffer[*CVA6_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CVA6_Monitor_instrCnt += 1;\n"; // TODO: InstrCnt should be set in the post-print-function (see below). Currently set here, to makes sure that it is set, even if instruction triggers a return
@@ -1591,7 +1596,8 @@ static InstructionMonitor *instrMonitor_bgeu = new InstructionMonitor(
     imm += R_imm_1.read(ba) << 1;
     ret_strs << "CVA6_Monitor_brTarget_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(ic.current_address_ + (((etiss_int16)(imm << 3)) >> 3)) << ";\n";
 
-    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm | ((imm & 0x1000) ? 0xFFFFFFFFFFFFE000 : 0)) << ";\n";
+    //ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm | ((imm & 0x1000) ? 0xFFFFFFFFFFFFE000 : 0)) << ";\n";
+    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = 0x" << std::hex  << (imm | ((imm & 0x1000) ? 0xFFFFFFFFFFFFE000 : 0)) << std::dec << ";\n";
     
     ret_strs << "CVA6_Monitor_pc_buffer[*CVA6_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CVA6_Monitor_instrCnt += 1;\n"; // TODO: InstrCnt should be set in the post-print-function (see below). Currently set here, to makes sure that it is set, even if instruction triggers a return
@@ -1647,7 +1653,8 @@ static InstructionMonitor *instrMonitor_jal = new InstructionMonitor(
     imm += R_imm_1.read(ba) << 1;
     ret_strs << "CVA6_Monitor_brTarget_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(ic.current_address_ + (((etiss_int32)(imm << 11)) >> 11)) << ";\n";
 
-    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm | ((imm & 0x00100000) ? 0xFFFFFFFFFFE00000 : 0)) << ";\n";
+    //ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm | ((imm & 0x00100000) ? 0xFFFFFFFFFFE00000 : 0)) << ";\n";
+    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = 0x" << std::hex  << (imm | ((imm & 0x00100000) ? 0xFFFFFFFFFFE00000 : 0)) << std::dec << ";\n";
     
     ret_strs << "CVA6_Monitor_pc_buffer[*CVA6_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CVA6_Monitor_instrCnt += 1;\n"; // TODO: InstrCnt should be set in the post-print-function (see below). Currently set here, to makes sure that it is set, even if instruction triggers a return
@@ -1686,7 +1693,8 @@ static InstructionMonitor *instrMonitor_jalr = new InstructionMonitor(
     imm += R_imm_0.read(ba) << 0;
     ret_strs << "CVA6_Monitor_brTarget_buffer[*CVA6_Monitor_instrCnt] = " << "(*((RV64IMACFD*)cpu)->X[" << rs1_data << "] + " << std::to_string((((etiss_int16)(imm << 4)) >> 4)) << ") & -2U" << ";\n";
 
-    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm | ((imm & 0x0800) ? 0xFFFFFFFFFFFFF000 : 0)) << ";\n";
+    //ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = " << std::to_string(imm | ((imm & 0x0800) ? 0xFFFFFFFFFFFFF000 : 0)) << ";\n";
+    ret_strs << "CVA6_Monitor_imm_buffer[*CVA6_Monitor_instrCnt] = 0x" << std::hex  << (imm | ((imm & 0x0800) ? 0xFFFFFFFFFFFFF000 : 0)) << std::dec << ";\n";
     
     ret_strs << "CVA6_Monitor_pc_buffer[*CVA6_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CVA6_Monitor_instrCnt += 1;\n"; // TODO: InstrCnt should be set in the post-print-function (see below). Currently set here, to makes sure that it is set, even if instruction triggers a return
@@ -2108,6 +2116,35 @@ static InstructionMonitor *instrMonitor_remuw = new InstructionMonitor(
     rs2 += R_rs2_0.read(ba) << 0;
     ret_strs << "CVA6_Monitor_rs2_buffer[*CVA6_Monitor_instrCnt] = " << rs2 << ";\n";
     ret_strs << "CVA6_Monitor_rs2_data_buffer[*CVA6_Monitor_instrCnt] = " << "*((RV64IMACFD*)cpu)->X[" << rs2 << "]" << ";\n";
+    
+    int rd = 0;
+    static etiss::instr::BitArrayRange R_rd_0(11,7);
+    rd += R_rd_0.read(ba) << 0;
+    ret_strs << "CVA6_Monitor_rd_buffer[*CVA6_Monitor_instrCnt] = " << rd << ";\n";
+    
+    ret_strs << "CVA6_Monitor_pc_buffer[*CVA6_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
+    ret_strs << "*CVA6_Monitor_instrCnt += 1;\n"; // TODO: InstrCnt should be set in the post-print-function (see below). Currently set here, to makes sure that it is set, even if instruction triggers a return
+    return ret_strs.str();
+  },
+  [](etiss::instr::BitArray &ba, etiss::instr::Instruction &instr, etiss::instr::InstructionContext &ic){
+    std::stringstream ret_strs;
+    ret_strs << "*CVA6_Monitor_instrCnt -= 1;\n"; // TODO: Hack! Needed as long as instrCnt is set by pre-print-function (see above)
+    ret_strs << "*CVA6_Monitor_instrCnt += 1;\n";
+    return ret_strs.str();
+  }
+);
+
+static InstructionMonitor *instrMonitor_srliw = new InstructionMonitor(
+  CVA6_InstrMonitorSet,
+  "srliw",
+  [](etiss::instr::BitArray &ba, etiss::instr::Instruction &instr, etiss::instr::InstructionContext &ic){
+    std::stringstream ret_strs;
+    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 65 << ";\n";
+    
+    int rs1 = 0;
+    static etiss::instr::BitArrayRange R_rs1_0(19,15);
+    rs1 += R_rs1_0.read(ba) << 0;
+    ret_strs << "CVA6_Monitor_rs1_buffer[*CVA6_Monitor_instrCnt] = " << rs1 << ";\n";
     
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);

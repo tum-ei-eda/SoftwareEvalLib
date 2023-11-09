@@ -27,28 +27,28 @@
 
 Monitor::Monitor(std::string name_, InstructionMonitorSet* instrMonitorSet_) : name(name_), instrMonitorSet(instrMonitorSet_)
 {
-    std::cout << "\n\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n";
-    std::cout << "Creating monitor: " << name << "\n";
-    std::cout << " - Creating monitor-function map:\n";
+    //std::cout << "\n\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n";
+    //std::cout << "Creating monitor: " << name << "\n";
+    //std::cout << " - Creating monitor-function map:\n";
 
     instrMonitorSet->foreach([this](InstructionMonitor &instr)
     {
-        std::stringstream instrInfo_strs;
-        instrInfo_strs << instr.name;
+        //std::stringstream instrInfo_strs;
+        //instrInfo_strs << instr.name;
 
         auto it = instrMonitorFunc_map.find(instr.name);
         if(it != instrMonitorFunc_map.end())
         {
-            std::cout << "\tERROR: Cannot add" << instrInfo_strs.str() << ". Name already registered.\n";
-            return;
+	  //std::cout << "\tERROR: Cannot add" << instrInfo_strs.str() << ". Name already registered.\n";
+	  return;
         }
         instrMonitorFunc_map[instr.name][PRE] = instr.preMonitorFunc;
         instrMonitorFunc_map[instr.name][POST] = instr.postMonitorFunc;
 
-	std::cout << "\tAdding " << instrInfo_strs.str() << " to monitor-function map\n";
+	//std::cout << "\tAdding " << instrInfo_strs.str() << " to monitor-function map\n";
 
     });
-    std::cout << "\n\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n";
+    //std::cout << "\n\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n";
 }
 
 std::string Monitor::getInstrCallback(etiss::instr::Instruction &instr, etiss::instr::BitArray &ba, etiss::instr::InstructionContext &ic, position_t pos) const
