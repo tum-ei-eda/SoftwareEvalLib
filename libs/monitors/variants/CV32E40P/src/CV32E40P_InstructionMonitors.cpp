@@ -1795,14 +1795,14 @@ static InstructionMonitor *instrMonitor_beq = new InstructionMonitor(
     //static etiss::instr::BitArrayRange R_rs2_0(24,20);
     //rs2 += R_rs2_0.read(ba) << 0;
     //int imm = 0;
-    //static etiss::instr::BitArrayRange R_imm_12(31,31);
-    //imm += R_imm_12.read(ba) << 12;
-    //static etiss::instr::BitArrayRange R_imm_11(7,7);
-    //imm += R_imm_11.read(ba) << 11;
-    //static etiss::instr::BitArrayRange R_imm_5(30,25);
-    //imm += R_imm_5.read(ba) << 5;
-    //static etiss::instr::BitArrayRange R_imm_1(11,8);
-    //imm += R_imm_1.read(ba) << 1;
+    ////static etiss::instr::BitArrayRange R_imm_12(31,31);
+    ////imm += R_imm_12.read(ba) << 12;
+    ////static etiss::instr::BitArrayRange R_imm_11(7,7);
+    ////imm += R_imm_11.read(ba) << 11;
+    ////static etiss::instr::BitArrayRange R_imm_5(30,25);
+    ////imm += R_imm_5.read(ba) << 5;
+    ////static etiss::instr::BitArrayRange R_imm_1(11,8);
+    ////imm += R_imm_1.read(ba) << 1;
     //ret_strs << "*CV32E40P_Monitor_instrCnt -= 1;\n"; // TODO: Hack! Needed as long as instrCnt is set by pre-print-function (see above)
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
     return ret_strs.str();
@@ -1852,14 +1852,14 @@ static InstructionMonitor *instrMonitor_bne = new InstructionMonitor(
     //static etiss::instr::BitArrayRange R_rs2_0(24,20);
     //rs2 += R_rs2_0.read(ba) << 0;
     //int imm = 0;
-    //static etiss::instr::BitArrayRange R_imm_12(31,31);
-    //imm += R_imm_12.read(ba) << 12;
-    //static etiss::instr::BitArrayRange R_imm_11(7,7);
-    //imm += R_imm_11.read(ba) << 11;
-    //static etiss::instr::BitArrayRange R_imm_5(30,25);
-    //imm += R_imm_5.read(ba) << 5;
-    //static etiss::instr::BitArrayRange R_imm_1(11,8);
-    //imm += R_imm_1.read(ba) << 1;
+    ////static etiss::instr::BitArrayRange R_imm_12(31,31);
+    ////imm += R_imm_12.read(ba) << 12;
+    ////static etiss::instr::BitArrayRange R_imm_11(7,7);
+    ////imm += R_imm_11.read(ba) << 11;
+    ////static etiss::instr::BitArrayRange R_imm_5(30,25);
+    ////imm += R_imm_5.read(ba) << 5;
+    ////static etiss::instr::BitArrayRange R_imm_1(11,8);
+    ////imm += R_imm_1.read(ba) << 1;
     //ret_strs << "*CV32E40P_Monitor_instrCnt -= 1;\n"; // TODO: Hack! Needed as long as instrCnt is set by pre-print-function (see above)
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
     return ret_strs.str();
@@ -1909,14 +1909,14 @@ static InstructionMonitor *instrMonitor_blt = new InstructionMonitor(
     //static etiss::instr::BitArrayRange R_rs2_0(24,20);
     //rs2 += R_rs2_0.read(ba) << 0;
     //int imm = 0;
-    //static etiss::instr::BitArrayRange R_imm_12(31,31);
-    //imm += R_imm_12.read(ba) << 12;
-    //static etiss::instr::BitArrayRange R_imm_11(7,7);
-    //imm += R_imm_11.read(ba) << 11;
-    //static etiss::instr::BitArrayRange R_imm_5(30,25);
-    //imm += R_imm_5.read(ba) << 5;
-    //static etiss::instr::BitArrayRange R_imm_1(11,8);
-    //imm += R_imm_1.read(ba) << 1;
+    ////static etiss::instr::BitArrayRange R_imm_12(31,31);
+    ////imm += R_imm_12.read(ba) << 12;
+    ////static etiss::instr::BitArrayRange R_imm_11(7,7);
+    ////imm += R_imm_11.read(ba) << 11;
+    ////static etiss::instr::BitArrayRange R_imm_5(30,25);
+    ////imm += R_imm_5.read(ba) << 5;
+    ////static etiss::instr::BitArrayRange R_imm_1(11,8);
+    ////imm += R_imm_1.read(ba) << 1;
     //ret_strs << "*CV32E40P_Monitor_instrCnt -= 1;\n"; // TODO: Hack! Needed as long as instrCnt is set by pre-print-function (see above)
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
     return ret_strs.str();
@@ -1966,14 +1966,14 @@ static InstructionMonitor *instrMonitor_bge = new InstructionMonitor(
     //static etiss::instr::BitArrayRange R_rs2_0(24,20);
     //rs2 += R_rs2_0.read(ba) << 0;
     //int imm = 0;
-    //static etiss::instr::BitArrayRange R_imm_12(31,31);
-    //imm += R_imm_12.read(ba) << 12;
-    //static etiss::instr::BitArrayRange R_imm_11(7,7);
-    //imm += R_imm_11.read(ba) << 11;
-    //static etiss::instr::BitArrayRange R_imm_5(30,25);
-    //imm += R_imm_5.read(ba) << 5;
-    //static etiss::instr::BitArrayRange R_imm_1(11,8);
-    //imm += R_imm_1.read(ba) << 1;
+    ////static etiss::instr::BitArrayRange R_imm_12(31,31);
+    ////imm += R_imm_12.read(ba) << 12;
+    ////static etiss::instr::BitArrayRange R_imm_11(7,7);
+    ////imm += R_imm_11.read(ba) << 11;
+    ////static etiss::instr::BitArrayRange R_imm_5(30,25);
+    ////imm += R_imm_5.read(ba) << 5;
+    ////static etiss::instr::BitArrayRange R_imm_1(11,8);
+    ////imm += R_imm_1.read(ba) << 1;
     //ret_strs << "*CV32E40P_Monitor_instrCnt -= 1;\n"; // TODO: Hack! Needed as long as instrCnt is set by pre-print-function (see above)
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
     return ret_strs.str();
@@ -2023,14 +2023,14 @@ static InstructionMonitor *instrMonitor_bltu = new InstructionMonitor(
     //static etiss::instr::BitArrayRange R_rs2_0(24,20);
     //rs2 += R_rs2_0.read(ba) << 0;
     //int imm = 0;
-    //static etiss::instr::BitArrayRange R_imm_12(31,31);
-    //imm += R_imm_12.read(ba) << 12;
-    //static etiss::instr::BitArrayRange R_imm_11(7,7);
-    //imm += R_imm_11.read(ba) << 11;
-    //static etiss::instr::BitArrayRange R_imm_5(30,25);
-    //imm += R_imm_5.read(ba) << 5;
-    //static etiss::instr::BitArrayRange R_imm_1(11,8);
-    //imm += R_imm_1.read(ba) << 1;
+    ////static etiss::instr::BitArrayRange R_imm_12(31,31);
+    ////imm += R_imm_12.read(ba) << 12;
+    ////static etiss::instr::BitArrayRange R_imm_11(7,7);
+    ////imm += R_imm_11.read(ba) << 11;
+    ////static etiss::instr::BitArrayRange R_imm_5(30,25);
+    ////imm += R_imm_5.read(ba) << 5;
+    ////static etiss::instr::BitArrayRange R_imm_1(11,8);
+    ////imm += R_imm_1.read(ba) << 1;
     //ret_strs << "*CV32E40P_Monitor_instrCnt -= 1;\n"; // TODO: Hack! Needed as long as instrCnt is set by pre-print-function (see above)
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
     return ret_strs.str();
@@ -2080,14 +2080,14 @@ static InstructionMonitor *instrMonitor_bgeu = new InstructionMonitor(
     //static etiss::instr::BitArrayRange R_rs2_0(24,20);
     //rs2 += R_rs2_0.read(ba) << 0;
     //int imm = 0;
-    //static etiss::instr::BitArrayRange R_imm_12(31,31);
-    //imm += R_imm_12.read(ba) << 12;
-    //static etiss::instr::BitArrayRange R_imm_11(7,7);
-    //imm += R_imm_11.read(ba) << 11;
-    //static etiss::instr::BitArrayRange R_imm_5(30,25);
-    //imm += R_imm_5.read(ba) << 5;
-    //static etiss::instr::BitArrayRange R_imm_1(11,8);
-    //imm += R_imm_1.read(ba) << 1;
+    ////static etiss::instr::BitArrayRange R_imm_12(31,31);
+    ////imm += R_imm_12.read(ba) << 12;
+    ////static etiss::instr::BitArrayRange R_imm_11(7,7);
+    ////imm += R_imm_11.read(ba) << 11;
+    ////static etiss::instr::BitArrayRange R_imm_5(30,25);
+    ////imm += R_imm_5.read(ba) << 5;
+    ////static etiss::instr::BitArrayRange R_imm_1(11,8);
+    ////imm += R_imm_1.read(ba) << 1;
     //ret_strs << "*CV32E40P_Monitor_instrCnt -= 1;\n"; // TODO: Hack! Needed as long as instrCnt is set by pre-print-function (see above)
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
     return ret_strs.str();
@@ -2150,14 +2150,14 @@ static InstructionMonitor *instrMonitor_jal = new InstructionMonitor(
     //static etiss::instr::BitArrayRange R_rd_0(11,7);
     //rd += R_rd_0.read(ba) << 0;
     //int imm = 0;
-    //static etiss::instr::BitArrayRange R_imm_20(31,31);
-    //imm += R_imm_20.read(ba) << 20;
-    //static etiss::instr::BitArrayRange R_imm_12(19,12);
-    //imm += R_imm_12.read(ba) << 12;
-    //static etiss::instr::BitArrayRange R_imm_11(20,20);
-    //imm += R_imm_11.read(ba) << 11;
-    //static etiss::instr::BitArrayRange R_imm_1(30,21);
-    //imm += R_imm_1.read(ba) << 1;
+    ////static etiss::instr::BitArrayRange R_imm_20(31,31);
+    ////imm += R_imm_20.read(ba) << 20;
+    ////static etiss::instr::BitArrayRange R_imm_12(19,12);
+    ////imm += R_imm_12.read(ba) << 12;
+    ////static etiss::instr::BitArrayRange R_imm_11(20,20);
+    ////imm += R_imm_11.read(ba) << 11;
+    ////static etiss::instr::BitArrayRange R_imm_1(30,21);
+    ////imm += R_imm_1.read(ba) << 1;
     //ret_strs << "*CV32E40P_Monitor_instrCnt -= 1;\n"; // TODO: Hack! Needed as long as instrCnt is set by pre-print-function (see above)
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
     return ret_strs.str();
@@ -2180,7 +2180,8 @@ static InstructionMonitor *instrMonitor_jalr = new InstructionMonitor(
     static etiss::instr::BitArrayRange R_rs1_data_0(19,15);
     rs1_data += R_rs1_data_0.read(ba) << 0;
     int imm = 0;
-    static etiss::instr::BitArrayRange R_imm_0(20,31);
+    //static etiss::instr::BitArrayRange R_imm_0(20,31);
+    static etiss::instr::BitArrayRange R_imm_0(31,20);
     imm += R_imm_0.read(ba) << 0;
     ret_strs << "CV32E40P_Monitor_typeId_buffer[*CV32E40P_Monitor_instrCnt] = " << 51 << ";\n";
     
@@ -2207,8 +2208,8 @@ static InstructionMonitor *instrMonitor_jalr = new InstructionMonitor(
     //static etiss::instr::BitArrayRange R_rs1_data_0(19,15);
     //rs1_data += R_rs1_data_0.read(ba) << 0;
     //int imm = 0;
-    //static etiss::instr::BitArrayRange R_imm_0(20,31);
-    //imm += R_imm_0.read(ba) << 0;
+    ////static etiss::instr::BitArrayRange R_imm_0(20,31);
+    ////imm += R_imm_0.read(ba) << 0;
     //ret_strs << "*CV32E40P_Monitor_instrCnt -= 1;\n"; // TODO: Hack! Needed as long as instrCnt is set by pre-print-function (see above)
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
     return ret_strs.str();
