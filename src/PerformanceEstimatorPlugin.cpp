@@ -140,3 +140,9 @@ void PerformanceEstimatorPlugin::finalizeTrace(void)
     tracePrinter_ptr->finalize();
   }
 }
+
+etiss::int64 PerformanceEstimatorPlugin::getEstimatedCycleCount(void)
+{
+    // std::cout << "PerformanceEstimatorPlugin::getEstimatedCycleCount2" << std::endl;
+    return estimator_ptr->getEstimatedCycleCount();
+}
