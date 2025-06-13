@@ -119,6 +119,12 @@ void TracerPlugin::addMonitor(Monitor* monitor_){
     std::cout << "Adding Monitor: " << monitor_->name << std::endl;
 }
 
+etiss::int64 TracerPlugin::getEstimatedCycleCount()
+{
+  return 0;
+
+}
+
 } // namespace TracerPlugin
 } // namespace plugin
 } // namespace etiss
