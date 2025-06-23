@@ -1,3 +1,4 @@
+
 /*
  * Copyright 2022 Chair of EDA, Technical University of Munich
  *
@@ -18,9 +19,10 @@
 
 #include "Monitor.h"
 
-#include "CV32E40P_Monitor.h"
 #include "CVA6_Monitor.h"
 #include "AssemblyTrace_Monitor.h"
+#include "CV32E40P_Monitor.h"
+#include "CV32E40PXCFU0_Monitor.h"
 #include "InstructionTrace_RV64_Monitor.h"
 
 namespace SwEvalMonitors
@@ -28,22 +30,12 @@ namespace SwEvalMonitors
 
 int Factory::getVariantHandle(std::string varName_)
 {
-    if(varName_ == "CV32E40P")
-    {
-        return CV32E40P;
-    }
-    if(varName_ == "CVA6")
-    {
-        return CVA6;
-    }
-    if(varName_ == "AssemblyTrace")
-    {
-        return AssemblyTrace;
-    }
-    if(varName_ == "InstructionTrace_RV64")
-    {
-        return InstructionTrace_RV64;
-    }
+    	if(varName_ == "CVA6"){ return CVA6; }
+	if(varName_ == "AssemblyTrace"){ return AssemblyTrace; }
+	if(varName_ == "CV32E40P"){ return CV32E40P; }
+	if(varName_ == "CV32E40PXCFU0"){ return CV32E40PXCFU0; }
+	if(varName_ == "InstructionTrace_RV64"){ return InstructionTrace_RV64; }
+
     return -1;
 }
 
@@ -51,10 +43,12 @@ Monitor* Factory::getMonitor(int var_)
 {
   switch((var_t)var_)
   {
-    case CV32E40P: return new CV32E40P_Monitor();
-    case CVA6: return new CVA6_Monitor();
-    case AssemblyTrace: return new AssemblyTrace_Monitor();
-    case InstructionTrace_RV64: return new InstructionTrace_RV64_Monitor();
+    	case CVA6: return new CVA6_Monitor();
+	case AssemblyTrace: return new AssemblyTrace_Monitor();
+	case CV32E40P: return new CV32E40P_Monitor();
+	case CV32E40PXCFU0: return new CV32E40PXCFU0_Monitor();
+	case InstructionTrace_RV64: return new InstructionTrace_RV64_Monitor();
+ 
     default: return nullptr;
   }
 }
