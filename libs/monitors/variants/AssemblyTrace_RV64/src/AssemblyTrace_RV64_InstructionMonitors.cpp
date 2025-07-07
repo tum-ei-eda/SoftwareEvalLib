@@ -23,20 +23,20 @@
 #include <sstream>
 #include <string>
 
-InstructionMonitorSet *AssemblyTrace_InstrMonitorSet = new InstructionMonitorSet("AssemblyTrace_InstrMonitorSet");
+InstructionMonitorSet *AssemblyTrace_RV64_InstrMonitorSet = new InstructionMonitorSet("AssemblyTrace_RV64_InstrMonitorSet");
 
 static InstructionMonitor *instrMonitor__DEF = new InstructionMonitor(
-  AssemblyTrace_InstrMonitorSet,
+  AssemblyTrace_RV64_InstrMonitorSet,
   "_def",
   [](etiss::instr::BitArray &ba, etiss::instr::Instruction &instr, etiss::instr::InstructionContext &ic){
     std::stringstream ret_strs;
     
-    ret_strs << "AssemblyTrace_Monitor_typeId_buffer[*AssemblyTrace_Monitor_instrCnt] = " << 0 << ";\n";
+    ret_strs << "AssemblyTrace_RV64_Monitor_typeId_buffer[*AssemblyTrace_RV64_Monitor_instrCnt] = " << 0 << ";\n";
     
-    ret_strs << "AssemblyTrace_Monitor_pc_buffer[*AssemblyTrace_Monitor_instrCnt] = " << "cpu->instructionPointer" << ";\n";
+    ret_strs << "AssemblyTrace_RV64_Monitor_pc_buffer[*AssemblyTrace_RV64_Monitor_instrCnt] = " << "cpu->instructionPointer" << ";\n";
     
-    ret_strs << "strcpy(AssemblyTrace_Monitor_assembly_buffer[*AssemblyTrace_Monitor_instrCnt],\"" << instr.printASM(ba) << "\");\n";
-    ret_strs << "*AssemblyTrace_Monitor_instrCnt += 1;\n";
+    ret_strs << "strcpy(AssemblyTrace_RV64_Monitor_assembly_buffer[*AssemblyTrace_RV64_Monitor_instrCnt],\"" << instr.printASM(ba) << "\");\n";
+    ret_strs << "*AssemblyTrace_RV64_Monitor_instrCnt += 1;\n";
     return ret_strs.str();
   },
   [](etiss::instr::BitArray &ba, etiss::instr::Instruction &instr, etiss::instr::InstructionContext &ic){

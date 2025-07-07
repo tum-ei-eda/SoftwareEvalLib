@@ -106,9 +106,9 @@ PerformanceEstimatorPlugin::PerformanceEstimatorPlugin(etiss::Configuration* con
 
 PerformanceEstimatorPlugin::~PerformanceEstimatorPlugin()
 {
-  delete channel_ptr;
-  delete estimator_ptr;
-  delete tracePrinter_ptr;
+  // delete channel_ptr;
+  // delete estimator_ptr;
+  // delete tracePrinter_ptr;
 }
 
 std::string PerformanceEstimatorPlugin::_getPluginName() const

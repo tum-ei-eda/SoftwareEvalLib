@@ -29,8 +29,8 @@ extern "C"
 {
   uint64_t *AssemblyTrace_Monitor_instrCnt;
   uint64_t *AssemblyTrace_Monitor_typeId_buffer;
-  uint64_t *AssemblyTrace_Monitor_pc_buffer;
-  char (*AssemblyTrace_Monitor_assembly_buffer)[50];
+  int *AssemblyTrace_Monitor_pc_buffer;
+  char (*AssemblyTrace_Monitor_assembly_buffer)[250];
 }
 
 extern InstructionMonitorSet* AssemblyTrace_InstrMonitorSet;
@@ -41,12 +41,12 @@ AssemblyTrace_Monitor::AssemblyTrace_Monitor(): Monitor("AssemblyTrace_Monitor",
 void AssemblyTrace_Monitor::connectChannel(Channel* channel_)
 {
   Monitor::connectChannel(channel_);
-   
+
   AssemblyTrace_Monitor_instrCnt = &(channel_->instrCnt);
   AssemblyTrace_Monitor_typeId_buffer = channel_->typeId;
 
-  AssemblyTrace_Monitor_pc_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("pc"));
-  AssemblyTrace_Monitor_assembly_buffer = static_cast<char(*)[50]>(channel_->getTraceValueHook("assembly"));
+  AssemblyTrace_Monitor_pc_buffer = static_cast<int*>(channel_->getTraceValueHook("pc"));
+  AssemblyTrace_Monitor_assembly_buffer = static_cast<char(*)[250]>(channel_->getTraceValueHook("assembly"));
 }
 
 
@@ -58,8 +58,8 @@ std::string AssemblyTrace_Monitor::getBlockDeclarations(void) const
   ret_strs << "extern uint64_t *AssemblyTrace_Monitor_instrCnt;\n";
   ret_strs << "extern uint64_t *AssemblyTrace_Monitor_typeId_buffer;\n";
 
-  ret_strs << "extern uint64_t *AssemblyTrace_Monitor_pc_buffer;\n";
-  ret_strs << "extern char (*AssemblyTrace_Monitor_assembly_buffer)[50];\n";
+  ret_strs << "extern int *AssemblyTrace_Monitor_pc_buffer;\n";
+  ret_strs << "extern char (*AssemblyTrace_Monitor_assembly_buffer)[250];\n";
 
   return ret_strs.str();
 }

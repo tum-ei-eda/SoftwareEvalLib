@@ -16,8 +16,8 @@
 
 /********************* AUTO GENERATE FILE (create by Trace-Generator) *********************/
 
-#ifndef ASSEMBLYTRACE_MONITOR_H
-#define ASSEMBLYTRACE_MONITOR_H
+#ifndef SWEVAL_MONITOR_ASSEMBLYTRACE_MONITOR_H
+#define SWEVAL_MONITOR_ASSEMBLYTRACE_MONITOR_H
 
 #include "Monitor.h"
 #include "softwareEval-backends/Channel.h"
@@ -34,4 +34,4 @@ public:
   virtual std::string getBlockDeclarations(void) const;
 };
 
-#endif // ASSEMBLYTRACE_MONITOR_H
+#endif // SWEVAL_MONITOR_ASSEMBLYTRACE_MONITOR_H

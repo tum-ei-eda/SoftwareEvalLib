@@ -1,7 +1,7 @@
 
 TARGET_SOURCES(SWEVAL_MONITORS_LIB PRIVATE
-  	src/AssemblyTrace_Monitor.cpp
-	src/AssemblyTrace_InstructionMonitors.cpp
+  	src/Vicuna_InstructionMonitors.cpp
+	src/Vicuna_Monitor.cpp
 
 )
 
