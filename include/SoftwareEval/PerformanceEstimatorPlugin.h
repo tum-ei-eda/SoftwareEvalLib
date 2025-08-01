@@ -38,6 +38,7 @@ public:
 
   virtual std::string _getPluginName() const;
   virtual void *getPluginHandle();
+  virtual etiss::int64 getEstimatedCycleCount() override;
 
 private:  
 

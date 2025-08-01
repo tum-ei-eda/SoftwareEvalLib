@@ -145,3 +145,8 @@ void TracePrinterPlugin::finalizeTrace(void)
   tracePrinter_ptr->execute();
   tracePrinter_ptr->finalize();
 }
+
+etiss::int64 TracePrinterPlugin::getEstimatedCycleCount(void)
+{
+    return 0;
+}

@@ -47,7 +47,8 @@ public:
   virtual void executionEnd(int32_t);
   virtual std::string _getPluginName() const;
   virtual void *getPluginHandle();
-
+  virtual etiss::int64 getEstimatedCycleCount() override;
+  
 private:
   std::set<Monitor*> monitor_set;
   

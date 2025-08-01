@@ -17,22 +17,22 @@
 /********************* AUTO GENERATE FILE (create by M2-ISA-R::Trace-Generator) *********************/
 
 
-#ifndef SWEVAL_MONITOR_CV32E40P_MONITOR_H
-#define SWEVAL_MONITOR_CV32E40P_MONITOR_H
+#ifndef SWEVAL_MONITOR_ESP32C3_MONITOR_H
+#define SWEVAL_MONITOR_ESP32C3_MONITOR_H
 
 #include "Monitor.h"
 #include "softwareEval-backends/Channel.h"
 
 #include <string>
 
-class CV32E40P_Monitor : public Monitor
+class ESP32C3_Monitor : public Monitor
 {
 public:
 
-  CV32E40P_Monitor();
+  ESP32C3_Monitor();
 
   virtual void connectChannel(Channel*);
   virtual std::string getBlockDeclarations(void) const;
 };
 
-#endif // SWEVAL_MONITOR_CV32E40P_MONITOR_H
+#endif // SWEVAL_MONITOR_ESP32C3_MONITOR_H
