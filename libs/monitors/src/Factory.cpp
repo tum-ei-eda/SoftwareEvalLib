@@ -25,6 +25,7 @@
 #include "CVA6_Monitor.h"
 #include "InstructionTrace_RV64_Monitor.h"
 #include "AssemblyTrace_Monitor.h"
+#include "Vicuna_zvl64b_Monitor.h"
 
 namespace SwEvalMonitors
 {
@@ -37,6 +38,7 @@ int Factory::getVariantHandle(std::string varName_)
 	if(varName_ == "CVA6"){ return CVA6; }
 	if(varName_ == "InstructionTrace_RV64"){ return InstructionTrace_RV64; }
 	if(varName_ == "AssemblyTrace"){ return AssemblyTrace; }
+	if(varName_ == "VICUNA_ZVL64B"){ return Vicuna_zvl64b; }
 
     return -1;
 }
@@ -51,6 +53,7 @@ Monitor* Factory::getMonitor(int var_)
 	case CVA6: return new CVA6_Monitor();
 	case InstructionTrace_RV64: return new InstructionTrace_RV64_Monitor();
 	case AssemblyTrace: return new AssemblyTrace_Monitor();
+	case Vicuna_zvl64b: return new Vicuna_zvl64b_Monitor();
  
     default: return nullptr;
   }
