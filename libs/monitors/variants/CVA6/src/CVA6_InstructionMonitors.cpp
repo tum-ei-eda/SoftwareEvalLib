@@ -1438,6 +1438,38 @@ static InstructionMonitor *instrMonitor_mulw = new InstructionMonitor(
     return ret_strs.str();
   }
 );
+static InstructionMonitor *instrMonitor_dotp = new InstructionMonitor(
+  CVA6_InstrMonitorSet,
+  "dotp",
+  [](etiss::instr::BitArray &ba, etiss::instr::Instruction &instr, etiss::instr::InstructionContext &ic){
+    std::stringstream ret_strs;
+    
+    int rs1 = 0;
+    static etiss::instr::BitArrayRange R_rs1_0(19,15);
+    rs1 += R_rs1_0.read(ba) << 0;
+    int rs2 = 0;
+    static etiss::instr::BitArrayRange R_rs2_0(24,20);
+    rs2 += R_rs2_0.read(ba) << 0;
+    int rd = 0;
+    static etiss::instr::BitArrayRange R_rd_0(11,7);
+    rd += R_rd_0.read(ba) << 0;
+    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 47 << ";\n";
+    
+    ret_strs << "CVA6_Monitor_rs1_buffer[*CVA6_Monitor_instrCnt] = " << rs1 << ";\n";
+    
+    ret_strs << "CVA6_Monitor_rs2_buffer[*CVA6_Monitor_instrCnt] = " << rs2 << ";\n";
+    
+    ret_strs << "CVA6_Monitor_rd_buffer[*CVA6_Monitor_instrCnt] = " << rd << ";\n";
+    
+    ret_strs << "CVA6_Monitor_pc_buffer[*CVA6_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
+    ret_strs << "*CVA6_Monitor_instrCnt += 1;\n";
+    return ret_strs.str();
+  },
+  [](etiss::instr::BitArray &ba, etiss::instr::Instruction &instr, etiss::instr::InstructionContext &ic){
+    std::stringstream ret_strs;
+    return ret_strs.str();
+  }
+);
 static InstructionMonitor *instrMonitor_div = new InstructionMonitor(
   CVA6_InstrMonitorSet,
   "div",
@@ -1453,7 +1485,7 @@ static InstructionMonitor *instrMonitor_div = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 47 << ";\n";
+    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 48 << ";\n";
     
     ret_strs << "CVA6_Monitor_rs1_buffer[*CVA6_Monitor_instrCnt] = " << rs1 << ";\n";
     
@@ -1489,7 +1521,7 @@ static InstructionMonitor *instrMonitor_rem = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 48 << ";\n";
+    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 49 << ";\n";
     
     ret_strs << "CVA6_Monitor_rs1_buffer[*CVA6_Monitor_instrCnt] = " << rs1 << ";\n";
     
@@ -1525,7 +1557,7 @@ static InstructionMonitor *instrMonitor_divw = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 49 << ";\n";
+    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 50 << ";\n";
     
     ret_strs << "CVA6_Monitor_rs1_buffer[*CVA6_Monitor_instrCnt] = " << rs1 << ";\n";
     
@@ -1561,7 +1593,7 @@ static InstructionMonitor *instrMonitor_remw = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 50 << ";\n";
+    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 51 << ";\n";
     
     ret_strs << "CVA6_Monitor_rs1_buffer[*CVA6_Monitor_instrCnt] = " << rs1 << ";\n";
     
@@ -1597,7 +1629,7 @@ static InstructionMonitor *instrMonitor_divu = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 51 << ";\n";
+    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 52 << ";\n";
     
     ret_strs << "CVA6_Monitor_rs1_buffer[*CVA6_Monitor_instrCnt] = " << rs1 << ";\n";
     
@@ -1633,7 +1665,7 @@ static InstructionMonitor *instrMonitor_remu = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 52 << ";\n";
+    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 53 << ";\n";
     
     ret_strs << "CVA6_Monitor_rs1_buffer[*CVA6_Monitor_instrCnt] = " << rs1 << ";\n";
     
@@ -1669,7 +1701,7 @@ static InstructionMonitor *instrMonitor_divuw = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 53 << ";\n";
+    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 54 << ";\n";
     
     ret_strs << "CVA6_Monitor_rs1_buffer[*CVA6_Monitor_instrCnt] = " << rs1 << ";\n";
     
@@ -1705,7 +1737,7 @@ static InstructionMonitor *instrMonitor_remuw = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 54 << ";\n";
+    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 55 << ";\n";
     
     ret_strs << "CVA6_Monitor_rs1_buffer[*CVA6_Monitor_instrCnt] = " << rs1 << ";\n";
     
@@ -1741,7 +1773,7 @@ static InstructionMonitor *instrMonitor_lw = new InstructionMonitor(
     int imm = 0;
     static etiss::instr::BitArrayRange R_imm_0(31,20);
     imm += R_imm_0.read(ba) << 0;
-    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 55 << ";\n";
+    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 56 << ";\n";
     
     ret_strs << "CVA6_Monitor_rs1_buffer[*CVA6_Monitor_instrCnt] = " << rs1 << ";\n";
     
@@ -1773,7 +1805,7 @@ static InstructionMonitor *instrMonitor_lh = new InstructionMonitor(
     int imm = 0;
     static etiss::instr::BitArrayRange R_imm_0(31,20);
     imm += R_imm_0.read(ba) << 0;
-    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 56 << ";\n";
+    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 57 << ";\n";
     
     ret_strs << "CVA6_Monitor_rs1_buffer[*CVA6_Monitor_instrCnt] = " << rs1 << ";\n";
     
@@ -1805,7 +1837,7 @@ static InstructionMonitor *instrMonitor_lhu = new InstructionMonitor(
     int imm = 0;
     static etiss::instr::BitArrayRange R_imm_0(31,20);
     imm += R_imm_0.read(ba) << 0;
-    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 57 << ";\n";
+    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 58 << ";\n";
     
     ret_strs << "CVA6_Monitor_rs1_buffer[*CVA6_Monitor_instrCnt] = " << rs1 << ";\n";
     
@@ -1837,7 +1869,7 @@ static InstructionMonitor *instrMonitor_lb = new InstructionMonitor(
     int imm = 0;
     static etiss::instr::BitArrayRange R_imm_0(31,20);
     imm += R_imm_0.read(ba) << 0;
-    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 58 << ";\n";
+    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 59 << ";\n";
     
     ret_strs << "CVA6_Monitor_rs1_buffer[*CVA6_Monitor_instrCnt] = " << rs1 << ";\n";
     
@@ -1869,7 +1901,7 @@ static InstructionMonitor *instrMonitor_lbu = new InstructionMonitor(
     int imm = 0;
     static etiss::instr::BitArrayRange R_imm_0(31,20);
     imm += R_imm_0.read(ba) << 0;
-    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 59 << ";\n";
+    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 60 << ";\n";
     
     ret_strs << "CVA6_Monitor_rs1_buffer[*CVA6_Monitor_instrCnt] = " << rs1 << ";\n";
     
@@ -1901,7 +1933,7 @@ static InstructionMonitor *instrMonitor_ld = new InstructionMonitor(
     int imm = 0;
     static etiss::instr::BitArrayRange R_imm_0(31,20);
     imm += R_imm_0.read(ba) << 0;
-    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 60 << ";\n";
+    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 61 << ";\n";
     
     ret_strs << "CVA6_Monitor_rs1_buffer[*CVA6_Monitor_instrCnt] = " << rs1 << ";\n";
     
@@ -1933,7 +1965,7 @@ static InstructionMonitor *instrMonitor_lwu = new InstructionMonitor(
     int imm = 0;
     static etiss::instr::BitArrayRange R_imm_0(31,20);
     imm += R_imm_0.read(ba) << 0;
-    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 61 << ";\n";
+    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 62 << ";\n";
     
     ret_strs << "CVA6_Monitor_rs1_buffer[*CVA6_Monitor_instrCnt] = " << rs1 << ";\n";
     
@@ -1962,7 +1994,7 @@ static InstructionMonitor *instrMonitor_sb = new InstructionMonitor(
     int rs2 = 0;
     static etiss::instr::BitArrayRange R_rs2_0(24,20);
     rs2 += R_rs2_0.read(ba) << 0;
-    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 62 << ";\n";
+    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 63 << ";\n";
     
     ret_strs << "CVA6_Monitor_rs1_buffer[*CVA6_Monitor_instrCnt] = " << rs1 << ";\n";
     
@@ -1989,7 +2021,7 @@ static InstructionMonitor *instrMonitor_sh = new InstructionMonitor(
     int rs2 = 0;
     static etiss::instr::BitArrayRange R_rs2_0(24,20);
     rs2 += R_rs2_0.read(ba) << 0;
-    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 63 << ";\n";
+    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 64 << ";\n";
     
     ret_strs << "CVA6_Monitor_rs1_buffer[*CVA6_Monitor_instrCnt] = " << rs1 << ";\n";
     
@@ -2016,7 +2048,7 @@ static InstructionMonitor *instrMonitor_sw = new InstructionMonitor(
     int rs2 = 0;
     static etiss::instr::BitArrayRange R_rs2_0(24,20);
     rs2 += R_rs2_0.read(ba) << 0;
-    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 64 << ";\n";
+    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 65 << ";\n";
     
     ret_strs << "CVA6_Monitor_rs1_buffer[*CVA6_Monitor_instrCnt] = " << rs1 << ";\n";
     
@@ -2043,7 +2075,7 @@ static InstructionMonitor *instrMonitor_sd = new InstructionMonitor(
     int rs2 = 0;
     static etiss::instr::BitArrayRange R_rs2_0(24,20);
     rs2 += R_rs2_0.read(ba) << 0;
-    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 65 << ";\n";
+    ret_strs << "CVA6_Monitor_typeId_buffer[*CVA6_Monitor_instrCnt] = " << 66 << ";\n";
     
     ret_strs << "CVA6_Monitor_rs1_buffer[*CVA6_Monitor_instrCnt] = " << rs1 << ";\n";
     

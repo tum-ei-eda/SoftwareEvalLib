@@ -1,7 +1,7 @@
 
 TARGET_SOURCES(SWEVAL_MONITORS_LIB PRIVATE
-  	src/CVA6_Monitor.cpp
-	src/CVA6_InstructionMonitors.cpp
+  	src/CVA6_InstructionMonitors.cpp
+	src/CVA6_Monitor.cpp
 
 )
 

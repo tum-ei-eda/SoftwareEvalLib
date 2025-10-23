@@ -34,7 +34,7 @@ namespace plugin
 
 namespace TracerPlugin
 {
-  
+
 class TracerPlugin : public TranslationPlugin, public CoroutinePlugin
 {
 public:
@@ -47,22 +47,23 @@ public:
   virtual void executionEnd(int32_t);
   virtual std::string _getPluginName() const;
   virtual void *getPluginHandle();
+  virtual etiss::int64 getEstimatedCycleCount() override;
 
 private:
   std::set<Monitor*> monitor_set;
-  
+
   virtual void processTrace(void) = 0;
   virtual void finalizeTrace(void) = 0;
-  
+
 protected:
   void addMonitor(Monitor*);
-  
+
 };
 
 } // namespace TracerPlugin
- 
+
 } // namespace plugin
-  
+
 } // namespace etiss
 
 #endif // TRACER_PLUGIN_H
