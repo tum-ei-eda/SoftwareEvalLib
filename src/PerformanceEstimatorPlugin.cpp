@@ -30,6 +30,12 @@ PerformanceEstimatorPlugin::PerformanceEstimatorPlugin(etiss::Configuration* con
   std::string uArchName = config->get<std::string>("plugin.perfEst.uArch", "");
   printActive = (bool)config->get<int>("plugin.perfEst.print", false);
   std::string outDir = config->get<std::string>("plugin.perfEst.printDir", "");
+  std::string uArchPower_str = config->get<std::string>("plugin.perfEst.uArchPower", "");
+  if (uArchPower_str != "")
+    uArchPower=std::stof(uArchPower_str);
+  std::string uArchCycletime_str = config->get<std::string>("plugin.perfEst.uArchCycletime", "");
+  if (uArchCycletime_str != "")
+    uArchCycletime=std::stof(uArchCycletime_str);
   
   // Get monitor
   Monitor* monitor_ptr = nullptr;
@@ -131,13 +137,23 @@ void PerformanceEstimatorPlugin::processTrace(void)
 }
 
 void PerformanceEstimatorPlugin::finalizeTrace(void)
-{
-  estimator_ptr->execute();
-  estimator_ptr->finalize();
-  if(printActive)
-  {
-    tracePrinter_ptr->execute();
-    tracePrinter_ptr->finalize();
+{ 
+  if ((uArchPower!=0.0) && (uArchCycletime !=0.0)){
+    estimator_ptr->execute();
+    estimator_ptr->finalize_energy(uArchPower, uArchCycletime);
+    if (printActive)
+    {
+      tracePrinter_ptr->execute();
+      estimator_ptr->finalize_energy(uArchPower, uArchCycletime);
+    }
+  }else{
+    estimator_ptr->execute();
+    estimator_ptr->finalize();
+    if (printActive)
+    {
+      tracePrinter_ptr->execute();
+      estimator_ptr->finalize();
+    }
   }
 }
 

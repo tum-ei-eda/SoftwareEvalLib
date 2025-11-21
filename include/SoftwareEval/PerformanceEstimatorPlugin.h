@@ -49,6 +49,9 @@ private:
   Backend* tracePrinter_ptr;
 
   bool printActive;
+
+  float uArchPower = 0.0;
+  float uArchCycletime = 0.0;
   
   virtual void processTrace(void);
   virtual void finalizeTrace(void);
