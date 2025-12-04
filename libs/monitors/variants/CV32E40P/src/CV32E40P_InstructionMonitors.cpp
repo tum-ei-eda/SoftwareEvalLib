@@ -1496,11 +1496,9 @@ static InstructionMonitor *instrMonitor_mret = new InstructionMonitor(
     
     ret_strs << "CV32E40P_Monitor_typeId_buffer[*CV32E40P_Monitor_instrCnt] = " << 11 << ";\n";
 
-    ret_strs << "CV32E40P_Monitor_rs1_buffer[*CV32E40P_Monitor_instrCnt] = " << rs1 << ";\n";
-    
-    ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
-    
-    ret_strs << "CV32E40P_Monitor_brTarget_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ + (((int16_t)(imm  << 3)) >> 3) << ";\n";
+    // ret_strs << "CV32E40P_Monitor_rs1_buffer[*CV32E40P_Monitor_instrCnt] = " << rs1 << ";\n";
+    // ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
+    // ret_strs << "CV32E40P_Monitor_brTarget_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ + (((int16_t)(imm  << 3)) >> 3) << ";\n";
     
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
