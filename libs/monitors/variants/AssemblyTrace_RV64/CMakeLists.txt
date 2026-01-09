@@ -1,7 +1,7 @@
 
 TARGET_SOURCES(SWEVAL_MONITORS_LIB PRIVATE
-  	src/AssemblyTrace_RV64_Monitor.cpp
-	src/AssemblyTrace_RV64_InstructionMonitors.cpp
+  	src/AssemblyTrace_RV64_InstructionMonitors.cpp
+	src/AssemblyTrace_RV64_Monitor.cpp
 
 )
 
