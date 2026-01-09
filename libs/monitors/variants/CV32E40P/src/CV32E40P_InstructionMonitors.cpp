@@ -48,6 +48,8 @@ static InstructionMonitor *instrMonitor_add = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -80,6 +82,8 @@ static InstructionMonitor *instrMonitor_sub = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -112,6 +116,8 @@ static InstructionMonitor *instrMonitor_xor = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -144,6 +150,8 @@ static InstructionMonitor *instrMonitor_or = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -176,6 +184,8 @@ static InstructionMonitor *instrMonitor_and = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -208,6 +218,8 @@ static InstructionMonitor *instrMonitor_slt = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -240,6 +252,8 @@ static InstructionMonitor *instrMonitor_sltu = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -272,6 +286,8 @@ static InstructionMonitor *instrMonitor_sll = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -304,6 +320,8 @@ static InstructionMonitor *instrMonitor_srl = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -336,6 +354,8 @@ static InstructionMonitor *instrMonitor_sra = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -363,6 +383,8 @@ static InstructionMonitor *instrMonitor_addi = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs1_buffer[*CV32E40P_Monitor_instrCnt] = " << rs1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -390,6 +412,8 @@ static InstructionMonitor *instrMonitor_xori = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs1_buffer[*CV32E40P_Monitor_instrCnt] = " << rs1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -417,6 +441,8 @@ static InstructionMonitor *instrMonitor_ori = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs1_buffer[*CV32E40P_Monitor_instrCnt] = " << rs1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -444,6 +470,8 @@ static InstructionMonitor *instrMonitor_andi = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs1_buffer[*CV32E40P_Monitor_instrCnt] = " << rs1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -471,6 +499,8 @@ static InstructionMonitor *instrMonitor_slti = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs1_buffer[*CV32E40P_Monitor_instrCnt] = " << rs1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -498,6 +528,8 @@ static InstructionMonitor *instrMonitor_sltiu = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs1_buffer[*CV32E40P_Monitor_instrCnt] = " << rs1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -525,6 +557,8 @@ static InstructionMonitor *instrMonitor_slli = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs1_buffer[*CV32E40P_Monitor_instrCnt] = " << rs1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -552,6 +586,8 @@ static InstructionMonitor *instrMonitor_srli = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs1_buffer[*CV32E40P_Monitor_instrCnt] = " << rs1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -579,6 +615,8 @@ static InstructionMonitor *instrMonitor_srai = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs1_buffer[*CV32E40P_Monitor_instrCnt] = " << rs1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -601,6 +639,8 @@ static InstructionMonitor *instrMonitor_auipc = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_typeId_buffer[*CV32E40P_Monitor_instrCnt] = " << 3 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -623,6 +663,8 @@ static InstructionMonitor *instrMonitor_lui = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_typeId_buffer[*CV32E40P_Monitor_instrCnt] = " << 3 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -655,6 +697,8 @@ static InstructionMonitor *instrMonitor_mul = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -687,6 +731,8 @@ static InstructionMonitor *instrMonitor_mulh = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -719,6 +765,8 @@ static InstructionMonitor *instrMonitor_mulhu = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -751,6 +799,8 @@ static InstructionMonitor *instrMonitor_mulhsu = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -785,6 +835,8 @@ static InstructionMonitor *instrMonitor_div = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rs2_data_buffer[*CV32E40P_Monitor_instrCnt] = " << "*((RV32IMACFD*)cpu)->X["<< rs2 << "]" << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -819,6 +871,8 @@ static InstructionMonitor *instrMonitor_rem = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rs2_data_buffer[*CV32E40P_Monitor_instrCnt] = " << "*((RV32IMACFD*)cpu)->X["<< rs2 << "]" << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -853,6 +907,8 @@ static InstructionMonitor *instrMonitor_divu = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rs2_data_buffer[*CV32E40P_Monitor_instrCnt] = " << "*((RV32IMACFD*)cpu)->X["<< rs2 << "]" << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -887,6 +943,8 @@ static InstructionMonitor *instrMonitor_remu = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rs2_data_buffer[*CV32E40P_Monitor_instrCnt] = " << "*((RV32IMACFD*)cpu)->X["<< rs2 << "]" << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -914,6 +972,8 @@ static InstructionMonitor *instrMonitor_csrrw = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs1_buffer[*CV32E40P_Monitor_instrCnt] = " << rs1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -941,6 +1001,8 @@ static InstructionMonitor *instrMonitor_csrrs = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs1_buffer[*CV32E40P_Monitor_instrCnt] = " << rs1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -968,6 +1030,8 @@ static InstructionMonitor *instrMonitor_csrrc = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs1_buffer[*CV32E40P_Monitor_instrCnt] = " << rs1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -990,6 +1054,8 @@ static InstructionMonitor *instrMonitor_csrrwi = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_typeId_buffer[*CV32E40P_Monitor_instrCnt] = " << 7 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -1012,6 +1078,8 @@ static InstructionMonitor *instrMonitor_csrrsi = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_typeId_buffer[*CV32E40P_Monitor_instrCnt] = " << 7 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -1034,6 +1102,8 @@ static InstructionMonitor *instrMonitor_csrrci = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_typeId_buffer[*CV32E40P_Monitor_instrCnt] = " << 7 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -1061,6 +1131,8 @@ static InstructionMonitor *instrMonitor_sb = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs1_buffer[*CV32E40P_Monitor_instrCnt] = " << rs1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -1088,6 +1160,8 @@ static InstructionMonitor *instrMonitor_sh = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs1_buffer[*CV32E40P_Monitor_instrCnt] = " << rs1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -1115,6 +1189,8 @@ static InstructionMonitor *instrMonitor_sw = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs1_buffer[*CV32E40P_Monitor_instrCnt] = " << rs1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -1142,6 +1218,8 @@ static InstructionMonitor *instrMonitor_lw = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs1_buffer[*CV32E40P_Monitor_instrCnt] = " << rs1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -1169,6 +1247,8 @@ static InstructionMonitor *instrMonitor_lh = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs1_buffer[*CV32E40P_Monitor_instrCnt] = " << rs1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -1196,6 +1276,8 @@ static InstructionMonitor *instrMonitor_lhu = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs1_buffer[*CV32E40P_Monitor_instrCnt] = " << rs1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -1223,6 +1305,8 @@ static InstructionMonitor *instrMonitor_lb = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs1_buffer[*CV32E40P_Monitor_instrCnt] = " << rs1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -1250,6 +1334,8 @@ static InstructionMonitor *instrMonitor_lbu = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs1_buffer[*CV32E40P_Monitor_instrCnt] = " << rs1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -1288,6 +1374,8 @@ static InstructionMonitor *instrMonitor_beq = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_brTarget_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ + (((int16_t)(imm  << 3)) >> 3) << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -1326,6 +1414,8 @@ static InstructionMonitor *instrMonitor_bne = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_brTarget_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ + (((int16_t)(imm  << 3)) >> 3) << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -1364,6 +1454,8 @@ static InstructionMonitor *instrMonitor_blt = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_brTarget_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ + (((int16_t)(imm  << 3)) >> 3) << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -1402,6 +1494,8 @@ static InstructionMonitor *instrMonitor_bge = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_brTarget_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ + (((int16_t)(imm  << 3)) >> 3) << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -1440,6 +1534,8 @@ static InstructionMonitor *instrMonitor_bltu = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_brTarget_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ + (((int16_t)(imm  << 3)) >> 3) << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -1478,6 +1574,8 @@ static InstructionMonitor *instrMonitor_bgeu = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_brTarget_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ + (((int16_t)(imm  << 3)) >> 3) << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -1499,6 +1597,8 @@ static InstructionMonitor *instrMonitor_mret = new InstructionMonitor(
     // ret_strs << "CV32E40P_Monitor_rs1_buffer[*CV32E40P_Monitor_instrCnt] = " << rs1 << ";\n";
     // ret_strs << "CV32E40P_Monitor_rs2_buffer[*CV32E40P_Monitor_instrCnt] = " << rs2 << ";\n";
     // ret_strs << "CV32E40P_Monitor_brTarget_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ + (((int16_t)(imm  << 3)) >> 3) << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 1 << ";\n";
     
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
@@ -1517,6 +1617,8 @@ static InstructionMonitor *instrMonitor_ecall = new InstructionMonitor(
     std::stringstream ret_strs;
     
     ret_strs << "CV32E40P_Monitor_typeId_buffer[*CV32E40P_Monitor_instrCnt] = " << 11 << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -1534,6 +1636,8 @@ static InstructionMonitor *instrMonitor__def = new InstructionMonitor(
     std::stringstream ret_strs;
     
     ret_strs << "CV32E40P_Monitor_typeId_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 0 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -1567,6 +1671,8 @@ static InstructionMonitor *instrMonitor_jal = new InstructionMonitor(
     ret_strs << "CV32E40P_Monitor_rd_buffer[*CV32E40P_Monitor_instrCnt] = " << rd << ";\n";
     
     ret_strs << "CV32E40P_Monitor_brTarget_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ + (((int32_t)(imm  << 11)) >> 11) << ";\n";
+
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 1 << ";\n";
     
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
@@ -1600,6 +1706,8 @@ static InstructionMonitor *instrMonitor_jalr = new InstructionMonitor(
     
     ret_strs << "CV32E40P_Monitor_brTarget_buffer[*CV32E40P_Monitor_instrCnt] = " << "("<< "*((RV32IMACFD*)cpu)->X["<< rs1 << "]"<< " + "<< (((int16_t)(imm  << 4)) >> 4)<< ") & -2U" << ";\n";
     
+    ret_strs << "CV32E40P_Monitor_isBranch_buffer[*CV32E40P_Monitor_instrCnt] = " << 1 << ";\n";
+
     ret_strs << "CV32E40P_Monitor_pc_buffer[*CV32E40P_Monitor_instrCnt] = " << ic.current_address_ << ";\n";
     ret_strs << "*CV32E40P_Monitor_instrCnt += 1;\n";
     return ret_strs.str();

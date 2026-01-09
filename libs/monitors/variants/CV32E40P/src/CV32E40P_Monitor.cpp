@@ -36,6 +36,8 @@ extern "C"
   uint64_t *CV32E40P_Monitor_pc_buffer;
   uint64_t *CV32E40P_Monitor_brTarget_buffer;
   uint64_t *CV32E40P_Monitor_rs2_data_buffer;
+
+  uint64_t *CV32E40P_Monitor_isBranch_buffer;
 }
 
 extern InstructionMonitorSet* CV32E40P_InstrMonitorSet;
@@ -56,6 +58,8 @@ void CV32E40P_Monitor::connectChannel(Channel* channel_)
   CV32E40P_Monitor_pc_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("pc"));
   CV32E40P_Monitor_brTarget_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("brTarget"));
   CV32E40P_Monitor_rs2_data_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("rs2_data"));
+
+  CV32E40P_Monitor_isBranch_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("isBranch"));
 }
 
 
@@ -72,6 +76,8 @@ std::string CV32E40P_Monitor::getBlockDeclarations(void) const
   ret_strs << "extern uint64_t *CV32E40P_Monitor_pc_buffer;\n";
   ret_strs << "extern uint64_t *CV32E40P_Monitor_brTarget_buffer;\n";
   ret_strs << "extern uint64_t *CV32E40P_Monitor_rs2_data_buffer;\n";
+
+  ret_strs << "extern uint64_t *CV32E40P_Monitor_isBranch_buffer;\n";
 
   return ret_strs.str();
 }
