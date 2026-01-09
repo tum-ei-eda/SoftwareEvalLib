@@ -24,7 +24,9 @@
 #include "InstructionTrace_RV64IMF_Zicsr_Monitor.h"
 #include "AssemblyTrace_RV64_Monitor.h"
 #include "AssemblyTrace_RV32_Monitor.h"
+#include "CVA6XISAAC_Monitor.h"
 #include "CVA6_Monitor.h"
+#include "CV32E40PXISAAC_Monitor.h"
 #include "InstructionTrace_RV64IM_Zicsr_Monitor.h"
 
 namespace SwEvalMonitors
@@ -37,7 +39,9 @@ int Factory::getVariantHandle(std::string varName_)
 	if(varName_ == "InstructionTrace_RV64IMF_Zicsr"){ return InstructionTrace_RV64IMF_Zicsr; }
 	if(varName_ == "AssemblyTrace_RV64"){ return AssemblyTrace_RV64; }
 	if(varName_ == "AssemblyTrace_RV32"){ return AssemblyTrace_RV32; }
+	if(varName_ == "CVA6XISAAC"){ return CVA6XISAAC; }
 	if(varName_ == "CVA6"){ return CVA6; }
+	if(varName_ == "CV32E40PXISAAC"){ return CV32E40PXISAAC; }
 	if(varName_ == "InstructionTrace_RV64IM_Zicsr"){ return InstructionTrace_RV64IM_Zicsr; }
 
     return -1;
@@ -52,7 +56,9 @@ Monitor* Factory::getMonitor(int var_)
 	case InstructionTrace_RV64IMF_Zicsr: return new InstructionTrace_RV64IMF_Zicsr_Monitor();
 	case AssemblyTrace_RV64: return new AssemblyTrace_RV64_Monitor();
 	case AssemblyTrace_RV32: return new AssemblyTrace_RV32_Monitor();
+	case CVA6XISAAC: return new CVA6XISAAC_Monitor();
 	case CVA6: return new CVA6_Monitor();
+	case CV32E40PXISAAC: return new CV32E40PXISAAC_Monitor();
 	case InstructionTrace_RV64IM_Zicsr: return new InstructionTrace_RV64IM_Zicsr_Monitor();
  
     default: return nullptr;

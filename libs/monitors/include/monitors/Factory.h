@@ -35,7 +35,9 @@ private:
 	InstructionTrace_RV64IMF_Zicsr,
 	AssemblyTrace_RV64,
 	AssemblyTrace_RV32,
+	CVA6XISAAC,
 	CVA6,
+	CV32E40PXISAAC,
 	InstructionTrace_RV64IM_Zicsr
    };
 public:

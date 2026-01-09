@@ -1314,6 +1314,52 @@ static InstructionMonitor *instrMonitor_REMUW = new InstructionMonitor(
     return ret_strs.str();
   }
 );
+static InstructionMonitor *instrMonitor_CUSTOM0 = new InstructionMonitor(
+  InstructionTrace_RV64IM_Zicsr_InstrMonitorSet,
+  "custom0",
+  [](etiss::instr::BitArray &ba, etiss::instr::Instruction &instr, etiss::instr::InstructionContext &ic){
+    std::stringstream ret_strs;
+    
+    int rs1 = 0;
+    static etiss::instr::BitArrayRange R_rs1_0(19,15);
+    rs1 += R_rs1_0.read(ba) << 0;
+    int rs2 = 0;
+    static etiss::instr::BitArrayRange R_rs2_0(24,20);
+    rs2 += R_rs2_0.read(ba) << 0;
+    int rd = 0;
+    static etiss::instr::BitArrayRange R_rd_0(11,7);
+    rd += R_rd_0.read(ba) << 0;
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 1 << ";\n";
+    
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
+    
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_pc_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << "cpu->instructionPointer" << ";\n";
+    
+    ret_strs << "strcpy(InstructionTrace_RV64IM_Zicsr_Monitor_assembly_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt],\"" << instr.printASM(ba) << "\");\n";
+    
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_rs1_data_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << "*((RV64IMACFD*)cpu)->X["<< rs1 << "]" << ";\n";
+    
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_rs2_data_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << "*((RV64IMACFD*)cpu)->X["<< rs2 << "]" << ";\n";
+    return ret_strs.str();
+  },
+  [](etiss::instr::BitArray &ba, etiss::instr::Instruction &instr, etiss::instr::InstructionContext &ic){
+    std::stringstream ret_strs;
+    
+    int rs1 = 0;
+    static etiss::instr::BitArrayRange R_rs1_0(19,15);
+    rs1 += R_rs1_0.read(ba) << 0;
+    int rs2 = 0;
+    static etiss::instr::BitArrayRange R_rs2_0(24,20);
+    rs2 += R_rs2_0.read(ba) << 0;
+    int rd = 0;
+    static etiss::instr::BitArrayRange R_rd_0(11,7);
+    rd += R_rd_0.read(ba) << 0;
+    
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_rd_data_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << "*((RV64IMACFD*)cpu)->X["<< rd << "]" << ";\n";
+    ret_strs << "*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt += 1;\n";
+    return ret_strs.str();
+  }
+);
 static InstructionMonitor *instrMonitor_ADDI = new InstructionMonitor(
   InstructionTrace_RV64IM_Zicsr_InstrMonitorSet,
   "addi",
@@ -1329,7 +1375,7 @@ static InstructionMonitor *instrMonitor_ADDI = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 1 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 2 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -1375,7 +1421,7 @@ static InstructionMonitor *instrMonitor_SLTI = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 1 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 2 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -1421,7 +1467,7 @@ static InstructionMonitor *instrMonitor_SLTIU = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 1 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 2 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -1467,7 +1513,7 @@ static InstructionMonitor *instrMonitor_XORI = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 1 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 2 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -1513,7 +1559,7 @@ static InstructionMonitor *instrMonitor_ORI = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 1 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 2 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -1559,7 +1605,7 @@ static InstructionMonitor *instrMonitor_ANDI = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 1 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 2 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -1603,7 +1649,7 @@ static InstructionMonitor *instrMonitor_SLLI = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 1 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 2 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -1645,7 +1691,7 @@ static InstructionMonitor *instrMonitor_SRLI = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 1 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 2 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -1687,7 +1733,7 @@ static InstructionMonitor *instrMonitor_SRAI = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 1 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 2 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -1729,7 +1775,7 @@ static InstructionMonitor *instrMonitor_SLLIW = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 1 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 2 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -1771,7 +1817,7 @@ static InstructionMonitor *instrMonitor_SRLIW = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 1 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 2 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -1813,7 +1859,7 @@ static InstructionMonitor *instrMonitor_SRAIW = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 1 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 2 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -1857,7 +1903,7 @@ static InstructionMonitor *instrMonitor_LB = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 2 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 3 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -1905,7 +1951,7 @@ static InstructionMonitor *instrMonitor_LH = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 2 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 3 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -1953,7 +1999,7 @@ static InstructionMonitor *instrMonitor_LW = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 2 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 3 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -2001,7 +2047,7 @@ static InstructionMonitor *instrMonitor_LBU = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 2 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 3 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -2049,7 +2095,7 @@ static InstructionMonitor *instrMonitor_LHU = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 2 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 3 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -2097,7 +2143,7 @@ static InstructionMonitor *instrMonitor_LWU = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 2 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 3 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -2145,7 +2191,7 @@ static InstructionMonitor *instrMonitor_LD = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 2 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 3 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -2195,7 +2241,7 @@ static InstructionMonitor *instrMonitor_SB = new InstructionMonitor(
     int rs2 = 0;
     static etiss::instr::BitArrayRange R_rs2_0(24,20);
     rs2 += R_rs2_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 3 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 4 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -2235,7 +2281,7 @@ static InstructionMonitor *instrMonitor_SH = new InstructionMonitor(
     int rs2 = 0;
     static etiss::instr::BitArrayRange R_rs2_0(24,20);
     rs2 += R_rs2_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 3 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 4 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -2275,7 +2321,7 @@ static InstructionMonitor *instrMonitor_SW = new InstructionMonitor(
     int rs2 = 0;
     static etiss::instr::BitArrayRange R_rs2_0(24,20);
     rs2 += R_rs2_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 3 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 4 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -2315,7 +2361,7 @@ static InstructionMonitor *instrMonitor_SD = new InstructionMonitor(
     int rs2 = 0;
     static etiss::instr::BitArrayRange R_rs2_0(24,20);
     rs2 += R_rs2_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 3 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 4 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -2353,7 +2399,7 @@ static InstructionMonitor *instrMonitor_CSRRW = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 4 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 5 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -2401,7 +2447,7 @@ static InstructionMonitor *instrMonitor_CSRRS = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 4 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 5 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -2449,7 +2495,7 @@ static InstructionMonitor *instrMonitor_CSRRC = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 4 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 5 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -2495,7 +2541,7 @@ static InstructionMonitor *instrMonitor_CSRRWI = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 5 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 6 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -2537,7 +2583,7 @@ static InstructionMonitor *instrMonitor_CSRRSI = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 5 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 6 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -2579,7 +2625,7 @@ static InstructionMonitor *instrMonitor_CSRRCI = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 5 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 6 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -2629,7 +2675,7 @@ static InstructionMonitor *instrMonitor_BEQ = new InstructionMonitor(
     int rs2 = 0;
     static etiss::instr::BitArrayRange R_rs2_0(24,20);
     rs2 += R_rs2_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 6 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 7 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -2689,7 +2735,7 @@ static InstructionMonitor *instrMonitor_BNE = new InstructionMonitor(
     int rs2 = 0;
     static etiss::instr::BitArrayRange R_rs2_0(24,20);
     rs2 += R_rs2_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 6 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 7 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -2749,7 +2795,7 @@ static InstructionMonitor *instrMonitor_BLT = new InstructionMonitor(
     int rs2 = 0;
     static etiss::instr::BitArrayRange R_rs2_0(24,20);
     rs2 += R_rs2_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 6 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 7 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -2809,7 +2855,7 @@ static InstructionMonitor *instrMonitor_BGE = new InstructionMonitor(
     int rs2 = 0;
     static etiss::instr::BitArrayRange R_rs2_0(24,20);
     rs2 += R_rs2_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 6 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 7 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -2869,7 +2915,7 @@ static InstructionMonitor *instrMonitor_BLTU = new InstructionMonitor(
     int rs2 = 0;
     static etiss::instr::BitArrayRange R_rs2_0(24,20);
     rs2 += R_rs2_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 6 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 7 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -2929,7 +2975,7 @@ static InstructionMonitor *instrMonitor_BGEU = new InstructionMonitor(
     int rs2 = 0;
     static etiss::instr::BitArrayRange R_rs2_0(24,20);
     rs2 += R_rs2_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 6 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 7 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -2980,7 +3026,7 @@ static InstructionMonitor *instrMonitor_LUI = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 7 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 8 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -3018,7 +3064,7 @@ static InstructionMonitor *instrMonitor_AUIPC = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 7 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 8 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -3050,7 +3096,7 @@ static InstructionMonitor *instrMonitor__DEF = new InstructionMonitor(
   [](etiss::instr::BitArray &ba, etiss::instr::Instruction &instr, etiss::instr::InstructionContext &ic){
     std::stringstream ret_strs;
     
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 8 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 9 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -3083,7 +3129,7 @@ static InstructionMonitor *instrMonitor_JAL = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 9 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 10 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
@@ -3132,7 +3178,7 @@ static InstructionMonitor *instrMonitor_JALR = new InstructionMonitor(
     int rd = 0;
     static etiss::instr::BitArrayRange R_rd_0(11,7);
     rd += R_rd_0.read(ba) << 0;
-    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 10 << ";\n";
+    ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_typeId_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << 11 << ";\n";
     
     ret_strs << "InstructionTrace_RV64IM_Zicsr_Monitor_code_buffer[*InstructionTrace_RV64IM_Zicsr_Monitor_instrCnt] = " << ba << ";\n";
     
