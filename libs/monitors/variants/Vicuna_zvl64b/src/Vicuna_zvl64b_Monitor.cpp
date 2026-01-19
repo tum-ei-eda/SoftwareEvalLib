@@ -39,11 +39,10 @@ extern "C"
   uint64_t *Vicuna_zvl64b_Monitor_vm_buffer;
   uint64_t *Vicuna_zvl64b_Monitor_vtype_buffer;
   uint64_t *Vicuna_zvl64b_Monitor_lsWidth_buffer;
-  uint64_t *Vicuna_zvl64b_Monitor_isWidening_buffer;
+  uint64_t *Vicuna_zvl64b_Monitor_nf_buffer;
   uint64_t *Vicuna_zvl64b_Monitor_pc_buffer;
   uint64_t *Vicuna_zvl64b_Monitor_brTarget_buffer;
   uint64_t *Vicuna_zvl64b_Monitor_vl_buffer;
-  uint64_t *Vicuna_zvl64b_Monitor_nf_buffer;
   uint64_t *Vicuna_zvl64b_Monitor_rs2_data_buffer;
 }
 
@@ -69,11 +68,10 @@ void Vicuna_zvl64b_Monitor::connectChannel(Channel* channel_)
   Vicuna_zvl64b_Monitor_vm_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("vm"));
   Vicuna_zvl64b_Monitor_vtype_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("vtype"));
   Vicuna_zvl64b_Monitor_lsWidth_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("lsWidth"));
-  Vicuna_zvl64b_Monitor_isWidening_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("isWidening"));
+  Vicuna_zvl64b_Monitor_nf_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("nf"));
   Vicuna_zvl64b_Monitor_pc_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("pc"));
   Vicuna_zvl64b_Monitor_brTarget_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("brTarget"));
   Vicuna_zvl64b_Monitor_vl_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("vl"));
-  Vicuna_zvl64b_Monitor_nf_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("nf"));
   Vicuna_zvl64b_Monitor_rs2_data_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("rs2_data"));
 }
 
@@ -95,11 +93,10 @@ std::string Vicuna_zvl64b_Monitor::getBlockDeclarations(void) const
   ret_strs << "extern uint64_t *Vicuna_zvl64b_Monitor_vm_buffer;\n";
   ret_strs << "extern uint64_t *Vicuna_zvl64b_Monitor_vtype_buffer;\n";
   ret_strs << "extern uint64_t *Vicuna_zvl64b_Monitor_lsWidth_buffer;\n";
-  ret_strs << "extern uint64_t *Vicuna_zvl64b_Monitor_isWidening_buffer;\n";
+  ret_strs << "extern uint64_t *Vicuna_zvl64b_Monitor_nf_buffer;\n";
   ret_strs << "extern uint64_t *Vicuna_zvl64b_Monitor_pc_buffer;\n";
   ret_strs << "extern uint64_t *Vicuna_zvl64b_Monitor_brTarget_buffer;\n";
   ret_strs << "extern uint64_t *Vicuna_zvl64b_Monitor_vl_buffer;\n";
-  ret_strs << "extern uint64_t *Vicuna_zvl64b_Monitor_nf_buffer;\n";
   ret_strs << "extern uint64_t *Vicuna_zvl64b_Monitor_rs2_data_buffer;\n";
 
   return ret_strs.str();

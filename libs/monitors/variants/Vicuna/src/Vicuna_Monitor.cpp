@@ -43,7 +43,6 @@ extern "C"
   uint64_t *Vicuna_Monitor_pc_buffer;
   uint64_t *Vicuna_Monitor_brTarget_buffer;
   uint64_t *Vicuna_Monitor_vl_buffer;
-  uint64_t *Vicuna_Monitor_nf_buffer;
   uint64_t *Vicuna_Monitor_rs2_data_buffer;
 }
 
@@ -73,7 +72,6 @@ void Vicuna_Monitor::connectChannel(Channel* channel_)
   Vicuna_Monitor_pc_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("pc"));
   Vicuna_Monitor_brTarget_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("brTarget"));
   Vicuna_Monitor_vl_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("vl"));
-  Vicuna_Monitor_nf_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("nf"));
   Vicuna_Monitor_rs2_data_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("rs2_data"));
 }
 
@@ -99,7 +97,6 @@ std::string Vicuna_Monitor::getBlockDeclarations(void) const
   ret_strs << "extern uint64_t *Vicuna_Monitor_pc_buffer;\n";
   ret_strs << "extern uint64_t *Vicuna_Monitor_brTarget_buffer;\n";
   ret_strs << "extern uint64_t *Vicuna_Monitor_vl_buffer;\n";
-  ret_strs << "extern uint64_t *Vicuna_Monitor_nf_buffer;\n";
   ret_strs << "extern uint64_t *Vicuna_Monitor_rs2_data_buffer;\n";
 
   return ret_strs.str();

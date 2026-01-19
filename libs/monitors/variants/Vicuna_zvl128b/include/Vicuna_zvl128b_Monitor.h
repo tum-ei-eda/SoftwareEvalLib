@@ -1,4 +1,3 @@
-
 /*
  * Copyright 2022 Chair of EDA, Technical University of Munich
  *
@@ -15,38 +14,24 @@
  * limitations under the License.
  */
 
-#ifndef SWEVAL_MONITORS_FACTORY_H
-#define SWEVAL_MONITORS_FACTORY_H
+/********************* AUTO GENERATE FILE (create by Trace-Generator) *********************/
 
+#ifndef SWEVAL_MONITOR_VICUNA_ZVL128B_MONITOR_H
+#define SWEVAL_MONITOR_VICUNA_ZVL128B_MONITOR_H
 
 #include "Monitor.h"
+#include "softwareEval-backends/Channel.h"
 
 #include <string>
 
-namespace SwEvalMonitors
+class Vicuna_zvl128b_Monitor : public Monitor
 {
-
-class Factory
-{
-private:
-  enum var_t {
-	CV32E40P,
-	Vicuna_zvl512b,
-	Vicuna_zvl256b,
-	AssemblyTrace_RV64,
-	Vicuna,
-	Vicuna_zvl1024b,
-	CVA6,
-	InstructionTrace_RV64,
-	AssemblyTrace,
-	Vicuna_zvl64b,
-	Vicuna_zvl128b
-   };
 public:
-    int getVariantHandle(std::string);
-    Monitor* getMonitor(int);
-};
-  
-} //namespace: SwEvalMonitors
 
-#endif //SWEVAL_MONITORS_FACTORY_H
+  Vicuna_zvl128b_Monitor();
+
+  virtual void connectChannel(Channel*);
+  virtual std::string getBlockDeclarations(void) const;
+};
+
+#endif // SWEVAL_MONITOR_VICUNA_ZVL128B_MONITOR_H

@@ -20,12 +20,16 @@
 #include "Monitor.h"
 
 #include "CV32E40P_Monitor.h"
+#include "Vicuna_zvl512b_Monitor.h"
+#include "Vicuna_zvl256b_Monitor.h"
 #include "AssemblyTrace_RV64_Monitor.h"
 #include "Vicuna_Monitor.h"
+#include "Vicuna_zvl1024b_Monitor.h"
 #include "CVA6_Monitor.h"
 #include "InstructionTrace_RV64_Monitor.h"
 #include "AssemblyTrace_Monitor.h"
 #include "Vicuna_zvl64b_Monitor.h"
+#include "Vicuna_zvl128b_Monitor.h"
 
 namespace SwEvalMonitors
 {
@@ -33,12 +37,16 @@ namespace SwEvalMonitors
 int Factory::getVariantHandle(std::string varName_)
 {
     	if(varName_ == "CV32E40P"){ return CV32E40P; }
+	if(varName_ == "Vicuna_zvl512b"){ return Vicuna_zvl512b; }
+	if(varName_ == "Vicuna_zvl256b"){ return Vicuna_zvl256b; }
 	if(varName_ == "AssemblyTrace_RV64"){ return AssemblyTrace_RV64; }
-	if(varName_ == "VICUNA"){ return Vicuna; }
+	if(varName_ == "Vicuna"){ return Vicuna; }
+	if(varName_ == "Vicuna_zvl1024b"){ return Vicuna_zvl1024b; }
 	if(varName_ == "CVA6"){ return CVA6; }
 	if(varName_ == "InstructionTrace_RV64"){ return InstructionTrace_RV64; }
 	if(varName_ == "AssemblyTrace"){ return AssemblyTrace; }
-	if(varName_ == "VICUNA_ZVL64B"){ return Vicuna_zvl64b; }
+	if(varName_ == "Vicuna_zvl64b"){ return Vicuna_zvl64b; }
+	if(varName_ == "Vicuna_zvl128b"){ return Vicuna_zvl128b; }
 
     return -1;
 }
@@ -48,12 +56,16 @@ Monitor* Factory::getMonitor(int var_)
   switch((var_t)var_)
   {
     	case CV32E40P: return new CV32E40P_Monitor();
+	case Vicuna_zvl512b: return new Vicuna_zvl512b_Monitor();
+	case Vicuna_zvl256b: return new Vicuna_zvl256b_Monitor();
 	case AssemblyTrace_RV64: return new AssemblyTrace_RV64_Monitor();
 	case Vicuna: return new Vicuna_Monitor();
+	case Vicuna_zvl1024b: return new Vicuna_zvl1024b_Monitor();
 	case CVA6: return new CVA6_Monitor();
 	case InstructionTrace_RV64: return new InstructionTrace_RV64_Monitor();
 	case AssemblyTrace: return new AssemblyTrace_Monitor();
 	case Vicuna_zvl64b: return new Vicuna_zvl64b_Monitor();
+	case Vicuna_zvl128b: return new Vicuna_zvl128b_Monitor();
  
     default: return nullptr;
   }
