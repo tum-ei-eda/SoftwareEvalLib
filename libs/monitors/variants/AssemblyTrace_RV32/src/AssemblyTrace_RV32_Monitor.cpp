@@ -1,5 +1,5 @@
 /*
-* Copyright 2025 Chair of EDA, Technical University of Munich
+* Copyright 2026 Chair of EDA, Technical University of Munich
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ extern "C"
   uint64_t *AssemblyTrace_RV32_Monitor_instrCnt;
   uint64_t *AssemblyTrace_RV32_Monitor_typeId_buffer;
   int *AssemblyTrace_RV32_Monitor_pc_buffer;
-  char (*AssemblyTrace_RV32_Monitor_assembly_buffer)[50];
+  char (*AssemblyTrace_RV32_Monitor_assembly_buffer)[100];
 }
 
 extern InstructionMonitorSet* AssemblyTrace_RV32_InstrMonitorSet;
@@ -47,7 +47,7 @@ void AssemblyTrace_RV32_Monitor::connectChannel(Channel* channel_)
   AssemblyTrace_RV32_Monitor_typeId_buffer = channel_->typeId;
 
   AssemblyTrace_RV32_Monitor_pc_buffer = static_cast<int*>(channel_->getTraceValueHook("pc"));
-  AssemblyTrace_RV32_Monitor_assembly_buffer = static_cast<char(*)[50]>(channel_->getTraceValueHook("assembly"));
+  AssemblyTrace_RV32_Monitor_assembly_buffer = static_cast<char(*)[100]>(channel_->getTraceValueHook("assembly"));
 }
 
 
@@ -60,7 +60,7 @@ std::string AssemblyTrace_RV32_Monitor::getBlockDeclarations(void) const
   ret_strs << "extern uint64_t *AssemblyTrace_RV32_Monitor_typeId_buffer;\n";
 
   ret_strs << "extern int *AssemblyTrace_RV32_Monitor_pc_buffer;\n";
-  ret_strs << "extern char (*AssemblyTrace_RV32_Monitor_assembly_buffer)[50];\n";
+  ret_strs << "extern char (*AssemblyTrace_RV32_Monitor_assembly_buffer)[100];\n";
 
   return ret_strs.str();
 }
