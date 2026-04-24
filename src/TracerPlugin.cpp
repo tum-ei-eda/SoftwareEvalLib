@@ -34,12 +34,12 @@ namespace TracerPlugin
 {
 
 TracerPlugin::TracerPlugin()
-{} 
+{}
 
 TracerPlugin::~TracerPlugin() {} // TODO: Remove?
 
 void TracerPlugin::initCodeBlock(CodeBlock & block) const
-{ 
+{
   for(auto monitor_i = monitor_set.begin(); monitor_i != monitor_set.end(); monitor_i++)
   {
     block.fileglobalCode().insert((*monitor_i)->getBlockDeclarations());
@@ -71,7 +71,7 @@ void TracerPlugin::finalizeInstrSet(instr::ModedInstructionSet &mis) const
 
           cs.append(CodePart::PREINITIALDEBUGRETURNING).code() = preCode_strs.str();
 	  cs.append(CodePart::INITIALREQUIRED).code() = postCode_strs.str();
-	  	    
+
 	  return true;
 	},0);
       });
@@ -81,7 +81,7 @@ void TracerPlugin::finalizeInstrSet(instr::ModedInstructionSet &mis) const
 }
 
 int32 TracerPlugin::execute(void)
-{  
+{
   processTrace();
 
 
@@ -90,7 +90,7 @@ int32 TracerPlugin::execute(void)
   {
     (*monitor_i)->resetCounter();
   }
-  
+
   return 0;
 }
 
@@ -103,7 +103,7 @@ void TracerPlugin::executionEnd(int32_t code)
     (*monitor_i)->resetCounter();
   }
 }
-  
+
 std::string TracerPlugin::_getPluginName() const
 {
   return "TracerPlugin";
