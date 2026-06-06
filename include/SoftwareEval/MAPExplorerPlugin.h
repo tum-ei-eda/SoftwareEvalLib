@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Chair of EDA, Technical University of Munich
+ * Copyright 2026 Chair of EDA, Technical University of Munich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-#ifndef PERFORMANCE_ESTIMATOR_PLUGIN_H
-#define PERFORMANCE_ESTIMATOR_PLUGIN_H
+#ifndef MAP_EXPLORER_PLUGIN_H
+#define MAP_EXPLORER_PLUGIN_H
 
 #include "TracerPlugin.h"
 
@@ -30,11 +30,11 @@
 #include <string>
 #include <stdbool.h>
 
-class PerformanceEstimatorPlugin : public etiss::plugin::TracerPlugin::TracerPlugin
+class MAPExplorerPlugin : public etiss::plugin::TracerPlugin::TracerPlugin
 {
 public:
-  PerformanceEstimatorPlugin(etiss::Configuration*);
-  ~PerformanceEstimatorPlugin();
+  MAPExplorerPlugin(etiss::Configuration*);
+  ~MAPExplorerPlugin();
 
   virtual std::string _getPluginName() const;
   virtual void *getPluginHandle();
@@ -44,15 +44,13 @@ private:
   SwEvalBackends::Factory backendFactory;
   SwEvalMonitors::Factory monitorFactory;
   Channel* channel_ptr;
-  Backend* estimator_ptr;
-  Backend* tracePrinter_ptr;
-
-  bool printActive;
-  bool runVoid;
+  Backend* explorer_ptr;
   
   virtual void processTrace(void);
   virtual void finalizeTrace(void);
+
+  bool runVoid = false;
   
 };
 
-#endif // PERFORMANCE_ESTIMATOR_PLUGIN_H
+#endif // MAP_EXPLORER_PLUGIN_H

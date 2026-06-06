@@ -1,4 +1,20 @@
 /*
+ * Copyright 2026 Chair of EDA, Technical University of Munich
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *	 http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/*
  * Copyright 2022 Chair of EDA, Technical University of Munich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +30,7 @@
  * limitations under the License.
  */
 
-#include "PerformanceEstimatorPlugin.h"
+#include "MAPExplorerPlugin.h"
 
 #include "monitors/Monitor.h"
 
@@ -23,15 +39,13 @@
 #include <stdbool.h>
 #include <iostream> // TODO: For debug purposes: Remove afterwards?? [Error and info prints?]
 
-PerformanceEstimatorPlugin::PerformanceEstimatorPlugin(etiss::Configuration* config)
+MAPExplorerPlugin::MAPExplorerPlugin(etiss::Configuration* config)
 {
   
   // Get config data
-  std::string uArchName = config->get<std::string>("plugin.perfEst.uArch", "");
-  printActive = (bool)config->get<int>("plugin.perfEst.print", false);
-  runVoid = (bool)config->get<int>("plugin.perfEst.void", 0);
-  std::string outDir = config->get<std::string>("plugin.perfEst.printDir", "");
-  
+  std::string uArchName = config->get<std::string>("plugin.mapExplorer.uArch", "");
+  runVoid = bool(config->get<int>("plugin.mapExplorer.void", 0));
+
   // Get monitor
   Monitor* monitor_ptr = nullptr;
   int monitorHandle = monitorFactory.getVariantHandle(uArchName);
@@ -48,7 +62,7 @@ PerformanceEstimatorPlugin::PerformanceEstimatorPlugin(etiss::Configuration* con
     }
   }
 
-  // Get Channel & PerformanceEstimator
+  // Get Channel & MAPExplorer
   int backendHandle = backendFactory.getVariantHandle(uArchName);
   if (backendHandle < 0)
   {
@@ -61,87 +75,54 @@ PerformanceEstimatorPlugin::PerformanceEstimatorPlugin(etiss::Configuration* con
     {
       std::cout << "ERROR: SwEvalBackends::Factory failed to provide channel for <" << uArchName << ">" << std::endl;
     }
-    estimator_ptr = backendFactory.getPerformanceEstimator(backendHandle);
-    if (estimator_ptr == nullptr)
+    explorer_ptr = backendFactory.getMAPExplorer(backendHandle);
+    if (explorer_ptr == nullptr)
     {
       std::cout << "ERROR: SwEvalBackends::Factory failed to provide performance-estimator for <" << uArchName << ">" << std::endl;
-    }
-    if(printActive)
-    {
-      tracePrinter_ptr = backendFactory.getTracePrinter(backendHandle);
-      if (tracePrinter_ptr == nullptr)
-      {
-	std::cout << "ERROR: SwEvalBackends::Factory failed to provide trace-printer for <" << uArchName << ">" << std::endl;
-      }
     }
   }
   
   // TODO: Add error handling in case any of the above "gets" fails
   
   // Connect components
-  estimator_ptr->connectChannel(channel_ptr);
+  explorer_ptr->connectChannel(channel_ptr);
   monitor_ptr->connectChannel(channel_ptr);
-  if(printActive)
-  {
-    tracePrinter_ptr->connectChannel(channel_ptr);
-  }
   
   // Add monitor to TracerPlugin
   addMonitor(monitor_ptr);
 
   // Configure and initialize backends
-  if(printActive)
-  {
-    std::stringstream estimateFileName;
-    estimateFileName << uArchName << "_timing";
-    std::stringstream traceFileName;
-    traceFileName << uArchName << "_trace";
-    int maxFileSize = 0x1000000;
-    estimator_ptr->activateStreamToFile(estimateFileName.str(), outDir, ".csv", maxFileSize);
-    tracePrinter_ptr->activateStreamToFile(traceFileName.str(), outDir, ".csv", maxFileSize);
-    tracePrinter_ptr->initialize();
-  }
-  estimator_ptr->initialize();
+  explorer_ptr->initialize();
   
 }
 
-PerformanceEstimatorPlugin::~PerformanceEstimatorPlugin()
+MAPExplorerPlugin::~MAPExplorerPlugin()
 {
   delete channel_ptr;
-  delete estimator_ptr;
-  delete tracePrinter_ptr;
+  delete explorer_ptr;
 }
 
-std::string PerformanceEstimatorPlugin::_getPluginName() const
+std::string MAPExplorerPlugin::_getPluginName() const
 {
-  return "PerformanceEstimatorPlugin";
+  return "MAPExplorerPlugin";
 }
 
-void *PerformanceEstimatorPlugin::getPluginHandle()
+void *MAPExplorerPlugin::getPluginHandle()
 {
   return this;
 }
 
-void PerformanceEstimatorPlugin::processTrace(void)
+void MAPExplorerPlugin::processTrace(void)
 {
   if(!runVoid){
-    estimator_ptr->execute();
-    if(printActive)
-    {
-      tracePrinter_ptr->execute();
-    }
+    explorer_ptr->execute();
   }
 }
 
-void PerformanceEstimatorPlugin::finalizeTrace(void)
+void MAPExplorerPlugin::finalizeTrace(void)
 {
   if(!runVoid){
-    estimator_ptr->execute();
+    explorer_ptr->execute();
   }
-  estimator_ptr->finalize();
-  if(printActive & !runVoid)
-  {
-    tracePrinter_ptr->execute();
-    tracePrinter_ptr->finalize();
-  }
+  explorer_ptr->finalize();
 }

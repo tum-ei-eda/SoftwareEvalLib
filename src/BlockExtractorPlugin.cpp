@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Chair of EDA, Technical University of Munich
+ * Copyright 2026 Chair of EDA, Technical University of Munich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include "PerformanceEstimatorPlugin.h"
+ #include "BlockExtractorPlugin.h"
 
 #include "monitors/Monitor.h"
 
@@ -23,14 +23,11 @@
 #include <stdbool.h>
 #include <iostream> // TODO: For debug purposes: Remove afterwards?? [Error and info prints?]
 
-PerformanceEstimatorPlugin::PerformanceEstimatorPlugin(etiss::Configuration* config)
+BlockExtractorPlugin::BlockExtractorPlugin(etiss::Configuration* config)
 {
   
   // Get config data
-  std::string uArchName = config->get<std::string>("plugin.perfEst.uArch", "");
-  printActive = (bool)config->get<int>("plugin.perfEst.print", false);
-  runVoid = (bool)config->get<int>("plugin.perfEst.void", 0);
-  std::string outDir = config->get<std::string>("plugin.perfEst.printDir", "");
+  std::string uArchName = config->get<std::string>("plugin.blockExt.uArch", "");
   
   // Get monitor
   Monitor* monitor_ptr = nullptr;
@@ -48,7 +45,7 @@ PerformanceEstimatorPlugin::PerformanceEstimatorPlugin(etiss::Configuration* con
     }
   }
 
-  // Get Channel & PerformanceEstimator
+  // Get Channel & MAPExplorer
   int backendHandle = backendFactory.getVariantHandle(uArchName);
   if (backendHandle < 0)
   {
@@ -61,87 +58,51 @@ PerformanceEstimatorPlugin::PerformanceEstimatorPlugin(etiss::Configuration* con
     {
       std::cout << "ERROR: SwEvalBackends::Factory failed to provide channel for <" << uArchName << ">" << std::endl;
     }
-    estimator_ptr = backendFactory.getPerformanceEstimator(backendHandle);
-    if (estimator_ptr == nullptr)
+    extractor_ptr = backendFactory.getBlockExtractor(backendHandle);
+    if (extractor_ptr == nullptr)
     {
       std::cout << "ERROR: SwEvalBackends::Factory failed to provide performance-estimator for <" << uArchName << ">" << std::endl;
-    }
-    if(printActive)
-    {
-      tracePrinter_ptr = backendFactory.getTracePrinter(backendHandle);
-      if (tracePrinter_ptr == nullptr)
-      {
-	std::cout << "ERROR: SwEvalBackends::Factory failed to provide trace-printer for <" << uArchName << ">" << std::endl;
-      }
     }
   }
   
   // TODO: Add error handling in case any of the above "gets" fails
+  std::cout << "COFO" << std::endl;
   
   // Connect components
-  estimator_ptr->connectChannel(channel_ptr);
+  extractor_ptr->connectChannel(channel_ptr);
   monitor_ptr->connectChannel(channel_ptr);
-  if(printActive)
-  {
-    tracePrinter_ptr->connectChannel(channel_ptr);
-  }
   
   // Add monitor to TracerPlugin
   addMonitor(monitor_ptr);
 
   // Configure and initialize backends
-  if(printActive)
-  {
-    std::stringstream estimateFileName;
-    estimateFileName << uArchName << "_timing";
-    std::stringstream traceFileName;
-    traceFileName << uArchName << "_trace";
-    int maxFileSize = 0x1000000;
-    estimator_ptr->activateStreamToFile(estimateFileName.str(), outDir, ".csv", maxFileSize);
-    tracePrinter_ptr->activateStreamToFile(traceFileName.str(), outDir, ".csv", maxFileSize);
-    tracePrinter_ptr->initialize();
-  }
-  estimator_ptr->initialize();
+  extractor_ptr->initialize();
   
 }
 
-PerformanceEstimatorPlugin::~PerformanceEstimatorPlugin()
+BlockExtractorPlugin::~BlockExtractorPlugin()
 {
   delete channel_ptr;
-  delete estimator_ptr;
-  delete tracePrinter_ptr;
+  delete extractor_ptr;
 }
 
-std::string PerformanceEstimatorPlugin::_getPluginName() const
+std::string BlockExtractorPlugin::_getPluginName() const
 {
-  return "PerformanceEstimatorPlugin";
+  return "BlockExtractorPlugin";
 }
 
-void *PerformanceEstimatorPlugin::getPluginHandle()
+void *BlockExtractorPlugin::getPluginHandle()
 {
   return this;
 }
 
-void PerformanceEstimatorPlugin::processTrace(void)
+void BlockExtractorPlugin::processTrace(void)
 {
-  if(!runVoid){
-    estimator_ptr->execute();
-    if(printActive)
-    {
-      tracePrinter_ptr->execute();
-    }
-  }
+  extractor_ptr->execute();
 }
 
-void PerformanceEstimatorPlugin::finalizeTrace(void)
+void BlockExtractorPlugin::finalizeTrace(void)
 {
-  if(!runVoid){
-    estimator_ptr->execute();
-  }
-  estimator_ptr->finalize();
-  if(printActive & !runVoid)
-  {
-    tracePrinter_ptr->execute();
-    tracePrinter_ptr->finalize();
-  }
+  extractor_ptr->execute();
+  extractor_ptr->finalize();
 }

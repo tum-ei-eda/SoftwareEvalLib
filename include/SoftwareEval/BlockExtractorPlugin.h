@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Chair of EDA, Technical University of Munich
+ * Copyright 2026 Chair of EDA, Technical University of Munich
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-#ifndef PERFORMANCE_ESTIMATOR_PLUGIN_H
-#define PERFORMANCE_ESTIMATOR_PLUGIN_H
+#ifndef BLOCK_EXTRACTOR_PLUGIN_H
+#define BLOCK_EXTRACTOR_PLUGIN_H
 
 #include "TracerPlugin.h"
 
@@ -30,11 +30,11 @@
 #include <string>
 #include <stdbool.h>
 
-class PerformanceEstimatorPlugin : public etiss::plugin::TracerPlugin::TracerPlugin
+class BlockExtractorPlugin : public etiss::plugin::TracerPlugin::TracerPlugin
 {
 public:
-  PerformanceEstimatorPlugin(etiss::Configuration*);
-  ~PerformanceEstimatorPlugin();
+  BlockExtractorPlugin(etiss::Configuration*);
+  ~BlockExtractorPlugin();
 
   virtual std::string _getPluginName() const;
   virtual void *getPluginHandle();
@@ -44,15 +44,11 @@ private:
   SwEvalBackends::Factory backendFactory;
   SwEvalMonitors::Factory monitorFactory;
   Channel* channel_ptr;
-  Backend* estimator_ptr;
-  Backend* tracePrinter_ptr;
+  Backend* extractor_ptr;
 
-  bool printActive;
-  bool runVoid;
-  
   virtual void processTrace(void);
   virtual void finalizeTrace(void);
   
 };
 
-#endif // PERFORMANCE_ESTIMATOR_PLUGIN_H
+#endif // BLOCK_EXTRACTOR_PLUGIN_H

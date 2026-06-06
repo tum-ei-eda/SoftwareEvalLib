@@ -18,12 +18,15 @@
 
 #include "TracePrinterPlugin.h"
 #include "PerformanceEstimatorPlugin.h"
+#include "MAPExplorerPlugin.h"
+#include "BlockExtractorPlugin.h"
 
 #include "etiss/Plugin.h"
 #include "etiss/Misc.h" // Configuration
 #include "etiss/helper/PluginLibrary.h"
 
 #include <string>
+#include <iostream>
 
 extern "C"
 {
@@ -32,7 +35,7 @@ extern "C"
 
   unsigned SoftwareEval_countPlugin()
   {
-    return 2;
+    return 4;
   }
 
   const char * SoftwareEval_namePlugin(unsigned index)
@@ -43,6 +46,10 @@ extern "C"
       return "TracePrinterPlugin";
     case 1:
       return "PerformanceEstimatorPlugin";
+    case 2:
+      return "MAPExplorerPlugin";
+    case 3:
+      return "BlockExtractorPlugin";
     default:
       return "0";
     }
@@ -52,12 +59,17 @@ extern "C"
   {
     etiss::Configuration cfg;
     cfg.config() = options;
+    
     switch(index)
     {
     case 0:
       return new TracePrinterPlugin(&cfg);
     case 1:
       return new PerformanceEstimatorPlugin(&cfg);
+    case 2:
+      return new MAPExplorerPlugin(&cfg);
+    case 3:
+      return new BlockExtractorPlugin(&cfg);
     default:
       return 0;
     }

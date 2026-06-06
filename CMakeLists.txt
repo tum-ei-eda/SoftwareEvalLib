@@ -5,6 +5,8 @@ SET(SRC_FILES
   src/TracerPlugin.cpp
   src/TracePrinterPlugin.cpp
   src/PerformanceEstimatorPlugin.cpp
+  src/MAPExplorerPlugin.cpp
+  src/BlockExtractorPlugin.cpp
 )
 
 ADD_LIBRARY(${PROJECT_NAME} SHARED

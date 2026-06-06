@@ -1,5 +1,5 @@
 /*
-* Copyright 2025 Chair of EDA, Technical University of Munich
+* Copyright 2026 Chair of EDA, Technical University of Munich
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -34,11 +34,11 @@ extern "C"
   uint64_t *CVA6_Monitor_rs2_buffer;
   uint64_t *CVA6_Monitor_rd_buffer;
   uint64_t *CVA6_Monitor_pc_buffer;
+  uint64_t *CVA6_Monitor_addr_buffer;
   uint64_t *CVA6_Monitor_brTarget_buffer;
   uint64_t *CVA6_Monitor_imm_buffer;
   uint64_t *CVA6_Monitor_rs1_data_buffer;
   uint64_t *CVA6_Monitor_rs2_data_buffer;
-  uint64_t *CVA6_Monitor_addr_buffer;
 }
 
 extern InstructionMonitorSet* CVA6_InstrMonitorSet;
@@ -57,11 +57,11 @@ void CVA6_Monitor::connectChannel(Channel* channel_)
   CVA6_Monitor_rs2_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("rs2"));
   CVA6_Monitor_rd_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("rd"));
   CVA6_Monitor_pc_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("pc"));
+  CVA6_Monitor_addr_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("addr"));
   CVA6_Monitor_brTarget_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("brTarget"));
   CVA6_Monitor_imm_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("imm"));
   CVA6_Monitor_rs1_data_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("rs1_data"));
   CVA6_Monitor_rs2_data_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("rs2_data"));
-  CVA6_Monitor_addr_buffer = static_cast<uint64_t*>(channel_->getTraceValueHook("addr"));
 }
 
 
@@ -76,11 +76,11 @@ std::string CVA6_Monitor::getBlockDeclarations(void) const
   ret_strs << "extern uint64_t *CVA6_Monitor_rs2_buffer;\n";
   ret_strs << "extern uint64_t *CVA6_Monitor_rd_buffer;\n";
   ret_strs << "extern uint64_t *CVA6_Monitor_pc_buffer;\n";
+  ret_strs << "extern uint64_t *CVA6_Monitor_addr_buffer;\n";
   ret_strs << "extern uint64_t *CVA6_Monitor_brTarget_buffer;\n";
   ret_strs << "extern uint64_t *CVA6_Monitor_imm_buffer;\n";
   ret_strs << "extern uint64_t *CVA6_Monitor_rs1_data_buffer;\n";
   ret_strs << "extern uint64_t *CVA6_Monitor_rs2_data_buffer;\n";
-  ret_strs << "extern uint64_t *CVA6_Monitor_addr_buffer;\n";
 
   return ret_strs.str();
 }
