@@ -1,0 +1,10 @@
+
+TARGET_SOURCES(SWEVAL_MONITORS_LIB PRIVATE
+  	src/VexRiscv_DCache8192_InstructionMonitors.cpp
+	src/VexRiscv_DCache8192_Monitor.cpp
+
+)
+
+TARGET_INCLUDE_DIRECTORIES(SWEVAL_MONITORS_LIB PRIVATE
+include
+)

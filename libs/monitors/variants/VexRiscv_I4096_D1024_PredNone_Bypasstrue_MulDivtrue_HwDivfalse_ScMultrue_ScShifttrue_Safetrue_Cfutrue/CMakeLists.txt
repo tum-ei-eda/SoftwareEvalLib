@@ -1,0 +1,10 @@
+
+TARGET_SOURCES(SWEVAL_MONITORS_LIB PRIVATE
+  	src/VexRiscv_I4096_D1024_PredNone_Bypasstrue_MulDivtrue_HwDivfalse_ScMultrue_ScShifttrue_Safetrue_Cfutrue_Monitor.cpp
+	src/VexRiscv_I4096_D1024_PredNone_Bypasstrue_MulDivtrue_HwDivfalse_ScMultrue_ScShifttrue_Safetrue_Cfutrue_InstructionMonitors.cpp
+
+)
+
+TARGET_INCLUDE_DIRECTORIES(SWEVAL_MONITORS_LIB PRIVATE
+include
+)

@@ -106,9 +106,14 @@ PerformanceEstimatorPlugin::PerformanceEstimatorPlugin(etiss::Configuration* con
 
 PerformanceEstimatorPlugin::~PerformanceEstimatorPlugin()
 {
-  delete channel_ptr;
-  delete estimator_ptr;
-  delete tracePrinter_ptr;
+  // The ETISS plug-in loader owns the lifetime boundary here.  Deleting these
+  // objects during unload can race static objects in the generated variants
+  // and has been observed to segfault after an otherwise completed run.
+  // Keep the process-lifetime allocations until ETISS exits.
+  // Upstream workaround: https://github.com/tum-ei-eda/SoftwareEvalLib/pull/2
+  // delete channel_ptr;
+  // delete estimator_ptr;
+  // delete tracePrinter_ptr;
 }
 
 std::string PerformanceEstimatorPlugin::_getPluginName() const
